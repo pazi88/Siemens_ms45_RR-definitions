@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE roms [
+<!ELEMENT roms (rom)+>
+<!ENTITY deg "&#176;">
+<!-- degree sign --><!ENTITY micro "&#181;">
+<!-- micro sign --><!ELEMENT rom (romid , table+)>
+<!ATTLIST rom base CDATA #IMPLIED>
+<!ELEMENT romid (xmlid , internalidaddress , internalidstring , caseid? , ecuid , year , market , make , model , submodel , transmission , flashmethod? , memmodel , filesize , obsolete?)>
+<!ELEMENT xmlid (#PCDATA)>
+<!ELEMENT internalidaddress (#PCDATA)>
+<!ELEMENT internalidstring (#PCDATA)>
+<!ELEMENT caseid (#PCDATA)>
+<!ELEMENT ecuid (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT market (#PCDATA)>
+<!ELEMENT make (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT submodel (#PCDATA)>
+<!ELEMENT transmission (#PCDATA)>
+<!ELEMENT flashmethod (#PCDATA)>
+<!ELEMENT memmodel (#PCDATA)>
+<!ELEMENT filesize (#PCDATA)>
+<!ELEMENT obsolete (#PCDATA)>
+<!ELEMENT table (#PCDATA | scaling | table | description | data | state)*>
+<!ATTLIST table type NMTOKENS #IMPLIED>
+<!ATTLIST table name CDATA #IMPLIED>
+<!ATTLIST table category CDATA #IMPLIED>
+<!ATTLIST table storagetype CDATA #IMPLIED>
+<!ATTLIST table endian (little | big) #IMPLIED>
+<!ATTLIST table sizex CDATA #IMPLIED>
+<!ATTLIST table sizey CDATA #IMPLIED>
+<!ATTLIST table userlevel (1 | 2 | 3 | 4 | 5) #IMPLIED>
+<!ATTLIST table logparam CDATA #IMPLIED>
+<!ATTLIST table storageaddress CDATA #IMPLIED>
+<!ELEMENT scaling EMPTY>
+<!ATTLIST scaling units CDATA #REQUIRED>
+<!ATTLIST scaling expression CDATA #REQUIRED>
+<!ATTLIST scaling to_byte CDATA #REQUIRED>
+<!ATTLIST scaling format CDATA #REQUIRED>
+<!ATTLIST scaling fineincrement CDATA #REQUIRED>
+<!ATTLIST scaling coarseincrement CDATA #REQUIRED>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ATTLIST state name CDATA #REQUIRED>
+<!ATTLIST state data CDATA #REQUIRED>
+]>
+<roms>
+   <rom>
+      <!--
+v0.1 by pazi88
+
+	- draft of MS45
+
+	In this BASE section define all the common table data and axis attributes.
+    Leave out the ROM specific addresses.
+-->
+      <romid>
+         <xmlid>BMWMS45BASE</xmlid>
+         <ecuid>1234567</ecuid>
+         <year>2001-2006</year>
+         <market>USDM</market>
+         <make>BMW</make>
+         <model>E60/X5</model>
+         <submodel>MS45</submodel>
+         <transmission>MT/AT</transmission>
+         <memmodel>SAK-C167CR-LM</memmodel>
+         <filesize>1024kb</filesize>
+      </romid>
+    <table type="Switch" name="Manual deactivation of cat diagnosis inhibition condition" category="Configurations" sizey="1" userlevel="1">
+      <state name="1 - deactivated" data="01" />
+      <state name="0 - Activated" data="00" />
+      <description>You can turn off the cat diagnostics by changing this to 1 (lc_inh_cat_diag_man_deac)</description>
+    </table>
+	  <table type="3D" name="Basic ignition angle for RON 98" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+      <scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+      <table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+        <scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+      </table>
+      <table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+        <scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+      </table>
+      <description>ip_iga_bas_ron_98__n__maf</description>
+    </table>
+      <table type="3D" name="Basic ignition angle for RON 91" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+      <scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+      <table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+        <scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+      </table>
+      <table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+        <scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+      </table>
+      <description>ip_iga_bas_ron_91__n__maf</description>
+    </table>
+    <table type="2D" name="Global injection time correction" category="Fuel" storagetype="uint8" sizex="6" endian="little" userlevel="1">
+      <scaling name="Metric" units="Multiplicative Factor" expression="x*0.0078125491" to_byte="x/0.0078125491" format="0.00" fineincrement=".01" coarseincrement=".1" />
+      <table type="Static X Axis" name="Columns" sizex="6">
+        <data>Cyl 1</data>
+        <data>Cyl 5</data>
+        <data>Cyl 3</data>
+        <data>Cyl 6</data>
+        <data>Cyl 2</data>
+        <data>Cyl 4</data>
+      </table>
+      <description>These multipliers can bu used to adjust fueling for different size injectors or different fuel. For example put 1.3 for e85 (c_ti_as_cyl).</description>
+    </table>
+      <table type="2D" name="Minimum Injection Time" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+      <scaling units="Injector Pulsewidth (milliseconds)" expression="x/250" to_byte="x*250" format="0.000" fineincrement=".01" coarseincrement=".1"/>
+      <table type="Static Y Axis" name="Columns" sizex="1">
+        <data> 1</data>
+       </table>
+      <description>This table adjust the minimum injection time, important to change when adding larger injectors (c_ti_min).</description>
+    </table>    
+    <table type="2D" name="Vehicle speed limiter" category="Limiters" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+      <scaling units="kph" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10" />
+      <table type="Static Y Axis" name="Max Vehicle Speed" sizey="1">
+        <data>Vehicle speed limiter (c_vs_max)</data>
+      </table>
+    </table>
+    <table type="3D" name="MAF Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="2">
+      <scaling units="kg/hr" expression="x/64" to_byte="x*64" format="0.00" fineincrement=".01" coarseincrement=".1" />
+      <table type="Static X Axis" name="0 to 5 Volts - " sizey="16">
+        <data></data>
+      </table>
+      <table type="Static Y Axis" name="0 to 5 Volts" sizey="16">
+        <data></data>
+      </table>
+      <description>This is the scaling for the MAF sensor just in a convenient 16x16 format for easier editing. 
+   </description>
+    </table>
+   </rom>
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>13</internalidaddress>
+         <internalidstring>4560BN00</internalidstring>
+         <xmlid>4560BN00</xmlid>
+         <ecuid>4560BN00</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Partial MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>116kb</filesize>
+      </romid>
+    <table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x49F8"></table>
+    <table name="Global injection time correction" storageaddress="0x1833"></table>
+      <table name="Basic ignition angle for RON 98" storageaddress="0xAE64">
+      <table type="X Axis" storageaddress="0x8494"/>
+      <table type="Y Axis" storageaddress="0x8618"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0xAD24">
+      <table type="X Axis" storageaddress="0x8494"/>
+      <table type="Y Axis" storageaddress="0x8618"/>
+    </table>
+   </rom>
+   
+   
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>40013</internalidaddress>
+         <internalidstring>4560BN00</internalidstring>
+         <xmlid>4560BN00</xmlid>
+         <ecuid>4560BN00</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Full MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>1024kb</filesize>
+      </romid>
+    <table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x449F8"></table>
+    <table name="Global injection time correction" storageaddress="0x41833"></table>
+      <table name="Basic ignition angle for RON 98" storageaddress="0x4AE64">
+      <table type="X Axis" storageaddress="0x48494"/>
+      <table type="Y Axis" storageaddress="0x48618"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0x4AD24">
+      <table type="X Axis" storageaddress="0x48494"/>
+      <table type="Y Axis" storageaddress="0x48618"/>
+    </table>
+   </rom>
+   
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>13</internalidaddress>
+         <internalidstring>4560BL30</internalidstring>
+         <xmlid>4560BL30</xmlid>
+         <ecuid>4560BL30</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Partial MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>116kb</filesize>
+      </romid>
+      <table name="Basic ignition angle for RON 98" storageaddress="0xAEFE">
+      <table type="X Axis" storageaddress="0x8540"/>
+      <table type="Y Axis" storageaddress="0x86c6"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0xADBE">
+      <table type="X Axis" storageaddress="0x8542"/>
+      <table type="Y Axis" storageaddress="0x86c6"/>
+    </table>
+   </rom>
+   
+   
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>40013</internalidaddress>
+         <internalidstring>4560BL30</internalidstring>
+         <xmlid>4560BL30</xmlid>
+         <ecuid>4560BL30</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Full MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>1024kb</filesize>
+      </romid>
+      <table name="Basic ignition angle for RON 98" storageaddress="0x4AEFE">
+      <table type="X Axis" storageaddress="0x48542"/>
+      <table type="Y Axis" storageaddress="0x486c6"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0x4ADBE">
+      <table type="X Axis" storageaddress="0x48540"/>
+      <table type="Y Axis" storageaddress="0x486c6"/>
+    </table>
+   </rom>  
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>40013</internalidaddress>
+         <internalidstring>4570LG23</internalidstring>
+         <xmlid>4570LG23</xmlid>
+         <ecuid>4570LG23</ecuid>
+         <year>2004</year>
+         <market>USDM</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Full MS45.1</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>1024kb</filesize>
+      </romid>
+    <table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x40f6e"></table>
+    <table name="Global injection time correction" storageaddress="0x4094e"></table>
+    <table name="Minimum Injection Time" storageaddress="0x41a80"/>
+      <table name="Basic ignition angle for RON 98" storageaddress="0x4619c">
+      <table type="X Axis" storageaddress="0x518ec"/>
+      <table type="Y Axis" storageaddress="0x51a60"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0x4605c">
+      <table type="X Axis" storageaddress="0x518ec"/>
+      <table type="Y Axis" storageaddress="0x51a60"/>
+    </table>
+    <table name="Vehicle speed limiter" storageaddress="0x409d0" />
+    <table name="MAF Sensor Scaling" storageaddress="0x48858" />
+   </rom>
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>13</internalidaddress>
+         <internalidstring>4570LG23</internalidstring>
+         <xmlid>4570LG23</xmlid>
+         <ecuid>4570LG23</ecuid>
+         <year>2004</year>
+         <market>USDM</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Partial MS45.1</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>116kb</filesize>
+      </romid>
+    <table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x0f6e"></table>
+    <table name="Global injection time correction" storageaddress="0x094e"></table>
+    <table name="Minimum Injection Time" storageaddress="0x1a80"/>
+      <table name="Basic ignition angle for RON 98" storageaddress="0x619c">
+      <table type="X Axis" storageaddress="0x118EC"/>
+      <table type="Y Axis" storageaddress="0x11a60"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0x605c">
+      <table type="X Axis" storageaddress="0x118EC"/>
+      <table type="Y Axis" storageaddress="0x11a60"/>
+    </table>
+    <table name="Vehicle speed limiter" storageaddress="0x09d0" />
+    <table name="MAF Sensor Scaling" storageaddress="0x8858" />
+   </rom>
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>13</internalidaddress>
+         <internalidstring>4560BL00</internalidstring>
+         <xmlid>4560BL00</xmlid>
+         <ecuid>4560BL00</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Partial MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>116kb</filesize>
+      </romid>
+      <table name="Basic ignition angle for RON 98" storageaddress="0xAE9E">
+      <table type="X Axis" storageaddress="0x84E4"/>
+      <table type="Y Axis" storageaddress="0x8668"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0xAD5E">
+      <table type="X Axis" storageaddress="0x84E4"/>
+      <table type="Y Axis" storageaddress="0x8668"/>
+    </table>
+   </rom>
+   
+   
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>40013</internalidaddress>
+         <internalidstring>4560BL00</internalidstring>
+         <xmlid>4560BL00</xmlid>
+         <ecuid>4560BL00</ecuid>
+         <year>2004</year>
+         <market>EURO</market>
+         <make>BMW</make>
+         <model>E60</model>
+         <submodel>Full MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>1024kb</filesize>
+      </romid>
+      <table name="Basic ignition angle for RON 98" storageaddress="0x4AE9E">
+      <table type="X Axis" storageaddress="0x484E4"/>
+      <table type="Y Axis" storageaddress="0x48668"/>
+    </table>
+      <table name="Basic ignition angle for RON 91" storageaddress="0x4AD5E">
+      <table type="X Axis" storageaddress="0x484E4"/>
+      <table type="Y Axis" storageaddress="0x48668"/>
+    </table>
+   </rom>  
+   </roms>
