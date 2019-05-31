@@ -357,5 +357,26 @@ v0.1 by pazi88
       <table type="X Axis" storageaddress="0x484E4"/>
       <table type="Y Axis" storageaddress="0x48668"/>
     </table>
+   </rom> 
+
+   <rom base="BMWMS45BASE">
+      <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+      <romid>
+         <internalidaddress>40013</internalidaddress>
+         <internalidstring>4570LO00</internalidstring>
+         <xmlid>4570LO00</xmlid>
+         <ecuid>4570LO00</ecuid>
+         <year>2004</year>
+         <market>USA</market>
+         <make>BMW</make>
+         <model>E46 ZHP</model>
+         <submodel>Full MS45.0</submodel>
+         <transmission>MT/AT</transmission>
+         <filesize>1024kb</filesize>
+      </romid>
+
    </rom>  
+   
    </roms>
