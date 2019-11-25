@@ -465,21 +465,104 @@ v0.2
     </romid>
 
 
-    <table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x40f6e"></table>
-    <table name="Global injection time correction" storageaddress="0x4094e"></table>
-    <table name="Minimum Injection Time" storageaddress="0x41a80"/>
+<!--Fuel-->
+    <table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E952">
+		<table type="X Axis" storageaddress="0x47D10"/>
+		<table type="Y Axis" storageaddress="0x453D5"/>
+    </table>
 
+	<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E9D2">
+		<table type="X Axis" storageaddress="0x47D10"/>
+		<table type="Y Axis" storageaddress="0x453D5"/>
+    </table>
+
+	<table name="Global injection time correction" storageaddress="0x418AC"></table>
+
+
+<!--Igntion-->
     <table name="Basic ignition angle for RON 98" storageaddress="0x4B24C">
 		<table type="X Axis" storageaddress="0x48812"/>
 		<table type="Y Axis" storageaddress="0x48992"/>
     </table>
+
     <table name="Basic ignition angle for RON 91" storageaddress="0x4B10C">
 		<table type="X Axis" storageaddress="0x48812"/>
 		<table type="Y Axis" storageaddress="0x48992"/>
     </table>
 
-    <table name="Vehicle speed limiter" storageaddress="0x409d0" />
-    <table name="MAF Sensor Scaling" storageaddress="0x48858" />
+	<table name="Basic ignition angle IVVT Passive" storageaddress="0x4AD4C">
+		<table type="X Axis" storageaddress="0x48812"/>
+		<table type="Y Axis" storageaddress="0x48992"/>
+    </table>	
+
+    <table name="Basic ignition angle offset VO Min" storageaddress="0x4AFCC">
+		<table type="X Axis" storageaddress="0x48812"/>
+		<table type="Y Axis" storageaddress="0x48992"/>
+    </table>	
+
+    <table name="Basic ignition angle offset VO Max" storageaddress="0x4AE8C">
+		<table type="X Axis" storageaddress="0x48812"/>
+		<table type="Y Axis" storageaddress="0x48992"/>
+    </table>	
+
+<!--VANOS-->
+    <table name="Intake VANOS target - Cold Engine" storageaddress="0x4A98C">
+		<table type="X Axis" storageaddress="0x488EA"/>
+		<table type="Y Axis" storageaddress="0x47EE8"/>
+    </table>
+
+    <table name="Exhaust VANOS target - Cold Engine" storageaddress="0x4A8CC">
+		<table type="X Axis" storageaddress="0x488EA"/>
+		<table type="Y Axis" storageaddress="0x47EE8"/>
+    </table>
+
+    <table name="Intake VANOS target - Warm Engine" storageaddress="0x4AB0C">
+		<table type="X Axis" storageaddress="0x488EA"/>
+		<table type="Y Axis" storageaddress="0x47EE8"/>
+    </table>
+
+    <table name="Exhaust VANOS target - Warm Engine" storageaddress="0x4AA4C">
+		<table type="X Axis" storageaddress="0x488EA"/>
+		<table type="Y Axis" storageaddress="0x47EE8"/>
+    </table>	
+
+<!--Knock-->
+    <table name="Knock Factor - Cylinder 1" storageaddress="0x429B1">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+    <table name="Knock Factor - Cylinder 2" storageaddress="0x429F1">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+	<table name="Knock Factor - Cylinder 3" storageaddress="0x42A31">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+    <table name="Knock Factor - Cylinder 4" storageaddress="0x42A71">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+    <table name="Knock Factor - Cylinder 5" storageaddress="0x42AB1">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+    <table name="Knock Factor - Cylinder 6" storageaddress="0x42AF1">
+		<table type="X Axis" storageaddress="0x4530B"/>
+		<table type="Y Axis" storageaddress="0x44C46"/>
+    </table>
+
+<!--Limiters-->
+
+
+<!--Sensor Scaling-->
+	<table name="MAF Sensor Scaling" storageaddress="0x4B7E8" />
+	<table name="SAF MAF Sensor Scaling" storageaddress="0x4B9E8" />
 </rom>
 
    <rom base="BMWMS45BASE">
