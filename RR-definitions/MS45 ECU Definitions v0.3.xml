@@ -1,0 +1,1782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE roms [
+<!ELEMENT roms (rom)+>
+<!ENTITY deg "&#176;">
+<!-- degree sign --><!ENTITY micro "&#181;">
+<!-- micro sign --><!ELEMENT rom (romid , table+)>
+<!ATTLIST rom base CDATA #IMPLIED>
+<!ELEMENT romid (xmlid , internalidaddress , internalidstring , caseid? , ecuid , year , market , make , model , submodel , transmission , flashmethod? , memmodel , filesize , obsolete?)>
+<!ELEMENT xmlid (#PCDATA)>
+<!ELEMENT internalidaddress (#PCDATA)>
+<!ELEMENT internalidstring (#PCDATA)>
+<!ELEMENT caseid (#PCDATA)>
+<!ELEMENT ecuid (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT market (#PCDATA)>
+<!ELEMENT make (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT submodel (#PCDATA)>
+<!ELEMENT transmission (#PCDATA)>
+<!ELEMENT flashmethod (#PCDATA)>
+<!ELEMENT memmodel (#PCDATA)>
+<!ELEMENT filesize (#PCDATA)>
+<!ELEMENT obsolete (#PCDATA)>
+<!ELEMENT table (#PCDATA | scaling | table | description | data | state)*>
+<!ATTLIST table type NMTOKENS #IMPLIED>
+<!ATTLIST table name CDATA #IMPLIED>
+<!ATTLIST table category CDATA #IMPLIED>
+<!ATTLIST table storagetype CDATA #IMPLIED>
+<!ATTLIST table endian (little | big) #IMPLIED>
+<!ATTLIST table sizex CDATA #IMPLIED>
+<!ATTLIST table sizey CDATA #IMPLIED>
+<!ATTLIST table userlevel (1 | 2 | 3 | 4 | 5) #IMPLIED>
+<!ATTLIST table logparam CDATA #IMPLIED>
+<!ATTLIST table storageaddress CDATA #IMPLIED>
+<!ELEMENT scaling EMPTY>
+<!ATTLIST scaling units CDATA #REQUIRED>
+<!ATTLIST scaling expression CDATA #REQUIRED>
+<!ATTLIST scaling to_byte CDATA #REQUIRED>
+<!ATTLIST scaling format CDATA #REQUIRED>
+<!ATTLIST scaling fineincrement CDATA #REQUIRED>
+<!ATTLIST scaling coarseincrement CDATA #REQUIRED>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ATTLIST state name CDATA #REQUIRED>
+<!ATTLIST state data CDATA #REQUIRED>
+]>
+<roms>
+	<rom>
+     <!--
+v0.1 by pazi88
+	- draft of MS45
+
+v0.2
+	- additions from ba114 and zarboz
+
+v0.2.TJW
+	- additions for 44560BO00 based on posts by Johny_B, Lambda1, diablospeed and A2Ls for other MS45 revisions
+	
+v0.3
+	- Add addressess for 4570LO00
+	- fix errors
+
+	 In this BASE section define all the common table data and axis attributes.
+     Leave out the ROM specific addresses. -->
+		<romid>
+			<xmlid>BMWMS45BASE</xmlid>
+			<ecuid>1234567</ecuid>
+			<year>2001-2006</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E46/E60/X5</model>
+			<submodel>MS45</submodel>
+			<transmission>MT/AT</transmission>
+			<memmodel>SAK-C167CR-LM</memmodel>
+			<filesize>1024kb</filesize>
+		</romid>
+
+<!--Misc switches & configuration values-->
+		<table type="Switch" name="Manual deactivation of cat diagnosis inhibition condition" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>You can turn off the cat diagnostics by changing this to 1 (lc_inh_cat_diag_man_deac)</description>
+		</table>
+
+		<table type="2D" name="Exhaust configuration" category="Configurations" storagetype="uint8" endian="little" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Exhaust configuration" sizey="1">
+				<data>c_conf_cat</data>
+			</table>
+			<description>You can set desired oxygen sensor configuration here</description>
+		</table>
+
+		<table type="2D" name="MIL configuration" category="Configurations" storagetype="uint8" endian="little" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="MIL configuration" sizey="1">
+				<data>c_conf_mil</data>
+			</table>
+			<description>You can set desired MIL lamp configuration here</description>
+		</table>
+
+		<table type="2D" name="Coolant temperature threshold for fast cut-off activation" category="Configurations" storagetype="uint8" sizey="1" userlevel="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>c_tco_min_fcut_fast</data>
+			</table>
+			<description>c_tco_min_fcut_fast</description>
+		</table>
+
+<!--Ignition Tables-->
+		<table type="3D" name="Basic ignition angle for RON 98" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_bas_ron_98__n__maf</description>
+		</table>
+
+		<table type="3D" name="Basic ignition angle for RON 91" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_bas_ron_91__n__maf</description>
+		</table>
+
+		<table type="3D" name="Basic ignition angle IVVT Passive" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_bas__n__maf</description>
+		</table>
+
+		<table type="3D" name="Basic ignition angle offset VO Min" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_bas_add_min__ivvt__n__maf</description>
+		</table>
+
+		<table type="3D" name="Basic ignition angle offset VO Max" category="Ignition" storagetype="uint8" endian="little" sizex="16" sizey="20" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_bas_add_max__ivvt__n__maf</description>
+		</table>
+
+<!--VANOS tables-->
+		<table type="3D" name="Intake VANOS target - Cold Engine" category="VANOS" storagetype="uint8" endian="little" sizex="12" sizey="16" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_in_pl__n__maf_ivvt</description>
+		</table>
+
+		<table type="3D" name="Exhaust VANOS target - Cold Engine" category="VANOS" storagetype="uint8" endian="little" sizex="12" sizey="16" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_ex_pl__n__maf_ivvt</description>
+		</table>
+
+		<table type="3D" name="Intake VANOS target - Warm Engine" category="VANOS" storagetype="uint8" endian="little" sizex="12" sizey="16" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_in_pl__n__maf_ivvt</description>
+		</table>
+
+		<table type="3D" name="Exhaust VANOS target - Warm Engine" category="VANOS" storagetype="uint8" endian="little" sizex="12" sizey="16" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_ex_pl__n__maf_ivvt</description>
+		</table>
+
+		<table type="2D" name="Exhaust VANOS target - Full Load, Cold Engine" category="VANOS" storagetype="uint8" sizex="16" endian="little" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_ex_fl__n</description>
+		</table>
+
+		<table type="2D" name="Intake VANOS target - Full Load, Cold Engine" category="VANOS" storagetype="uint8" sizex="16" endian="little" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_in_fl__n</description>
+		</table>
+
+		<table type="2D" name="Exhaust VANOS target - Full Load, Warm Engine" category="VANOS" storagetype="uint8" sizex="16" endian="little" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_ex_fl__n</description>
+		</table>
+
+		<table type="2D" name="Intake VANOS target - Full Load, Warm Engine" category="VANOS" storagetype="uint8" sizex="16" endian="little" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_in_fl__n</description>
+		</table>
+
+<!--Fuel Tables-->
+		<table type="3D" name="Basic Lambda Setpoint - Bank 1" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="(°) BTDC" expression="x*0.000061" to_byte="x/0.000061" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_lamb_bas_1</description>
+		</table>
+
+		<table type="3D" name="Basic Lambda Setpoint - Bank 2" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="(°) BTDC" expression="x*0.000061" to_byte="x/0.000061" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_lamb_bas_2</description>
+		</table>
+
+		<table type="2D" name="Full load lambda enrichment" category="Fuel" storagetype="uint16" endian="big" sizex="12" userlevel="1">
+			<scaling units="Lambda" expression="x*0.000977" to_byte="x/0.000977" format="0.0000" fineincrement=".01" coarseincrement=".1"/>
+			<table type="X Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_lamb_fl__n</description>
+		</table>
+
+		<table type="2D" name="Global injection time correction (ALL)" category="Fuel" storagetype="uint8" sizex="1" endian="little" userlevel="1">
+			<scaling category="Metric" units="Multiplicative Factor" expression="x*0.0078125491" to_byte="x/0.0078125491" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data>ALL</data>
+			</table>
+			<description>This multiplier can be used to adjust fueling for different size injectors or different fuel (c_ti_as).</description>
+		</table>
+
+		<table type="2D" name="Global injection time correction" category="Fuel" storagetype="uint8" sizex="6" endian="little" userlevel="1">
+			<scaling category="Metric" units="Multiplicative Factor" expression="x*0.0078125491" to_byte="x/0.0078125491" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static X Axis" name="Columns" sizex="6">
+				<data>Cyl 1</data>
+				<data>Cyl 5</data>
+				<data>Cyl 3</data>
+				<data>Cyl 6</data>
+				<data>Cyl 2</data>
+				<data>Cyl 4</data>
+			</table>
+			<description>These multipliers can be used to adjust fueling for different size injectors or different fuel. For example put 1.3 for e85 (c_ti_as_cyl[x]).</description>
+		</table>
+
+		<table type="2D" name="Minimum Injection Time" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="Injector Pulsewidth (milliseconds)" expression="x/250" to_byte="x*250" format="0.000" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data>ALL</data>
+			</table>
+			<description>This table adjust the minimum injection time, important to change when adding larger injectors (c_ti_min).</description>
+		</table>
+
+		<table type="3D" name="Injector dead time correction" category="Fuel" storagetype="uint16" endian="big" sizex="6" sizey="8" userlevel="1">
+			<scaling units="Injector pulsewidth (milliseconds)" expression="(x*0.004)-131.072" to_byte="(x+131.072)/0.004" format="0.000" fineincrement=".01" coarseincrement=".1"/>
+			<table type="X Axis" name="Fuel pressure" storagetype="uint16" endian="big">
+				<scaling units="hPa" expression="x*2.653361" to_byte="x/2.653361" format="0.000" fineincrement=".01" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Battery voltage" storagetype="uint8" endian="big">
+				<scaling units="Volts" expression="x*.101961" to_byte="x/.101961" format="0.000" fineincrement=".01" coarseincrement=".1"/>
+			</table>
+			<description>ip_ti_add_dly</description>
+		</table>
+
+<!--Fuel Trims-->
+		<table type="2D" name="Minimum value for adaptive additive factor for injection" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="mg/stroke (???)" expression="(x-65535)*.021194" to_byte="(x/.021194)+65535" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_add_min</description>
+		</table>
+
+		<table type="2D" name="Maximum value for adaptive additive factor for injection" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="mg/stroke (???)" expression="x*.021194" to_byte="x/.021194" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_add_max</description>
+		</table>
+
+		<table type="2D" name="Minimum value for adaptive multiplicative factor for injection at lower area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="%" expression="(x*.001526)-100" to_byte="(x+100)/.001526" format="0.000" fineincrement="0.1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_fac_l_min</description>
+		</table>
+
+		<table type="2D" name="Maximum value for adaptive multiplicative factor for injection at lower area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="%" expression="x*.001526" to_byte="x/.001526" format="0.000" fineincrement="0.1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_fac_l_max</description>
+		</table>
+
+		<table type="2D" name="Minimum value for adaptive multiplicative factor for injection at higher area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="%" expression="(x*.001526)-100" to_byte="(x+100)/.001526" format="0.000" fineincrement="0.1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_fac_h_min</description>
+		</table>
+
+		<table type="2D" name="Maximum value for adaptive multiplicative factor for injection at higher area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="%" expression="x*.001526" to_byte="x/.001526" format="0.000" fineincrement="0.1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_mff_ad_fac_h_max</description>
+		</table>
+
+		<table type="2D" name="Maximum engine speed for additive adaptation value calculation" category="Fuel trims" storagetype="uint8" sizex="1" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_n_mff_ad_add_max</description>
+		</table>
+
+		<table type="2D" name="Minimum engine speed for multiplicative adaptation value calculation at lower area" category="Fuel trims" storagetype="uint8" sizex="1" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_n_mff_ad_fac_l_min</description>
+		</table>
+
+		<table type="2D" name="Minimum engine speed for multiplicative adaptation value calculation at higher area" category="Fuel trims" storagetype="uint8" sizex="1" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_n_mff_ad_fac_h_min</description>
+		</table>
+
+		<table type="2D" name="Maximum engine speed for multiplicative adaptation value calculation at higher area" category="Fuel trims" storagetype="uint8" sizex="1" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_n_mff_ad_fac_h_max</description>
+		</table>
+
+		<table type="2D" name="Maximum airflow for additive adaptation value calculation" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*.021194" to_byte="x/.021194" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_maf_mff_ad_add_max</description>
+		</table>
+
+		<table type="2D" name="Minimum airflow for multiplicative adaptation value calculation at lower area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*.021194" to_byte="x/.021194" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_maf_mff_ad_fac_l_min</description>
+		</table>
+
+		<table type="2D" name="Maximum airflow for multiplicative adaptation value calculation at higher area" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*.021194" to_byte="x/.021194" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Columns" sizex="1">
+				<data></data>
+			</table>
+			<description>c_maf_mff_ad_fac_h_max</description>
+		</table>
+
+		<table type="2D" name="Minimum airflow for multiplicative adaptation learning at lower area" category="Fuel trims" storagetype="uint8" sizex="6" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Engine speed" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_maf_mff_ad_fac_l_min</description>
+		</table>
+
+		<table type="2D" name="Maximum airflow for multiplicative adaptation learning at lower area" category="Fuel trims" storagetype="uint8" sizex="6" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Engine speed" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_maf_mff_ad_fac_l_max</description>
+		</table>
+
+		<table type="2D" name="Minimum airflow for multiplicative adaptation learning at higher area" category="Fuel trims" storagetype="uint8" sizex="6" endian="big" userlevel="1">
+			<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="0.000" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Engine speed" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_maf_mff_ad_fac_h_min</description>
+		</table>
+
+<!--Limiters-->	
+		<table type="2D" name="Vehicle speed limiter" category="Limiters" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="kph" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Max Vehicle Speed" sizey="1">
+				<data>Vehicle speed limiter (c_vs_max)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Engine speed limiter (MT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+		<table type="2D" name="Increased engine speed limiter (MT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+		<table type="2D" name="Engine speed limiter (AT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+		<table type="2D" name="Increased engine speed limiter (AT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+		<table type="2D" name="Engine speed limiter (AMT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+		<table type="2D" name="Increased engine speed limiter (AMT)" category="Limiters" storagetype="uint16" sizex="9" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+		</table>
+
+<!--Sensor Scaling-->	
+		<table type="3D" name="MAF Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="2">
+			<scaling units="kg/hr" expression="x/64" to_byte="x*64" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static X Axis" name="0 to 5 Volts - " sizey="16">
+				<data>0.00</data>
+				<data>0.02</data>
+				<data>0.04</data>
+				<data>0.06</data>
+				<data>0.08</data>
+				<data>0.10</data>
+				<data>0.12</data>
+				<data>0.14</data>
+				<data>0.16</data>
+				<data>0.18</data>
+				<data>0.20</data>
+				<data>0.22</data>
+				<data>0.24</data>
+				<data>0.26</data>
+				<data>0.28</data>
+				<data>0.3</data>
+			</table>
+			<table type="Static Y Axis" name="0 to 5 Volts" sizey="16">
+				<data>0.00</data>
+				<data>0.32</data>
+				<data>0.64</data>
+				<data>0.96</data>
+				<data>1.26</data>
+				<data>1.58</data>
+				<data>1.90</data>
+				<data>2.20</data>
+				<data>2.52</data>
+				<data>2.82</data>
+				<data>3.14</data>
+				<data>3.46</data>
+				<data>3.78</data>
+				<data>4.08</data>
+				<data>4.40</data>
+				<data>4.70</data>
+			</table>
+			<description>This is the scaling for the MAF sensor just in a convenient 16x16 format for easier editing (id_maf_tab).</description>
+		</table>
+
+		<table type="3D" name="SAF MAF Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="2">
+			<scaling units="kg/hr" expression="x*0.015625" to_byte="x/0.015625" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static X Axis" name="0 to 5 Volts - " sizey="16">
+				<data>0.00</data>
+				<data>0.02</data>
+				<data>0.04</data>
+				<data>0.06</data>
+				<data>0.08</data>
+				<data>0.10</data>
+				<data>0.12</data>
+				<data>0.14</data>
+				<data>0.16</data>
+				<data>0.18</data>
+				<data>0.20</data>
+				<data>0.22</data>
+				<data>0.24</data>
+				<data>0.26</data>
+				<data>0.28</data>
+				<data>0.3</data>
+			</table>
+			<table type="Static Y Axis" name="0 to 5 Volts" sizey="16">
+				<data>0.00</data>
+				<data>0.32</data>
+				<data>0.64</data>
+				<data>0.96</data>
+				<data>1.26</data>
+				<data>1.58</data>
+				<data>1.90</data>
+				<data>2.20</data>
+				<data>2.52</data>
+				<data>2.82</data>
+				<data>3.14</data>
+				<data>3.46</data>
+				<data>3.78</data>
+				<data>4.08</data>
+				<data>4.40</data>
+				<data>4.70</data>
+			</table>
+			<description>This is the scaling for the MAF sensor just in a convenient 16x16 format for easier editing (id_saf_tab???).</description>
+		</table>
+
+<!--Knock Tables-->
+		<table type="3D" name="Knock Factor - Cylinder 1" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_0__n__maf</description>
+		</table>
+
+		<table type="3D" name="Knock Factor - Cylinder 2" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_1__n__maf</description>
+		</table>
+
+		<table type="3D" name="Knock Factor - Cylinder 3" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_2__n__maf</description>
+		</table>
+
+		<table type="3D" name="Knock Factor - Cylinder 4" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_3__n__maf</description>
+		</table>
+
+		<table type="3D" name="Knock Factor - Cylinder 5" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_4__n__maf</description>
+		</table>
+
+		<table type="3D" name="Knock Factor - Cylinder 6" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
+			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_thd_knk_5__n__maf</description>
+		</table>
+
+<!-- E-Thermostat-->
+		<table type="2D" name="Minimum coolant temperature threshold for full energization of e-thermostat" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Minimum coolant temperature threshold for full energization of e-thermostat (c_tco_min_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Maximum coolant temperature at radiator outlet threshold for e-thermostat activation (c_tco_ex_max_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Target coolant temperature (c_tco_sp_tco_ex_max)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Minimum ambient temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Ambient temperature" sizey="1">
+				<data>Minimum ambient temperature threshold for e-thermostat activation (c_tam_min_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Maximum ambient temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Ambient temperature" sizey="1">
+				<data>Maximum ambient temperature threshold for e-thermostat activation (c_tam_max_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Target coolant temperature if ambient temperature threshold exceeded" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Target coolant temperature (c_tco_sp_tam)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Minimum intake air temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Intake air temperature" sizey="1">
+				<data>Minimum intake air temperature threshold for e-thermostat activation (c_tia_min_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Maximum intake air temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Intake air temperature" sizey="1">
+				<data>Maximum intake air temperature threshold for e-thermostat activation (c_tia_max_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Target coolant temperature if intake air temperature threshold exceeded" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Target coolant temperature (c_tco_sp_tia_max)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Minimum oil temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Oil temperature" sizey="1">
+				<data>Minimum oil temperature threshold for e-thermostat activation (c_toil_min_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Maximum oil temperature threshold for e-thermostat activation" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Oil temperature" sizey="1">
+				<data>Maximum oil temperature threshold for e-thermostat activation (c_toil_max_ect)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Target coolant temperature until temperature thresholds are exceeded" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Coolant temperature" sizey="1">
+				<data>Target coolant temperature (c_tco_sp_toil_min)</data>
+			</table>
+		</table>
+
+		<table type="3D" name="Target coolant temperature without A/C" category="E-Thermostat" storagetype="uint8" endian="little" sizex="6" sizey="12" userlevel="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="TPS" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*0.390625" to_byte="x/0.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>id_tco_sp_ect__n__pv_max</description>
+		</table>
+
+		<table type="3D" name="Target coolant temperature with A/C" category="E-Thermostat" storagetype="uint8" endian="little" sizex="6" sizey="12" userlevel="1">
+			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="TPS" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*0.390625" to_byte="x/0.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>id_tco_sp_ect_acin__n__pv_max</description>
+		</table>
+
+   </rom>
+
+<!--#BA114 Additions for E46 ZHP--> 
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4570LO00</internalidstring>
+			<xmlid>4570LO00</xmlid>
+			<ecuid>4570LO00</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E46 ZHP</model>
+			<submodel>Partial MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+		
+		<table name="Exhaust configuration" storageaddress="0x1561"/>
+
+		<table name="MIL configuration" storageaddress="0x1564"/>
+		
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
+
+<!--Fuel-->
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE952">
+			<table type="X Axis" storageaddress="0x7D10"/>
+			<table type="Y Axis" storageaddress="0x53D5"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0xE9D2">
+			<table type="X Axis" storageaddress="0x7D10"/>
+			<table type="Y Axis" storageaddress="0x53D5"/>
+		</table>
+
+		<table name="Global injection time correction" storageaddress="0x18AC"/>
+		
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x126C"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x126A"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1274"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1272"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x1270"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x126E"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x1709"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x170C"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x170B"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x170A"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x5AF0"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x5AF4"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x5AF2"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x3868">
+			<table type="X Axis" storageaddress="0x5518"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x3862">
+			<table type="X Axis" storageaddress="0x4D22"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x385C">
+			<table type="X Axis" storageaddress="0x5511"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0xB24C">
+			<table type="X Axis" storageaddress="0x8812"/>
+			<table type="Y Axis" storageaddress="0x8992"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xB10C">
+			<table type="X Axis" storageaddress="0x8812"/>
+			<table type="Y Axis" storageaddress="0x8992"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0xAD4C">
+			<table type="X Axis" storageaddress="0x8812"/>
+			<table type="Y Axis" storageaddress="0x8992"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0xAFCC">
+			<table type="X Axis" storageaddress="0x8812"/>
+			<table type="Y Axis" storageaddress="0x8992"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0xAE8C">
+			<table type="X Axis" storageaddress="0x8812"/>
+			<table type="Y Axis" storageaddress="0x8992"/>
+		</table>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA98C">
+			<table type="X Axis" storageaddress="0x88EA"/>
+			<table type="Y Axis" storageaddress="0x7EE8"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0xA8CC">
+			<table type="X Axis" storageaddress="0x88EA"/>
+			<table type="Y Axis" storageaddress="0x7EE8"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0xAB0C">
+			<table type="X Axis" storageaddress="0x88EA"/>
+			<table type="Y Axis" storageaddress="0x7EE8"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0xAA4C">
+			<table type="X Axis" storageaddress="0x88EA"/>
+			<table type="Y Axis" storageaddress="0x7EE8"/>
+		</table>
+
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x29B1">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x29F1">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x2A31">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x2A71">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x2AB1">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x2AF1">
+			<table type="X Axis" storageaddress="0x530B"/>
+			<table type="Y Axis" storageaddress="0x4C46"/>
+		</table>
+
+<!--Limiters-->
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0xB7E8"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0xB9E8"/>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4570LO00</internalidstring>
+			<xmlid>4570LO00</xmlid>
+			<ecuid>4570LO00</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E46 ZHP</model>
+			<submodel>Full MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Exhaust configuration" storageaddress="0x41561"/>
+
+		<table name="MIL configuration" storageaddress="0x41564"/>
+		
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
+		
+<!--Fuel-->
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E952">
+			<table type="X Axis" storageaddress="0x47D10"/>
+			<table type="Y Axis" storageaddress="0x453D5"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E9D2">
+			<table type="X Axis" storageaddress="0x47D10"/>
+			<table type="Y Axis" storageaddress="0x453D5"/>
+		</table>
+
+		<table name="Global injection time correction" storageaddress="0x418AC"/>
+		
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4126C"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x4126A"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41274"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41272"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x41270"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x4126E"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x41709"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x4170C"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x4170B"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x4170A"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x45AF0"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x45AF4"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x45AF2"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x43868">
+			<table type="X Axis" storageaddress="0x45518"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x43862">
+			<table type="X Axis" storageaddress="0x44D22"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x4385C">
+			<table type="X Axis" storageaddress="0x45511"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4B24C">
+			<table type="X Axis" storageaddress="0x48812"/>
+			<table type="Y Axis" storageaddress="0x48992"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4B10C">
+			<table type="X Axis" storageaddress="0x48812"/>
+			<table type="Y Axis" storageaddress="0x48992"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0x4AD4C">
+			<table type="X Axis" storageaddress="0x48812"/>
+			<table type="Y Axis" storageaddress="0x48992"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0x4AFCC">
+			<table type="X Axis" storageaddress="0x48812"/>
+			<table type="Y Axis" storageaddress="0x48992"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AE8C">
+			<table type="X Axis" storageaddress="0x48812"/>
+			<table type="Y Axis" storageaddress="0x48992"/>
+		</table>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A98C">
+			<table type="X Axis" storageaddress="0x488EA"/>
+			<table type="Y Axis" storageaddress="0x47EE8"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0x4A8CC">
+			<table type="X Axis" storageaddress="0x488EA"/>
+			<table type="Y Axis" storageaddress="0x47EE8"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0x4AB0C">
+			<table type="X Axis" storageaddress="0x488EA"/>
+			<table type="Y Axis" storageaddress="0x47EE8"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0x4AA4C">
+			<table type="X Axis" storageaddress="0x488EA"/>
+			<table type="Y Axis" storageaddress="0x47EE8"/>
+		</table>
+
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x429B1">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x429F1">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x42A31">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x42A71">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x42AB1">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x42AF1">
+			<table type="X Axis" storageaddress="0x4530B"/>
+			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+<!--Limiters-->
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0x4B7E8"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B9E8"/>
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4560BN00</internalidstring>
+			<xmlid>4560BN00</xmlid>
+			<ecuid>4560BN00</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Partial MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x49F8"/>
+
+		<table name="Global injection time correction" storageaddress="0x1833"/>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0xAE64">
+			<table type="X Axis" storageaddress="0x8494"/>
+			<table type="Y Axis" storageaddress="0x8618"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xAD24">
+			<table type="X Axis" storageaddress="0x8494"/>
+			<table type="Y Axis" storageaddress="0x8618"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4560BN00</internalidstring>
+			<xmlid>4560BN00</xmlid>
+			<ecuid>4560BN00</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Full MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x449F8"/>
+
+		<table name="Global injection time correction" storageaddress="0x41833"/>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4AE64">
+			<table type="X Axis" storageaddress="0x48494"/>
+			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4AD24">
+			<table type="X Axis" storageaddress="0x48494"/>
+			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4560BL30</internalidstring>
+			<xmlid>4560BL30</xmlid>
+			<ecuid>4560BL30</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Partial MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0xAEFE">
+			<table type="X Axis" storageaddress="0x8540"/>
+			<table type="Y Axis" storageaddress="0x86c6"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xADBE">
+			<table type="X Axis" storageaddress="0x8542"/>
+			<table type="Y Axis" storageaddress="0x86c6"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4560BL30</internalidstring>
+			<xmlid>4560BL30</xmlid>
+			<ecuid>4560BL30</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Full MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4AEFE">
+			<table type="X Axis" storageaddress="0x48542"/>
+			<table type="Y Axis" storageaddress="0x486c6"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4ADBE">
+			<table type="X Axis" storageaddress="0x48540"/>
+			<table type="Y Axis" storageaddress="0x486c6"/>
+		</table>
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4570LG23</internalidstring>
+			<xmlid>4570LG23</xmlid>
+			<ecuid>4570LG23</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Partial MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x0F6E"/>
+
+		<table name="Global injection time correction" storageaddress="0x094E"/>
+
+		<table name="Minimum Injection Time" storageaddress="0x1A80"/>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0x619C">
+			<table type="X Axis" storageaddress="0x118EC"/>
+			<table type="Y Axis" storageaddress="0x11A60"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x605C">
+			<table type="X Axis" storageaddress="0x118EC"/>
+			<table type="Y Axis" storageaddress="0x11A60"/>
+		</table>
+
+		<table name="Vehicle speed limiter" storageaddress="0x09D0"/>
+
+		<table name="MAF Sensor Scaling" storageaddress="0x8858"/>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4570LG23</internalidstring>
+			<xmlid>4570LG23</xmlid>
+			<ecuid>4570LG23</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Full MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x40F6E"/>
+
+		<table name="Global injection time correction" storageaddress="0x4094E"/>
+
+		<table name="Minimum Injection Time" storageaddress="0x41A80"/>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4619C">
+			<table type="X Axis" storageaddress="0x518EC"/>
+			<table type="Y Axis" storageaddress="0x51A60"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4605C">
+			<table type="X Axis" storageaddress="0x518EC"/>
+			<table type="Y Axis" storageaddress="0x51A60"/>
+		</table>
+
+		<table name="Vehicle speed limiter" storageaddress="0x409D0"/>
+
+		<table name="MAF Sensor Scaling" storageaddress="0x48858"/>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4560BL00</internalidstring>
+			<xmlid>4560BL00</xmlid>
+			<ecuid>4560BL00</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Partial MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0xAE9E">
+			<table type="X Axis" storageaddress="0x84E4"/>
+			<table type="Y Axis" storageaddress="0x8668"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xAD5E">
+			<table type="X Axis" storageaddress="0x84E4"/>
+			<table type="Y Axis" storageaddress="0x8668"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4560BL00</internalidstring>
+			<xmlid>4560BL00</xmlid>
+			<ecuid>4560BL00</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Full MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4AE9E">
+			<table type="X Axis" storageaddress="0x484E4"/>
+			<table type="Y Axis" storageaddress="0x48668"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4AD5E">
+			<table type="X Axis" storageaddress="0x484E4"/>
+			<table type="Y Axis" storageaddress="0x48668"/>
+		</table>
+
+	</rom>
+
+<!--#TJW Additions for 44560BO00 based on E83 3.0iA EU ZUSB:7561488 --> 
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4560BO00</internalidstring>
+			<xmlid>4560BO00</xmlid>
+			<ecuid>4560BO00</ecuid>
+			<year>2003</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E83</model>
+			<submodel>Partial MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+
+		<table name="Exhaust configuration" storageaddress="0x1522"/>
+
+		<table name="MIL configuration" storageaddress="0x1525"/>
+
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
+
+<!--Fuel-->
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE4E0">
+			<table type="X Axis" storageaddress="0x852A"/>
+			<table type="Y Axis" storageaddress="0x5410"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0xE560">
+			<table type="X Axis" storageaddress="0x852A"/>
+			<table type="Y Axis" storageaddress="0x5410"/>
+		</table>
+
+		<table name="Full load lambda enrichment" storageaddress="0x6B50">
+			<table type="X Axis" storageaddress="0x4DCE"/>
+		</table>
+
+		<table name="Global injection time correction (ALL)" storageaddress="0x183C"/>
+
+		<table name="Global injection time correction" storageaddress="0x183D"/>
+
+		<table name="Minimum Injection Time" storageaddress="0x5D6C"/>
+
+		<table name="Injector dead time correction" storageaddress="0x11468">
+			<table type="X Axis" storageaddress="0x78AA"/>
+			<table type="Y Axis" storageaddress="0x51F6"/>
+		</table>
+
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x123A"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x1238"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1242"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1240"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x123E"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x123C"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x16B1"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x16B4"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x16B3"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x16B2"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x5A9E"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x5AA2"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x5AA0"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x3883">
+			<table type="X Axis" storageaddress="0x5555"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x387D">
+			<table type="X Axis" storageaddress="0x4D95"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x3877">
+			<table type="X Axis" storageaddress="0x554E"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0xAF0C">
+			<table type="X Axis" storageaddress="0x853C"/>
+			<table type="Y Axis" storageaddress="0x86C0"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xADCC">
+			<table type="X Axis" storageaddress="0x853C"/>
+			<table type="Y Axis" storageaddress="0x86C0"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0xAA0C">
+			<table type="X Axis" storageaddress="0x853C"/>
+			<table type="Y Axis" storageaddress="0x86C0"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0xAC8C">
+			<table type="X Axis" storageaddress="0x853C"/>
+			<table type="Y Axis" storageaddress="0x86C0"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0xAB4C">
+			<table type="X Axis" storageaddress="0x853C"/>
+			<table type="Y Axis" storageaddress="0x86C0"/>
+		</table>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA5BC">
+			<table type="X Axis" storageaddress="0x860A"/>
+			<table type="Y Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0xA4FC">
+			<table type="X Axis" storageaddress="0x860A"/>
+			<table type="Y Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0xA73C">
+			<table type="X Axis" storageaddress="0x860A"/>
+			<table type="Y Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0xA67C">
+			<table type="X Axis" storageaddress="0x860A"/>
+			<table type="Y Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x1D38">
+			<table type="X Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x1D6C">
+			<table type="X Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x1DA0">
+			<table type="X Axis" storageaddress="0x873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x1DD4">
+			<table type="X Axis" storageaddress="0x873E"/>
+		</table>
+
+<!--Limiters-->	
+		<table name="Vehicle speed limiter" storageaddress="0x18DC"/>
+
+		<table name="Engine speed limiter (MT)" storageaddress="0x60A2">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (MT)" storageaddress="0x6090">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+		<table name="Engine speed limiter (AT)" storageaddress="0x605A">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AT)" storageaddress="0x607E">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+		<table name="Engine speed limiter (AMT)" storageaddress="0x6048">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AMT)" storageaddress="0x606C">
+			<table type="X Axis" storageaddress="0x52CC"/>
+		</table>
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0xB4A8"/>
+
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x17F5"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x17DD"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x1806"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x17B9"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x17B5"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x1805"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x1854"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x184F"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x1807"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x1872"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x186C"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x1808"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0xA40C">
+			<table type="X Axis" storageaddress="0x55F7"/>
+			<table type="Y Axis" storageaddress="0x5427"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0xA454">
+			<table type="X Axis" storageaddress="0x55F7"/>
+			<table type="Y Axis" storageaddress="0x5427"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4560BO00</internalidstring>
+			<xmlid>4560BO00</xmlid>
+			<ecuid>4560BO00</ecuid>
+			<year>2003</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E83</model>
+			<submodel>Full MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Exhaust configuration" storageaddress="0x41522"/>
+
+		<table name="MIL configuration" storageaddress="0x41525"/>
+
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
+
+<!--Fuel-->
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E4E0">
+			<table type="X Axis" storageaddress="0x4852A"/>
+			<table type="Y Axis" storageaddress="0x45410"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E560">
+			<table type="X Axis" storageaddress="0x4852A"/>
+			<table type="Y Axis" storageaddress="0x45410"/>
+		</table>
+
+		<table name="Full load lambda enrichment" storageaddress="0x46B50">
+			<table type="X Axis" storageaddress="0x44DCE"/>
+		</table>
+
+		<table name="Global injection time correction (ALL)" storageaddress="0x4183C"/>
+
+		<table name="Global injection time correction" storageaddress="0x4183D"/>
+
+		<table name="Minimum Injection Time" storageaddress="0x45D6C"/>
+
+		<table name="Injector dead time correction" storageaddress="0x51468">
+			<table type="X Axis" storageaddress="0x478AA"/>
+			<table type="Y Axis" storageaddress="0x451F6"/>
+		</table>
+
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4123A"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x41238"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41242"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41240"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x4123E"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x4123C"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x416B1"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x416B4"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x416B3"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x416B2"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x45A9E"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x45AA2"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x45AA0"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x43883">
+			<table type="X Axis" storageaddress="0x45555"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x4387D">
+			<table type="X Axis" storageaddress="0x44D95"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x43877">
+			<table type="X Axis" storageaddress="0x4554E"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4AF0C">
+			<table type="X Axis" storageaddress="0x4853C"/>
+			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4ADCC">
+			<table type="X Axis" storageaddress="0x4853C"/>
+			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0x4AA0C">
+			<table type="X Axis" storageaddress="0x4853C"/>
+			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0x4AC8C">
+			<table type="X Axis" storageaddress="0x4853C"/>
+			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AB4C">
+			<table type="X Axis" storageaddress="0x4853C"/>
+			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A5BC">
+			<table type="X Axis" storageaddress="0x4860A"/>
+			<table type="Y Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0x4A4FC">
+			<table type="X Axis" storageaddress="0x4860A"/>
+			<table type="Y Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0x4A73C">
+			<table type="X Axis" storageaddress="0x4860A"/>
+			<table type="Y Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0x4A67C">
+			<table type="X Axis" storageaddress="0x4860A"/>
+			<table type="Y Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x41D38">
+			<table type="X Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x41D6C">
+			<table type="X Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x41DA0">
+			<table type="X Axis" storageaddress="0x4873E"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x41DD4">
+			<table type="X Axis" storageaddress="0x4873E"/>
+		</table>
+
+<!--Limiters-->	
+		<table name="Vehicle speed limiter" storageaddress="0x418DC"/>
+
+		<table name="Engine speed limiter (MT)" storageaddress="0x460A2">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (MT)" storageaddress="0x46090">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+		<table name="Engine speed limiter (AT)" storageaddress="0x4605A">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AT)" storageaddress="0x4607E">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+		<table name="Engine speed limiter (AMT)" storageaddress="0x46048">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AMT)" storageaddress="0x4606C">
+			<table type="X Axis" storageaddress="0x452CC"/>
+		</table>
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0x4B4A8"/>
+
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x417F5"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x417DD"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x41806"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x417B9"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x417B5"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x41805"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x41854"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x4184F"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x41807"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x41872"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x4186C"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x41808"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0x4A40C">
+			<table type="X Axis" storageaddress="0x455F7"/>
+			<table type="Y Axis" storageaddress="0x45427"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0x4A454">
+			<table type="X Axis" storageaddress="0x455F7"/>
+			<table type="Y Axis" storageaddress="0x45427"/>
+		</table>
+
+	</rom>
+
+</roms>
