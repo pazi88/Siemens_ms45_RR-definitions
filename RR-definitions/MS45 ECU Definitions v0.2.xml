@@ -207,7 +207,7 @@ v0.2
     </table>	
 
     <table type="2D" name="Global injection time correction" category="Fuel" storagetype="uint8" sizex="6" endian="little" userlevel="1">
-		<scaling name="Metric" units="Multiplicative Factor" expression="x*0.0078125491" to_byte="x/0.0078125491" format="0.00" fineincrement=".01" coarseincrement=".1" />
+		<scaling category="Metric" units="Multiplicative Factor" expression="x*0.0078125491" to_byte="x/0.0078125491" format="0.00" fineincrement=".01" coarseincrement=".1" />
 			<table type="Static X Axis" name="Columns" sizex="6">
 				<data>Cyl 1</data>
 				<data>Cyl 5</data>
