@@ -207,6 +207,50 @@ v0.3
 			</table>
 			<description>ip_cam_sp_2_ex_pl__n__maf_ivvt</description>
 		</table>
+		
+		<table type="3D" name="Exhaust VANOS target - Idle Speed, Cold Engine" category="VANOS" storagetype="uint8" endian="little" sizex="6" sizey="6" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_ex_is__n__maf_ivvt</description>
+		</table>
+		
+		<table type="3D" name="Intake VANOS target - Idle Speed, Cold Engine" category="VANOS" storagetype="uint8" endian="little" sizex="6" sizey="6" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_1_in_is__n__maf_ivvt</description>
+		</table>
+		
+		<table type="3D" name="Exhaust VANOS target - Idle Speed, Warm Engine" category="VANOS" storagetype="uint8" endian="little" sizex="6" sizey="6" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_ex_is__n__maf_ivvt</description>
+		</table>
+		
+		<table type="3D" name="Intake VANOS target - Idle Speed, Warm Engine" category="VANOS" storagetype="uint8" endian="little" sizex="6" sizey="6" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*0.375)+60" to_byte="(x-60)/0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_cam_sp_2_in_is__n__maf_ivvt</description>
+		</table>
 
 		<table type="2D" name="Exhaust VANOS target - Full Load, Cold Engine" category="VANOS" storagetype="uint8" sizex="16" endian="little" userlevel="1">
 			<scaling units="(°) BTDC" expression="(x*-0.375)-40" to_byte="(x+40)/-0.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
@@ -309,6 +353,20 @@ v0.3
 				<scaling units="Volts" expression="x*.101961" to_byte="x/.101961" format="0.000" fineincrement=".01" coarseincrement=".1"/>
 			</table>
 			<description>ip_ti_add_dly</description>
+		</table>
+		
+		<table type="2D" name="Fuel mass flow to injection time - Bank 1" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="ms/(mg/stk)" expression="x*0.000006" to_byte="x/0.000006" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="Static X Axis" name="Columns" sizex="1">
+			</table>
+			<description>Injectionvalve characteristic for fuel mass flow to injection time at standard conditions (c_fac_mff_ti_stnd_1).</description>
+		</table>
+		
+		<table type="2D" name="Fuel mass flow to injection time - Bank 2" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="ms/(mg/stk)" expression="x*0.000006" to_byte="x/0.000006" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="Static X Axis" name="Columns" sizex="1">
+			</table>
+			<description>Injectionvalve characteristic for fuel mass flow to injection time at standard conditions (c_fac_mff_ti_stnd_2).</description>
 		</table>
 
 <!--Fuel Trims-->
@@ -573,6 +631,30 @@ v0.3
 			<description>This is the scaling for the MAF sensor just in a convenient 16x16 format for easier editing (id_saf_tab???).</description>
 		</table>
 
+		<table type="2D" name="ECT Sensor Scaling" category="Sensors Scaling" storagetype="uint8" endian="big" sizex="16" userlevel="1">
+			<scaling units="°C" expression="x*.75-48" to_byte="(x+48)/.75" format="0.0" fineincrement="2" coarseincrement="10"/>
+				<table type="Y Axis" name="Coolant Temp" storagetype="uint16" endian="big">
+					<scaling units="Volts" expression="x*.004883" to_byte="x/.004883" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+				</table>
+			<description>This is the scaling for the Engine Coolant Temperature sensor (ip_tco__v_tco).</description>
+		</table>
+		
+		<table type="2D" name="IAT Sensor Scaling" category="Sensors Scaling" storagetype="uint8" endian="big" sizey="16" userlevel="1">
+			<scaling units="°C" expression="(x*.75)-48" to_byte="(x+48)/.75" format="0.0" fineincrement="2" coarseincrement="10"/>
+				<table type="Y Axis" name="Intake Temp" storagetype="uint8" endian="big">
+					<scaling units="Volts" expression="x*0.0196" to_byte="x/0.0196" format="0.00" fineincrement=".2" coarseincrement="1"/>
+				</table>
+			<description>This is the scaling for the Intake Air Temperature sensor. (ip_tia__v_tia)</description>
+		</table>
+		
+		<table type="2D" name="Oil Temp Sensor Scaling" category="Sensors Scaling" storagetype="uint8" endian="big" sizey="16" userlevel="1">
+			<scaling units="°C" expression="x-40" to_byte="x+40" format="0.0" fineincrement="2" coarseincrement="10"/>
+				<table type="Y Axis" name="Oil Temp" storagetype="uint8" endian="big">
+					<scaling units="Volts" expression="x*0.0196" to_byte="x/0.0196" format="0.00" fineincrement=".2" coarseincrement="1"/>
+				</table>
+			<description>This is the scaling for the Oil Temperature sensor. (ip_toil__v_toil)</description>
+		</table>
+		
 <!--Knock Tables-->
 		<table type="3D" name="Knock Factor - Cylinder 1" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
 			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
@@ -768,6 +850,8 @@ v0.3
 			<filesize>116kb</filesize>
 		</romid>
 		
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x4998"/>
+		
 		<table name="Exhaust configuration" storageaddress="0x1561"/>
 
 		<table name="MIL configuration" storageaddress="0x1564"/>
@@ -797,6 +881,9 @@ v0.3
 		</table>
 
 		<table name="Global injection time correction" storageaddress="0x18AC"/>
+
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x5940"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x5942"/>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x126C"/>
@@ -883,6 +970,42 @@ v0.3
 			<table type="X Axis" storageaddress="0x88EA"/>
 			<table type="Y Axis" storageaddress="0x7EE8"/>
 		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x1DA5">
+			<table type="X Axis" storageaddress="0x88DC"/>
+			<table type="Y Axis" storageaddress="0x8984"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x1DD9">
+			<table type="X Axis" storageaddress="0x88DC"/>
+			<table type="Y Axis" storageaddress="0x8984"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x1E0D">
+			<table type="X Axis" storageaddress="0x88DC"/>
+			<table type="Y Axis" storageaddress="0x8984"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x1E41">
+			<table type="X Axis" storageaddress="0x88DC"/>
+			<table type="Y Axis" storageaddress="0x8984"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x1D95">
+			<table type="X Axis" storageaddress="0x8A0C"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x1DC9">
+			<table type="X Axis" storageaddress="0x8A0C"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x1DFD">
+			<table type="X Axis" storageaddress="0x8A0C"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x1E31">
+			<table type="X Axis" storageaddress="0x8A0C"/>
+		</table>
 
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x29B1">
@@ -921,6 +1044,18 @@ v0.3
 		<table name="MAF Sensor Scaling" storageaddress="0xB7E8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0xB9E8"/>
 
+		<table name="ECT Sensor Scaling" storageaddress="0x4395">
+			<table type="Y Axis" storageaddress="0x8506"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x4824">
+			<table type="Y Axis" storageaddress="0x5161"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x483C">
+			<table type="Y Axis" storageaddress="0x5172"/>
+		</table>
+
 	</rom>
 
 	<rom base="BMWMS45BASE">
@@ -940,6 +1075,8 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>1024kb</filesize>
 		</romid>
+		
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44998"/>
 
 		<table name="Exhaust configuration" storageaddress="0x41561"/>
 
@@ -970,6 +1107,9 @@ v0.3
 		</table>
 		
 		<table name="Global injection time correction" storageaddress="0x418AC"/>
+		
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x45940"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45942"/>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4126C"/>
@@ -1056,6 +1196,43 @@ v0.3
 			<table type="X Axis" storageaddress="0x488EA"/>
 			<table type="Y Axis" storageaddress="0x47EE8"/>
 		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x41DA5">
+			<table type="X Axis" storageaddress="0x488DC"/>
+			<table type="Y Axis" storageaddress="0x48984"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x41DD9">
+			<table type="X Axis" storageaddress="0x488DC"/>
+			<table type="Y Axis" storageaddress="0x48984"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x41E0D">
+			<table type="X Axis" storageaddress="0x488DC"/>
+			<table type="Y Axis" storageaddress="0x48984"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x41E41">
+			<table type="X Axis" storageaddress="0x488DC"/>
+			<table type="Y Axis" storageaddress="0x48984"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x41D95">
+			<table type="X Axis" storageaddress="0x48A0C"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x41DC9">
+			<table type="X Axis" storageaddress="0x48A0C"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x41DFD">
+			<table type="X Axis" storageaddress="0x48A0C"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x41E31">
+			<table type="X Axis" storageaddress="0x48A0C"/>
+		</table>
+
 
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x429B1">
@@ -1093,6 +1270,18 @@ v0.3
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B7E8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B9E8"/>
+		
+		<table name="ECT Sensor Scaling" storageaddress="0x44395">
+			<table type="Y Axis" storageaddress="0x48506"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x44824">
+			<table type="Y Axis" storageaddress="0x45161"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x4483C">
+			<table type="Y Axis" storageaddress="0x45172"/>
+		</table>
 	</rom>
 
 	<rom base="BMWMS45BASE">
