@@ -78,7 +78,7 @@ v0.3
 
 <!--Misc switches & configuration values-->
 		<table type="Switch" name="Manual deactivation of cat diagnosis inhibition condition" category="Configurations" sizey="1" userlevel="1">
-			<state name="1 - deactivated" data="01"/>
+			<state name="1 - Deactivated" data="01"/>
 			<state name="0 - Activated" data="00"/>
 			<description>You can turn off the cat diagnostics by changing this to 1 (lc_inh_cat_diag_man_deac)</description>
 		</table>
@@ -105,6 +105,88 @@ v0.3
 				<data>c_tco_min_fcut_fast</data>
 			</table>
 			<description>c_tco_min_fcut_fast</description>
+		</table>
+
+<!--c_obd_state_1-->
+
+		<table type="BitwiseSwitch" name="Misfire monitoring supported" category="OBD Readiness Configurations">
+			<bit position ="0" name="Enabled"/>
+			<description>c_obd_state_1 bit 0</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Fuel system monitoring supported" category="OBD Readiness Configurations">
+			<bit position ="1" name="Enabled"/>
+			<description>c_obd_state_1 bit 1</description>
+		</table>
+	
+		<table type="BitwiseSwitch" name="Comprehensive component monitoring supported" category="OBD Readiness Configurations">
+			<bit position ="2" name="Enabled"/>
+			<description>c_obd_state_1 bit 2</description>
+		</table>
+	
+		<table type="BitwiseSwitch" name="Misfire monitoring status" category="OBD Readiness Configurations">
+			<bit position ="4" name="Enabled"/>
+			<description>c_obd_state_1 bit 4</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Fuel system monitoring status" category="OBD Readiness Configurations">
+			<bit position ="5" name="Enabled"/>
+			<description>c_obd_state_1 bit 5</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Comprehensive component monitoring status" category="OBD Readiness Configurations">
+			<bit position ="6" name="Enabled"/>
+			<description>c_obd_state_1 bit 6</description>
+		</table>
+		
+<!--c_obd_state_2-->
+		
+		<table type="BitwiseSwitch" name="Catalyst monitoring" category="OBD Readiness Configurations">
+			<bit position ="0" name="Enabled"/>
+			<description>c_obd_state_2 bit 0</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Heated catalyst" category="OBD Readiness Configurations">
+			<bit position ="1" name="Enabled"/>
+			<description>c_obd_state_2 bit 1</description>
+		</table>
+	
+		<table type="BitwiseSwitch" name="Evaporative system monitoring" category="OBD Readiness Configurations">
+			<bit position ="2" name="Enabled"/>
+			<description>c_obd_state_2 bit 2</description>
+		</table>
+	
+		<table type="BitwiseSwitch" name="Secondary air system monitoring" category="OBD Readiness Configurations">
+			<bit position ="3" name="Enabled"/>
+			<description>c_obd_state_2 bit 3</description>
+		</table>
+	
+		<table type="BitwiseSwitch" name="A/C system refrigerant monitoring" category="OBD Readiness Configurations">
+			<bit position ="4" name="Enabled"/>
+			<description>c_obd_state_2 bit 4</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Oxygen sensor monitoring" category="OBD Readiness Configurations">
+			<bit position ="5" name="Enabled"/>
+			<description>c_obd_state_2 bit 5</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="Oxygen sensor heater monitoring" category="OBD Readiness Configurations">
+			<bit position ="6" name="Enabled"/>
+			<description>c_obd_state_2 bit 6</description>
+		</table>
+		
+		<table type="BitwiseSwitch" name="EGR system monitoring" category="OBD Readiness Configurations">
+			<bit position ="7" name="Enabled"/>
+			<description>c_obd_state_2 bit 7</description>
+		</table>
+		
+<!--Secondary Air Pump-->
+
+		<table type="Switch" name="SAP autolearning" category="Secondary Air Pump" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>Parameter to turn off the autolearning of SAP. However if disabled, this forces LV_SAP to 1, meaning it turns ON the SAP. (lc_sap_det_di)</description>
 		</table>
 
 <!--Ignition Tables-->
@@ -338,7 +420,7 @@ v0.3
 
 		<table type="2D" name="Minimum Injection Time" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
 			<scaling units="Injector Pulsewidth (milliseconds)" expression="x/250" to_byte="x*250" format="0.000" fineincrement=".01" coarseincrement=".1"/>
-			<table type="Static Y Axis" name="Columns" sizex="1">
+			<table type="Static Y Axis" sizex="1">
 				<data>ALL</data>
 			</table>
 			<description>This table adjust the minimum injection time, important to change when adding larger injectors (c_ti_min).</description>
@@ -357,16 +439,26 @@ v0.3
 		
 		<table type="2D" name="Fuel mass flow to injection time - Bank 1" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
 			<scaling units="ms/(mg/stk)" expression="x*0.000006" to_byte="x/0.000006" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="Static X Axis" name="Columns" sizex="1">
+			<table type="Static X Axis" sizex="1">
+				<data>mff to ti</data>
 			</table>
 			<description>Injectionvalve characteristic for fuel mass flow to injection time at standard conditions (c_fac_mff_ti_stnd_1).</description>
 		</table>
 		
 		<table type="2D" name="Fuel mass flow to injection time - Bank 2" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
 			<scaling units="ms/(mg/stk)" expression="x*0.000006" to_byte="x/0.000006" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="Static X Axis" name="Columns" sizex="1">
+			<table type="Static X Axis" sizex="1">
+				<data>mff to ti</data>
 			</table>
 			<description>Injectionvalve characteristic for fuel mass flow to injection time at standard conditions (c_fac_mff_ti_stnd_2).</description>
+		</table>
+		
+		<table type="2D" name="Stoichiometric air to fuel ratio" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="AFR" expression="1/(x*0.00000193)" to_byte="(1/x)/0.00000193" format="0.0" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static X Axis" sizex="1">
+				<data>Stoich</data>
+			</table>
+			<description>Stoichiometric air fuel ratio (c_mff_fac). Orginal conversion is X*0.000001907 to get constant for stoichiometric air/fuel ratio. But in this form, you can put AFR value directly.</description>
 		</table>
 
 <!--Fuel Trims-->
@@ -496,6 +588,20 @@ v0.3
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>ip_maf_mff_ad_fac_h_min</description>
+		</table>
+		
+<!--Fuel Pump Control-->
+		<table type="Switch" name="EFP-control configuration bit" category="Fuel Pump Control" sizey="1" userlevel="1">
+			<state name="0 - No CAN-EFP available, EFP control via PWM output stage" data="00"/>
+			<state name="1 - CAN-EFP signal via local CAN, EFP control via local CAN" data="01"/>
+			<state name="2 - CAN-EFP signal via powertrain CAN, EFP control via powertrain CAN" data="02"/>
+			<description>Configuration bit for EFP-control (c_conf_swi_efp_out)</description>
+		</table>
+		
+		<table type="Switch" name="Switch-on level for the EFP" category="Fuel Pump Control" sizey="1" userlevel="1">
+			<state name="0 - Low active" data="00"/>
+			<state name="1 - High active" data="01"/>
+			<description>Switch-on level for the EFP (lc_level_on_efp)</description>
 		</table>
 
 <!--Limiters-->	
@@ -653,6 +759,14 @@ v0.3
 					<scaling units="Volts" expression="x*0.0196" to_byte="x/0.0196" format="0.00" fineincrement=".2" coarseincrement="1"/>
 				</table>
 			<description>This is the scaling for the Oil Temperature sensor. (ip_toil__v_toil)</description>
+		</table>
+		
+		<table type="2D" name="Wideband Lambda Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizey="16" userlevel="1">
+			<scaling units="°C" expression="x*0.000977" to_byte="x/0.000977" format="0.000" fineincrement=".001" coarseincrement=".001"/>
+				<table type="Y Axis" storagetype="uint16" endian="big">
+					<scaling units="Lambda" expression="x*.004883" to_byte="x/.004883" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+				</table>
+			<description>This is the scaling for the Wideband Lambda sensor. (ip_lamb)</description>
 		</table>
 		
 <!--Knock Tables-->
@@ -858,6 +972,25 @@ v0.3
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
 
+		<table name="Misfire monitoring supported" storageaddress="0x1733"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x1733"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x1733"/>
+		<table name="Misfire monitoring status" storageaddress="0x1733"/>
+		<table name="Fuel system monitoring status" storageaddress="0x1733"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x1733"/>
+		<table name="Catalyst monitoring" storageaddress="0x1734"/>
+		<table name="Heated catalyst" storageaddress="0x1734"/>
+		<table name="Evaporative system monitoring" storageaddress="0x1734"/>
+		<table name="Secondary air system monitoring" storageaddress="0x1734"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x1734"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x1734"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x1734"/>
+		<table name="EGR system monitoring" storageaddress="0x1734"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="SAP autolearning" storageaddress="0x49EE"/>
+
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE950">
 			<table type="X Axis" storageaddress="0x8800"/>
@@ -884,6 +1017,8 @@ v0.3
 
 		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x5940"/>
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x5942"/>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5B0E"/>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x126C"/>
@@ -1037,6 +1172,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x530B"/>
 			<table type="Y Axis" storageaddress="0x4C46"/>
 		</table>
+		
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x1566"/>
+		
+		<table name="Switch-on level for the EFP" storageaddress="0x49C4"/>
 
 <!--Limiters-->
 
@@ -1054,6 +1194,10 @@ v0.3
 
 		<table name="Oil Temp Sensor Scaling" storageaddress="0x483C">
 			<table type="Y Axis" storageaddress="0x5172"/>
+		</table>
+		
+		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x6CF0">
+			<table type="Y Axis" storageaddress="0x859A"/>
 		</table>
 
 	</rom>
@@ -1083,7 +1227,26 @@ v0.3
 		<table name="MIL configuration" storageaddress="0x41564"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
-		
+
+		<table name="Misfire monitoring supported" storageaddress="0x41733"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x41733"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x41733"/>
+		<table name="Misfire monitoring status" storageaddress="0x41733"/>
+		<table name="Fuel system monitoring status" storageaddress="0x41733"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x41733"/>
+		<table name="Catalyst monitoring" storageaddress="0x41734"/>
+		<table name="Heated catalyst" storageaddress="0x41734"/>
+		<table name="Evaporative system monitoring" storageaddress="0x41734"/>
+		<table name="Secondary air system monitoring" storageaddress="0x41734"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x41734"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x41734"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x41734"/>
+		<table name="EGR system monitoring" storageaddress="0x41734"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="SAP autolearning" storageaddress="0x449EE"/>
+
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E950">
 			<table type="X Axis" storageaddress="0x48800"/>
@@ -1110,6 +1273,8 @@ v0.3
 		
 		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x45940"/>
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45942"/>
+
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45B0E"/>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4126C"/>
@@ -1265,6 +1430,10 @@ v0.3
 			<table type="Y Axis" storageaddress="0x44C46"/>
 		</table>
 
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x41566"/>
+		
+		<table name="Switch-on level for the EFP" storageaddress="0x449C4"/>
 <!--Limiters-->
 
 <!--Sensor Scaling-->
@@ -1281,6 +1450,11 @@ v0.3
 
 		<table name="Oil Temp Sensor Scaling" storageaddress="0x4483C">
 			<table type="Y Axis" storageaddress="0x45172"/>
+		</table>
+		
+		
+		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x46CF0">
+			<table type="Y Axis" storageaddress="0x4859A"/>
 		</table>
 	</rom>
 
