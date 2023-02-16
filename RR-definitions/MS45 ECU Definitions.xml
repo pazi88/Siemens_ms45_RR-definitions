@@ -929,24 +929,24 @@ v0.3
 
 		<table type="3D" name="Target coolant temperature without A/C" category="E-Thermostat" storagetype="uint8" endian="little" sizex="6" sizey="12" userlevel="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
-			<table type="X Axis" name="TPS" storagetype="uint8" endian="big">
-				<scaling units="%" expression="x*0.390625" to_byte="x/0.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			<table type="X Axis" name="Torque request" storagetype="uint16" endian="big">
+				<scaling units="%" expression="x*0.0031" to_byte="x/0.0031" format="0.00" fineincrement="0.1" coarseincrement="1"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
-			<description>id_tco_sp_ect__n__pv_max</description>
+			<description>Actual conversion for Torque request is 0.000031, but with 0.0031, the range is probaply easier to understand 0-100% (id_tco_sp_ect)</description>
 		</table>
 
 		<table type="3D" name="Target coolant temperature with A/C" category="E-Thermostat" storagetype="uint8" endian="little" sizex="6" sizey="12" userlevel="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
-			<table type="X Axis" name="TPS" storagetype="uint8" endian="big">
-				<scaling units="%" expression="x*0.390625" to_byte="x/0.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			<table type="X Axis" name="Torque request" storagetype="uint16" endian="big">
+				<scaling units="%" expression="x*0.0031" to_byte="x/0.0031" format="0.00" fineincrement="0.1" coarseincrement="1"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
-			<description>id_tco_sp_ect_acin__n__pv_max</description>
+			<description>Actual conversion for Torque request is 0.000031, but with 0.0031, the range is probaply easier to understand 0-100% (id_tco_sp_ect_acin)</description>
 		</table>
 
    </rom>
@@ -1230,6 +1230,41 @@ v0.3
 		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x6CF0">
 			<table type="Y Axis" storageaddress="0x859A"/>
 		</table>
+		
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x1860"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x1844"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x1871"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x1820"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x181B"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x1870"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x18C3"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x18BE"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x1872"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x18E0"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x18DB"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x1873"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0xA7DC">
+			<table type="X Axis" storageaddress="0x87A4"/>
+			<table type="Y Axis" storageaddress="0x53E5"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0xA824">
+			<table type="X Axis" storageaddress="0x87A4"/>
+			<table type="Y Axis" storageaddress="0x53E5"/>
+		</table>
 
 	</rom>
 
@@ -1509,10 +1544,45 @@ v0.3
 			<table type="Y Axis" storageaddress="0x45172"/>
 		</table>
 		
-		
 		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x46CF0">
 			<table type="Y Axis" storageaddress="0x4859A"/>
 		</table>
+		
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x41860"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x41844"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x41871"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x41820"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x4181B"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x41870"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x418C3"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x418BE"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x41872"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x418E0"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x418DB"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x41873"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0x4A7DC">
+			<table type="X Axis" storageaddress="0x487A4"/>
+			<table type="Y Axis" storageaddress="0x453E5"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0x4A824">
+			<table type="X Axis" storageaddress="0x487A4"/>
+			<table type="Y Axis" storageaddress="0x453E5"/>
+		</table>
+
 	</rom>
 
 	<rom base="BMWMS45BASE">
@@ -1666,6 +1736,18 @@ v0.3
 
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x6000">
 			<table type="X Axis" storageaddress="0x526F"/>
+		</table>
+		
+<!--E-Thermostat-->
+
+		<table name="Target coolant temperature without A/C" storageaddress="0xA364">
+			<table type="X Axis" storageaddress="0x8426"/>
+			<table type="Y Axis" storageaddress="0x53AC"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0xA3AC">
+			<table type="X Axis" storageaddress="0x8426"/>
+			<table type="Y Axis" storageaddress="0x53AC"/>
 		</table>
 
 	</rom>
@@ -1821,6 +1903,18 @@ v0.3
 
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x46000">
 			<table type="X Axis" storageaddress="0x4526F"/>
+		</table>
+		
+<!--E-Thermostat-->
+
+		<table name="Target coolant temperature without A/C" storageaddress="0x4A364">
+			<table type="X Axis" storageaddress="0x48426"/>
+			<table type="Y Axis" storageaddress="0x453AC"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0x4A3AC">
+			<table type="X Axis" storageaddress="0x48426"/>
+			<table type="Y Axis" storageaddress="0x453AC"/>
 		</table>
 		
 	</rom>
@@ -2233,12 +2327,12 @@ v0.3
 		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x1808"/>
 
 		<table name="Target coolant temperature without A/C" storageaddress="0xA40C">
-			<table type="X Axis" storageaddress="0x55F7"/>
+			<table type="X Axis" storageaddress="0x84CE"/>
 			<table type="Y Axis" storageaddress="0x5427"/>
 		</table>
 
 		<table name="Target coolant temperature with A/C" storageaddress="0xA454">
-			<table type="X Axis" storageaddress="0x55F7"/>
+			<table type="X Axis" storageaddress="0x84CE"/>
 			<table type="Y Axis" storageaddress="0x5427"/>
 		</table>
 
@@ -2452,12 +2546,12 @@ v0.3
 		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x41808"/>
 
 		<table name="Target coolant temperature without A/C" storageaddress="0x4A40C">
-			<table type="X Axis" storageaddress="0x455F7"/>
+			<table type="X Axis" storageaddress="0x484CE"/>
 			<table type="Y Axis" storageaddress="0x45427"/>
 		</table>
 
 		<table name="Target coolant temperature with A/C" storageaddress="0x4A454">
-			<table type="X Axis" storageaddress="0x455F7"/>
+			<table type="X Axis" storageaddress="0x484CE"/>
 			<table type="Y Axis" storageaddress="0x45427"/>
 		</table>
 
