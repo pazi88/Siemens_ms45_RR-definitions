@@ -1634,9 +1634,7 @@ v0.3
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x46000">
 			<table type="X Axis" storageaddress="0x4526F"/>
 		</table>
-
-	</rom>
-
+		
 	</rom>
 
 	<rom base="BMWMS45BASE">
