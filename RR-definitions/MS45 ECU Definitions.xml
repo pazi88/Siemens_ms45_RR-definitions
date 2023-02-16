@@ -1532,10 +1532,28 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>116kb</filesize>
 		</romid>
+		
+		<table name="Exhaust configuration" storageaddress="0x152A"/>
 
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x49F8"/>
 
-		<table name="Global injection time correction" storageaddress="0x1833"/>
+<!--This might not be correct for this version-->	
+		<table name="Misfire monitoring supported" storageaddress="0x16DB"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x16DB"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x16DB"/>
+		<table name="Misfire monitoring status" storageaddress="0x16DB"/>
+		<table name="Fuel system monitoring status" storageaddress="0x16DB"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x16DB"/>
+		<table name="Catalyst monitoring" storageaddress="0x16DC"/>
+		<table name="Heated catalyst" storageaddress="0x16DC"/>
+		<table name="Evaporative system monitoring" storageaddress="0x16DC"/>
+		<table name="Secondary air system monitoring" storageaddress="0x16DC"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x16DC"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x16DC"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x16DC"/>
+		<table name="EGR system monitoring" storageaddress="0x16DC"/>
+
+<!--Igntion-->
 
 		<table name="Basic ignition angle for RON 98" storageaddress="0xAE64">
 			<table type="X Axis" storageaddress="0x8494"/>
@@ -1546,6 +1564,82 @@ v0.3
 			<table type="X Axis" storageaddress="0x8494"/>
 			<table type="Y Axis" storageaddress="0x8618"/>
 		</table>
+		
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA514">
+			<table type="X Axis" storageaddress="0x8562"/>
+			<table type="Y Axis" storageaddress="0x7BE0"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0xA454">
+			<table type="X Axis" storageaddress="0x8562"/>
+			<table type="Y Axis" storageaddress="0x7BE0"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0xA694">
+			<table type="X Axis" storageaddress="0x8562"/>
+			<table type="Y Axis" storageaddress="0x7BE0"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0xA5D4">
+			<table type="X Axis" storageaddress="0x8562"/>
+			<table type="Y Axis" storageaddress="0x7BE0"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D1E">
+			<table type="X Axis" storageaddress="0x8554"/>
+			<table type="Y Axis" storageaddress="0x860A"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D52">
+			<table type="X Axis" storageaddress="0x8554"/>
+			<table type="Y Axis" storageaddress="0x860A"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x1D86">
+			<table type="X Axis" storageaddress="0x8554"/>
+			<table type="Y Axis" storageaddress="0x860A"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x1DBA">
+			<table type="X Axis" storageaddress="0x8554"/>
+			<table type="Y Axis" storageaddress="0x860A"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x1D0E">
+			<table type="X Axis" storageaddress="0x8696"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x1D42">
+			<table type="X Axis" storageaddress="0x8696"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x1D76">
+			<table type="X Axis" storageaddress="0x8696"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x1DAA">
+			<table type="X Axis" storageaddress="0x8696"/>
+		</table>
+		
+<!--Fuel-->
+
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE438">
+			<table type="X Axis" storageaddress="0x8458"/> <!--Not correct-->
+			<table type="Y Axis" storageaddress="0x53A7"/> <!--Not correct-->
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0xE4B8">
+			<table type="X Axis" storageaddress="0x8458"/> <!--Not correct-->
+			<table type="Y Axis" storageaddress="0x53A7"/> <!--Not correct-->
+		</table>
+
+		<table name="Full load lambda enrichment" storageaddress="0x6ADC">
+			<table type="X Axis" storageaddress="0x4D82"/>
+		</table>
+		
+		<table name="Global injection time correction" storageaddress="0x1834"/>	
+		<table name="Global injection time correction (ALL)" storageaddress="0x1833"/>
 		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x18D4"/>
@@ -1593,10 +1687,28 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>1024kb</filesize>
 		</romid>
+		
+		<table name="Exhaust configuration" storageaddress="0x4152A"/>
 
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x449F8"/>
 
-		<table name="Global injection time correction" storageaddress="0x41833"/>
+<!--This might not be correct for this version-->	
+		<table name="Misfire monitoring supported" storageaddress="0x416DB"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x416DB"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x416DB"/>
+		<table name="Misfire monitoring status" storageaddress="0x416DB"/>
+		<table name="Fuel system monitoring status" storageaddress="0x416DB"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x416DB"/>
+		<table name="Catalyst monitoring" storageaddress="0x416DC"/>
+		<table name="Heated catalyst" storageaddress="0x416DC"/>
+		<table name="Evaporative system monitoring" storageaddress="0x416DC"/>
+		<table name="Secondary air system monitoring" storageaddress="0x416DC"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x416DC"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x416DC"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x416DC"/>
+		<table name="EGR system monitoring" storageaddress="0x416DC"/>
+
+<!--Igntion-->
 
 		<table name="Basic ignition angle for RON 98" storageaddress="0x4AE64">
 			<table type="X Axis" storageaddress="0x48494"/>
@@ -1607,6 +1719,82 @@ v0.3
 			<table type="X Axis" storageaddress="0x48494"/>
 			<table type="Y Axis" storageaddress="0x48618"/>
 		</table>
+		
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A514">
+			<table type="X Axis" storageaddress="0x48562"/>
+			<table type="Y Axis" storageaddress="0x47BE0"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0x4A454">
+			<table type="X Axis" storageaddress="0x48562"/>
+			<table type="Y Axis" storageaddress="0x47BE0"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0x4A694">
+			<table type="X Axis" storageaddress="0x48562"/>
+			<table type="Y Axis" storageaddress="0x47BE0"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0x4A5D4">
+			<table type="X Axis" storageaddress="0x48562"/>
+			<table type="Y Axis" storageaddress="0x47BE0"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D1E">
+			<table type="X Axis" storageaddress="0x48554"/>
+			<table type="Y Axis" storageaddress="0x4860A"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D52">
+			<table type="X Axis" storageaddress="0x48554"/>
+			<table type="Y Axis" storageaddress="0x4860A"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x41D86">
+			<table type="X Axis" storageaddress="0x48554"/>
+			<table type="Y Axis" storageaddress="0x4860A"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x41DBA">
+			<table type="X Axis" storageaddress="0x48554"/>
+			<table type="Y Axis" storageaddress="0x4860A"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x41D0E">
+			<table type="X Axis" storageaddress="0x48696"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x41D42">
+			<table type="X Axis" storageaddress="0x48696"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x41D76">
+			<table type="X Axis" storageaddress="0x48696"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x41DAA">
+			<table type="X Axis" storageaddress="0x48696"/>
+		</table>
+		
+<!--Fuel-->
+
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E438">
+			<table type="X Axis" storageaddress="0x48458"/> <!--Not correct-->
+			<table type="Y Axis" storageaddress="0x453A7"/> <!--Not correct-->
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E4B8">
+			<table type="X Axis" storageaddress="0x48458"/> <!--Not correct-->
+			<table type="Y Axis" storageaddress="0x453A7"/> <!--Not correct-->
+		</table>
+
+		<table name="Full load lambda enrichment" storageaddress="0x46ADC">
+			<table type="X Axis" storageaddress="0x44D82"/>
+		</table>
+		
+		<table name="Global injection time correction" storageaddress="0x41834"/>	
+		<table name="Global injection time correction (ALL)" storageaddress="0x41833"/>
 		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x418D4"/>
