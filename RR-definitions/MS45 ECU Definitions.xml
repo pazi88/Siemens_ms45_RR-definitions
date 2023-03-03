@@ -842,6 +842,22 @@ v0.3
 			<description>ip_fac_thd_knk_5__n__maf</description>
 		</table>
 
+		<table type="2D" name="Spark retard - Intensity 1" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">
+			<scaling units="(°)" expression="x*0.375000" to_byte="x/0.375000" format="0.000" fineincrement=".375" coarseincrement="1.5"/>
+			<table type="Y Axis" name="RPM" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32.000000" to_byte="x/32.000000" format="#" fineincrement="32" coarseincrement="128"/>
+			</table>
+			<description>Spark retard at recognised knocking. Intensity 1 (id_iga_dec_knk_1__n)</description>
+		</table>
+
+		<table type="2D" name="Spark retard - Intensity 2" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">2
+			<scaling units="(°)" expression="x*0.375000" to_byte="x/0.375000" format="0.000" fineincrement=".375" coarseincrement="1.5"/>
+			<table type="Y Axis" name="RPM" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32.000000" to_byte="x/32.000000" format="#" fineincrement="32" coarseincrement="128"/>
+			</table>
+			<description>Spark retard at recognised knocking. Intensity 2 (id_iga_dec_knk_2__n)</description>
+		</table>
+
 <!-- E-Thermostat-->
 		<table type="2D" name="Minimum coolant temperature threshold for full energization of e-thermostat" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
@@ -1178,7 +1194,15 @@ v0.3
 			<table type="X Axis" storageaddress="0x530B"/>
 			<table type="Y Axis" storageaddress="0x4C46"/>
 		</table>
-		
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x1B31">
+			<table type="Y Axis" storageaddress="0x553A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1B34">
+			<table type="Y Axis" storageaddress="0x553A"/>
+		</table>
+
 <!--Fuel Pump Control-->
 		<table name="EFP-control configuration bit" storageaddress="0x1566"/>
 		
@@ -1494,6 +1518,14 @@ v0.3
 		<table name="Knock Factor - Cylinder 6" storageaddress="0x42AF1">
 			<table type="X Axis" storageaddress="0x4530B"/>
 			<table type="Y Axis" storageaddress="0x44C46"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x41B31">
+			<table type="Y Axis" storageaddress="0x4553A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x41B34">
+			<table type="Y Axis" storageaddress="0x4553A"/>
 		</table>
 
 <!--Fuel Pump Control-->
