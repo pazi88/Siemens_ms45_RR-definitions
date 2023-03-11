@@ -794,7 +794,7 @@ v0.3
 				</table>
 			<description>This is the scaling for the Wideband Lambda sensor. (ip_lamb)</description>
 		</table>
-		
+
 <!--Knock Tables-->
 		<table type="3D" name="Knock Factor - Cylinder 1" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
 			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
@@ -983,6 +983,74 @@ v0.3
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Actual conversion for Torque request is 0.000031, but with 0.0031, the range is probaply easier to understand 0-100% (id_tco_sp_ect_acin)</description>
+		</table>
+
+
+<!-- Wideband Lambda Sensor -->
+		<table type="3D" name="Time delay - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model - Bank 1 (ip_t1_lamb_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model - Bank 2 (ip_t1_lamb_2)</description>
+		</table>
+
+		<table type="3D" name="Time delay (aged sensor) - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 1 (ip_t1_lamb_agi_lim_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay (aged sensor) - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 2 (ip_t1_lamb_agi_lim_2)</description>
+		</table>
+
+		<table type="3D" name="Time delay weighting factor - Bank 1" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 1 (ip_ex_dly_fac_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay weighting factor - Bank 2" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 2 (ip_ex_dly_fac_2)</description>
 		</table>
 
    </rom>
@@ -1281,7 +1349,7 @@ v0.3
 		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x6CF0">
 			<table type="Y Axis" storageaddress="0x859A"/>
 		</table>
-		
+
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x1860"/>
 
@@ -1315,6 +1383,37 @@ v0.3
 		<table name="Target coolant temperature with A/C" storageaddress="0xA824">
 			<table type="X Axis" storageaddress="0x87A4"/>
 			<table type="Y Axis" storageaddress="0x53E5"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x109E8">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x10A68">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x7166">
+			<table type="X Axis" storageaddress="0x8834"/>
+			<table type="Y Axis" storageaddress="0x8A02"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x7186">
+			<table type="X Axis" storageaddress="0x8834"/>
+			<table type="Y Axis" storageaddress="0x8A02"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x21D3">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x2213">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
 		</table>
 
 	</rom>
@@ -1647,6 +1746,37 @@ v0.3
 		<table name="Target coolant temperature with A/C" storageaddress="0x4A824">
 			<table type="X Axis" storageaddress="0x487A4"/>
 			<table type="Y Axis" storageaddress="0x453E5"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x509E8">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x50A68">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x47166">
+			<table type="X Axis" storageaddress="0x48834"/>
+			<table type="Y Axis" storageaddress="0x48A02"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x47186">
+			<table type="X Axis" storageaddress="0x48834"/>
+			<table type="Y Axis" storageaddress="0x48A02"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x421D3">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x42213">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
 		</table>
 
 	</rom>
