@@ -604,6 +604,80 @@ v0.3
 			<description>Switch-on level for the EFP (lc_level_on_efp)</description>
 		</table>
 
+<!--Idle Speed-->
+		<table type="2D" name="Nominal idle speed without additional load on the engine" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed without additional load on the engine (ip_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with A/C on" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with air conditioner switched on (ip_acin_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with DRIVE (A/T) engaged (ip_dri_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with D engaged and A/C on (AT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with DRIVE (A/T) engaged and air conditioner switched on (ip_dri_acin_n_sp_is)</description>
+		</table>
+
+		<table type="3D" name="Nominal idle speed at PL on the engine" category="Idle Speed" storagetype="uint16" sizex="6" sizey="6" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="" storagetype="uint16" endian="big">
+				<scaling units="Nm" expression="x*0.031250" to_byte="x/0.031250" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="RPM" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Nominal idle speed  at PL on the engine (ip_n_sp_is_pl)</description>
+		</table>
+
+		<table type="2D" name="Idle speed setpoint for drive-off-support (MT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="x-40.000000" to_byte="x+40.000000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Idle speed setpoint for drive-off-support - manual transmission (ip_n_sp_is_cs)</description>
+		</table>
+
+		<table type="3D" name="Max. idle speed during CAT heating with D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" sizey="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Seconds" storagetype="uint16" endian="big">
+				<scaling units="s" expression="x*0.100000" to_byte="x/0.100000" format="0.0" fineincrement="0.11" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Max. idle speed during CAT heating with drive engaged (ip_dri_n_sp_ch)</description>
+		</table>
+
+		<table type="3D" name="Max. idle speed during CAT heating with no D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" sizey="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Seconds" storagetype="uint16" endian="big">
+				<scaling units="s" expression="x*0.100000" to_byte="x/0.100000" format="0.0" fineincrement="0.11" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Max. idle speed during CAT heating with no drive engaged (ip_n_sp_ch)</description>
+		</table>
+
 <!--Limiters-->	
 		<table type="2D" name="Vehicle speed limiter" category="Limiters" storagetype="uint8" endian="big" userlevel="1" sizey="1">
 			<scaling units="kph" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
@@ -1296,6 +1370,42 @@ v0.3
 		
 		<table name="Switch-on level for the EFP" storageaddress="0x49C4"/>
 
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6FD2">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x6302">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x6666">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x6656">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed at PL on the engine" storageaddress="0xFB98">
+			<table type="X Axis" storageaddress="0x837C"/>
+			<table type="Y Axis" storageaddress="0x7F36"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x6FE2">
+			<table type="X Axis" storageaddress="0x5741"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0xC9E0">
+			<table type="X Axis" storageaddress="0x8C64"/>
+			<table type="Y Axis" storageaddress="0x56C2"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0xFB18">
+			<table type="X Axis" storageaddress="0x8C64"/>
+			<table type="Y Axis" storageaddress="0x56C2"/>
+		</table>
+
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x1944"/>
 
@@ -1658,6 +1768,42 @@ v0.3
 		<table name="EFP-control configuration bit" storageaddress="0x41566"/>
 		
 		<table name="Switch-on level for the EFP" storageaddress="0x449C4"/>
+
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46FD2">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x46302">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x46666">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x46656">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed at PL on the engine" storageaddress="0x4FB98">
+			<table type="X Axis" storageaddress="0x4837C"/>
+			<table type="Y Axis" storageaddress="0x47F36"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x46FE2">
+			<table type="X Axis" storageaddress="0x45741"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0x4C9E0">
+			<table type="X Axis" storageaddress="0x48C64"/>
+			<table type="Y Axis" storageaddress="0x456C2"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0x4FB18">
+			<table type="X Axis" storageaddress="0x48C64"/>
+			<table type="Y Axis" storageaddress="0x456C2"/>
+		</table>
 
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x41944"/>
