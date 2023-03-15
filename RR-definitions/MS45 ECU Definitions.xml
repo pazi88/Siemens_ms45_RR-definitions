@@ -604,6 +604,80 @@ v0.3
 			<description>Switch-on level for the EFP (lc_level_on_efp)</description>
 		</table>
 
+<!--Idle Speed-->
+		<table type="2D" name="Nominal idle speed without additional load on the engine" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed without additional load on the engine (ip_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with A/C on" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with air conditioner switched on (ip_acin_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with DRIVE (A/T) engaged (ip_dri_n_sp_is)</description>
+		</table>
+
+		<table type="2D" name="Nominal idle speed with D engaged and A/C on (AT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Nominal idle speed with DRIVE (A/T) engaged and air conditioner switched on (ip_dri_acin_n_sp_is)</description>
+		</table>
+
+		<table type="3D" name="Nominal idle speed at PL on the engine" category="Idle Speed" storagetype="uint16" sizex="6" sizey="6" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="" storagetype="uint16" endian="big">
+				<scaling units="Nm" expression="x*0.031250" to_byte="x/0.031250" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="RPM" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Nominal idle speed  at PL on the engine (ip_n_sp_is_pl)</description>
+		</table>
+
+		<table type="2D" name="Idle speed setpoint for drive-off-support (MT)" category="Idle Speed" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="x-40.000000" to_byte="x+40.000000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Idle speed setpoint for drive-off-support - manual transmission (ip_n_sp_is_cs)</description>
+		</table>
+
+		<table type="3D" name="Max. idle speed during CAT heating with D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" sizey="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Seconds" storagetype="uint16" endian="big">
+				<scaling units="s" expression="x*0.100000" to_byte="x/0.100000" format="0.0" fineincrement="0.11" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Max. idle speed during CAT heating with drive engaged (ip_dri_n_sp_ch)</description>
+		</table>
+
+		<table type="3D" name="Max. idle speed during CAT heating with no D engaged (AT)" category="Idle Speed" storagetype="uint16" sizex="8" sizey="8" endian="big" userlevel="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			<table type="X Axis" name="Seconds" storagetype="uint16" endian="big">
+				<scaling units="s" expression="x*0.100000" to_byte="x/0.100000" format="0.0" fineincrement="0.11" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Max. idle speed during CAT heating with no drive engaged (ip_n_sp_ch)</description>
+		</table>
+
 <!--Limiters-->	
 		<table type="2D" name="Vehicle speed limiter" category="Limiters" storagetype="uint8" endian="big" userlevel="1" sizey="1">
 			<scaling units="kph" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
@@ -658,6 +732,26 @@ v0.3
 				<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
 			</table>
 			<description>id_n_max_h_amt</description>
+		</table>
+
+<!--Gearing-->
+		<table type="2D" name="Rear diff ratio" category="Gearing" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="Ratio" expression="x*0.003906" to_byte="x/0.003906" format="0.00" fineincrement=".01" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Rear diff ratio" sizey="1">
+				<data>c_gr_rax_sp</data>
+			</table>
+			<description>Rear axle ratio of standard rear axle (c_gr_rax_sp)</description>
+		</table>
+
+		<table type="3D" name="Gear detection (MT)" category="Gearing" storagetype="uint8" sizex="13" sizey="1" endian="big" userlevel="1">
+			<scaling units="#" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="2"/>
+			<table type="X Axis" name="X" storagetype="uint8" endian="little">
+				<scaling units="RPM / (km/h)" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Static Y Axis" name="" sizex="1">
+				<data>Gear</data>
+				<description>Index table for Gear Ratio detection (id_gr_mt__n_vs_ratio)</description>
+			</table>
 		</table>
 
 <!--Sensor Scaling-->	
@@ -774,7 +868,7 @@ v0.3
 				</table>
 			<description>This is the scaling for the Wideband Lambda sensor. (ip_lamb)</description>
 		</table>
-		
+
 <!--Knock Tables-->
 		<table type="3D" name="Knock Factor - Cylinder 1" category="Knock" storagetype="uint8" endian="little" sizex="4" sizey="16" userlevel="1">
 			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
@@ -840,6 +934,22 @@ v0.3
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>ip_fac_thd_knk_5__n__maf</description>
+		</table>
+
+		<table type="2D" name="Spark retard - Intensity 1" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">
+			<scaling units="(°)" expression="x*0.375000" to_byte="x/0.375000" format="0.000" fineincrement=".375" coarseincrement="1.5"/>
+			<table type="Y Axis" name="RPM" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32.000000" to_byte="x/32.000000" format="#" fineincrement="32" coarseincrement="128"/>
+			</table>
+			<description>Spark retard at recognised knocking. Intensity 1 (id_iga_dec_knk_1__n)</description>
+		</table>
+
+		<table type="2D" name="Spark retard - Intensity 2" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">2
+			<scaling units="(°)" expression="x*0.375000" to_byte="x/0.375000" format="0.000" fineincrement=".375" coarseincrement="1.5"/>
+			<table type="Y Axis" name="RPM" storagetype="uint8" endian="big">
+				<scaling units="RPM" expression="x*32.000000" to_byte="x/32.000000" format="#" fineincrement="32" coarseincrement="128"/>
+			</table>
+			<description>Spark retard at recognised knocking. Intensity 2 (id_iga_dec_knk_2__n)</description>
 		</table>
 
 <!-- E-Thermostat-->
@@ -947,6 +1057,74 @@ v0.3
 				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Actual conversion for Torque request is 0.000031, but with 0.0031, the range is probaply easier to understand 0-100% (id_tco_sp_ect_acin)</description>
+		</table>
+
+
+<!-- Wideband Lambda Sensor -->
+		<table type="3D" name="Time delay - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model - Bank 1 (ip_t1_lamb_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model - Bank 2 (ip_t1_lamb_2)</description>
+		</table>
+
+		<table type="3D" name="Time delay (aged sensor) - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 1 (ip_t1_lamb_agi_lim_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay (aged sensor) - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
+			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 2 (ip_t1_lamb_agi_lim_2)</description>
+		</table>
+
+		<table type="3D" name="Time delay weighting factor - Bank 1" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 1 (ip_ex_dly_fac_1)</description>
+		</table>
+
+		<table type="3D" name="Time delay weighting factor - Bank 2" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
+			<table type="X Axis" storagetype="uint16" endian="big">
+				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
+			</table>
+			<table type="Y Axis" storagetype="uint16" endian="big">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 2 (ip_ex_dly_fac_2)</description>
 		</table>
 
    </rom>
@@ -1178,11 +1356,55 @@ v0.3
 			<table type="X Axis" storageaddress="0x530B"/>
 			<table type="Y Axis" storageaddress="0x4C46"/>
 		</table>
-		
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x1B31">
+			<table type="Y Axis" storageaddress="0x553A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1B34">
+			<table type="Y Axis" storageaddress="0x553A"/>
+		</table>
+
 <!--Fuel Pump Control-->
 		<table name="EFP-control configuration bit" storageaddress="0x1566"/>
 		
 		<table name="Switch-on level for the EFP" storageaddress="0x49C4"/>
+
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6FD2">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x6302">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x6666">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x6656">
+			<table type="X Axis" storageaddress="0x56B9"/>
+		</table>
+
+		<table name="Nominal idle speed at PL on the engine" storageaddress="0xFB98">
+			<table type="X Axis" storageaddress="0x837C"/>
+			<table type="Y Axis" storageaddress="0x7F36"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x6FE2">
+			<table type="X Axis" storageaddress="0x5741"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0xC9E0">
+			<table type="X Axis" storageaddress="0x8C64"/>
+			<table type="Y Axis" storageaddress="0x56C2"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0xFB18">
+			<table type="X Axis" storageaddress="0x8C64"/>
+			<table type="Y Axis" storageaddress="0x56C2"/>
+		</table>
 
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x1944"/>
@@ -1211,6 +1433,13 @@ v0.3
 			<table type="X Axis" storageaddress="0x527F"/>
 		</table>
 
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x59A2"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x1AE4">
+			<table type="X Axis" storageaddress="0x4DE9"/>
+		</table>
+
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0xB7E8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0xB9E8"/>
@@ -1230,7 +1459,7 @@ v0.3
 		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x6CF0">
 			<table type="Y Axis" storageaddress="0x859A"/>
 		</table>
-		
+
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x1860"/>
 
@@ -1264,6 +1493,37 @@ v0.3
 		<table name="Target coolant temperature with A/C" storageaddress="0xA824">
 			<table type="X Axis" storageaddress="0x87A4"/>
 			<table type="Y Axis" storageaddress="0x53E5"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x109E8">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x10A68">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x7166">
+			<table type="X Axis" storageaddress="0x8834"/>
+			<table type="Y Axis" storageaddress="0x8A02"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x7186">
+			<table type="X Axis" storageaddress="0x8834"/>
+			<table type="Y Axis" storageaddress="0x8A02"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x21D3">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x2213">
+			<table type="X Axis" storageaddress="0x87EE"/>
+			<table type="Y Axis" storageaddress="0x89BC"/>
 		</table>
 
 	</rom>
@@ -1496,10 +1756,54 @@ v0.3
 			<table type="Y Axis" storageaddress="0x44C46"/>
 		</table>
 
+		<table name="Spark retard - Intensity 1" storageaddress="0x41B31">
+			<table type="Y Axis" storageaddress="0x4553A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x41B34">
+			<table type="Y Axis" storageaddress="0x4553A"/>
+		</table>
+
 <!--Fuel Pump Control-->
 		<table name="EFP-control configuration bit" storageaddress="0x41566"/>
 		
 		<table name="Switch-on level for the EFP" storageaddress="0x449C4"/>
+
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46FD2">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x46302">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x46666">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x46656">
+			<table type="X Axis" storageaddress="0x456B9"/>
+		</table>
+
+		<table name="Nominal idle speed at PL on the engine" storageaddress="0x4FB98">
+			<table type="X Axis" storageaddress="0x4837C"/>
+			<table type="Y Axis" storageaddress="0x47F36"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x46FE2">
+			<table type="X Axis" storageaddress="0x45741"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0x4C9E0">
+			<table type="X Axis" storageaddress="0x48C64"/>
+			<table type="Y Axis" storageaddress="0x456C2"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0x4FB18">
+			<table type="X Axis" storageaddress="0x48C64"/>
+			<table type="Y Axis" storageaddress="0x456C2"/>
+		</table>
 
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x41944"/>
@@ -1526,6 +1830,13 @@ v0.3
 
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x460F8">
 			<table type="X Axis" storageaddress="0x4527F"/>
+		</table>
+
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x459A2"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x41AE4">
+			<table type="X Axis" storageaddress="0x44DE9"/>
 		</table>
 
 <!--Sensor Scaling-->
@@ -1581,6 +1892,37 @@ v0.3
 		<table name="Target coolant temperature with A/C" storageaddress="0x4A824">
 			<table type="X Axis" storageaddress="0x487A4"/>
 			<table type="Y Axis" storageaddress="0x453E5"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x509E8">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x50A68">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x47166">
+			<table type="X Axis" storageaddress="0x48834"/>
+			<table type="Y Axis" storageaddress="0x48A02"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x47186">
+			<table type="X Axis" storageaddress="0x48834"/>
+			<table type="Y Axis" storageaddress="0x48A02"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x421D3">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x42213">
+			<table type="X Axis" storageaddress="0x487EE"/>
+			<table type="Y Axis" storageaddress="0x489BC"/>
 		</table>
 
 	</rom>
