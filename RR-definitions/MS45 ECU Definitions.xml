@@ -459,6 +459,41 @@ v0.3
 			</table>
 			<description>ip_vol_im_is_neg</description>
 		</table>
+		
+<!--Torque Control Tables-->
+
+		<table type="3D" name="Indicated engine torque at reference conditions" category="Torque Control" storagetype="uint16" endian="big" sizex="12" sizey="16" userlevel="1">
+			<scaling units="Nm" expression="x*.031250" to_byte="x/.031250" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big">
+				<scaling units="mg/stroke" expression="x*.021195" to_byte="x/.021195" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_tqi_ref__n__maf</description>
+		</table>
+		
+		<table type="3D" name="Indicated engine torque at reference conditions (process monitoring)" category="Torque Control" storagetype="uint8" endian="big" sizex="8" sizey="6" userlevel="1">
+			<scaling units="Nm" expression="x*2" to_byte="x/2" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_tqi_ref_mon</description>
+		</table>
+
+		<table type="3D" name="Setpoint mass air flow depending on slow torque setpoint" category="Torque Control" storagetype="uint16" endian="big" sizex="12" sizey="16" userlevel="1">
+			<scaling units="mg/stroke" expression="x*.021195" to_byte="x/.021195" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Torque" storagetype="uint16" endian="big">
+				<scaling units="Nm" expression="x*.031250" to_byte="x/.031250" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_maf_sp</description>
+		</table>
 
 <!--Fuel Tables-->
 		<table type="3D" name="Basic Lambda Setpoint - Bank 1" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
@@ -1448,6 +1483,23 @@ v0.3
 			<table type="X Axis" storageaddress="0x54C5"/>
 			<table type="Y Axis" storageaddress="0x890E"/>
 		</table>
+		
+<!--Torque Control-->
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x12690">
+			<table type="X Axis" storageaddress="0x87D4"/>
+			<table type="Y Axis" storageaddress="0x53A6"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x539">
+			<table type="X Axis" storageaddress="0x5A5"/>
+			<table type="Y Axis" storageaddress="0x5F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0xF638">
+			<table type="X Axis" storageaddress="0x847C"/>
+			<table type="Y Axis" storageaddress="0x53A6"/>
+		</table>
 
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x29B1">
@@ -1874,6 +1926,23 @@ v0.3
 		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52A48">
 			<table type="X Axis" storageaddress="0x454C5"/>
 			<table type="Y Axis" storageaddress="0x4890E"/>
+		</table>
+		
+<!--Torque Control-->
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x52690">
+			<table type="X Axis" storageaddress="0x487D4"/>
+			<table type="Y Axis" storageaddress="0x453A6"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x40539">
+			<table type="X Axis" storageaddress="0x405A5"/>
+			<table type="Y Axis" storageaddress="0x405F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0x4F638">
+			<table type="X Axis" storageaddress="0x4847C"/>
+			<table type="Y Axis" storageaddress="0x453A6"/>
 		</table>
 
 <!--Knock-->
