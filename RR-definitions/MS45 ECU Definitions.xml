@@ -88,7 +88,13 @@ v0.3
 			<table type="Static Y Axis" name="Exhaust configuration" sizey="1">
 				<data>c_conf_cat</data>
 			</table>
-			<description>You can set desired oxygen sensor configuration here</description>
+			<description>You can set desired oxygen sensor configuration here. Remember to reset learned variants when changing this (c_conf_cat)</description>
+		</table>
+		
+		<table type="Switch" name="Reset learned variants" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Reset" data="01"/>
+			<state name="0 - Normal" data="00"/>
+			<description>Learned variants can be reset by changing this to 1 (lc_ad_clr_var)</description>
 		</table>
 
 		<table type="2D" name="MIL configuration" category="Configurations" storagetype="uint8" endian="little" sizey="1" userlevel="1">
@@ -96,7 +102,7 @@ v0.3
 			<table type="Static Y Axis" name="MIL configuration" sizey="1">
 				<data>c_conf_mil</data>
 			</table>
-			<description>You can set desired MIL lamp configuration here</description>
+			<description>You can set desired MIL lamp configuration here (c_conf_mil)</description>
 		</table>
 
 		<table type="2D" name="Coolant temperature threshold for fast cut-off activation" category="Configurations" storagetype="uint8" sizey="1" userlevel="1">
@@ -766,7 +772,7 @@ v0.3
 			<description>Nominal idle speed with DRIVE (A/T) engaged and air conditioner switched on (ip_dri_acin_n_sp_is)</description>
 		</table>
 
-		<table type="3D" name="Nominal idle speed at PL on the engine" category="Idle Speed" storagetype="uint16" sizex="6" sizey="6" endian="big" userlevel="1">
+		<table type="3D" name="Nominal idle speed at Part Load" category="Idle Speed" storagetype="uint16" sizex="6" sizey="6" endian="big" userlevel="1">
 			<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			<table type="X Axis" name="" storagetype="uint16" endian="big">
 				<scaling units="Nm" expression="x*0.031250" to_byte="x/0.031250" format="#" fineincrement="1" coarseincrement="10"/>
@@ -1281,6 +1287,8 @@ v0.3
 		
 		<table name="Exhaust configuration" storageaddress="0x1561"/>
 
+		<table name="Reset learned variants" storageaddress="0x4957"/>
+
 		<table name="MIL configuration" storageaddress="0x1564"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
@@ -1325,6 +1333,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x7B44"/>
 			<table type="Y Axis" storageaddress="0x51A0"/>
 		</table>
+		
+		<table name="Global injection time correction (ALL)" storageaddress="0x18AB"/>
 
 		<table name="Global injection time correction" storageaddress="0x18AC"/>
 
@@ -1562,7 +1572,7 @@ v0.3
 			<table type="X Axis" storageaddress="0x56B9"/>
 		</table>
 
-		<table name="Nominal idle speed at PL on the engine" storageaddress="0xFB98">
+		<table name="Nominal idle speed at Part Load" storageaddress="0xFB98">
 			<table type="X Axis" storageaddress="0x837C"/>
 			<table type="Y Axis" storageaddress="0x7F36"/>
 		</table>
@@ -1724,6 +1734,8 @@ v0.3
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44998"/>
 
 		<table name="Exhaust configuration" storageaddress="0x41561"/>
+		
+		<table name="Reset learned variants" storageaddress="0x44957"/>
 
 		<table name="MIL configuration" storageaddress="0x41564"/>
 		
@@ -1771,6 +1783,8 @@ v0.3
 		</table>
 		
 		<table name="Global injection time correction" storageaddress="0x418AC"/>
+
+		<table name="Global injection time correction (ALL)" storageaddress="0x418AB"/>
 		
 		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x45940"/>
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45942"/>
@@ -2006,7 +2020,7 @@ v0.3
 			<table type="X Axis" storageaddress="0x456B9"/>
 		</table>
 
-		<table name="Nominal idle speed at PL on the engine" storageaddress="0x4FB98">
+		<table name="Nominal idle speed at Part Load" storageaddress="0x4FB98">
 			<table type="X Axis" storageaddress="0x4837C"/>
 			<table type="Y Axis" storageaddress="0x47F36"/>
 		</table>
@@ -2698,12 +2712,35 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>116kb</filesize>
 		</romid>
-
+		
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x4A3E"/>
+		
 		<table name="Exhaust configuration" storageaddress="0x1522"/>
+		
+		<table name="Reset learned variants" storageaddress="0x4A06"/>
 
 		<table name="MIL configuration" storageaddress="0x1525"/>
-
+		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
+
+		<table name="Misfire monitoring supported" storageaddress="0x16D8"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x16D8"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x16D8"/>
+		<table name="Misfire monitoring status" storageaddress="0x16D8"/>
+		<table name="Fuel system monitoring status" storageaddress="0x16D8"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x16D8"/>
+		<table name="Catalyst monitoring" storageaddress="0x16D9"/>
+		<table name="Heated catalyst" storageaddress="0x16D9"/>
+		<table name="Evaporative system monitoring" storageaddress="0x16D9"/>
+		<table name="Secondary air system monitoring" storageaddress="0x16D9"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x16D9"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x16D9"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x16D9"/>
+		<table name="EGR system monitoring" storageaddress="0x16D9"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="SAP autolearning" storageaddress="0x4A85"/>
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE4E0">
@@ -2730,6 +2767,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x78AA"/>
 			<table type="Y Axis" storageaddress="0x51F6"/>
 		</table>
+		
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x595E"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x5960"/>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5ABA"/>
 
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x123A"/>
@@ -2769,6 +2811,48 @@ v0.3
 		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x3877">
 			<table type="X Axis" storageaddress="0x554E"/>
 		</table>
+		
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x1527"/>
+		
+		<table name="Switch-on level for the EFP" storageaddress="0x4A66"/>
+		
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6D62">
+			<table type="X Axis" storageaddress="0x56F6"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x6262">
+			<table type="X Axis" storageaddress="0x56F6"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x65B6">
+			<table type="X Axis" storageaddress="0x56F6"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x65A6">
+			<table type="X Axis" storageaddress="0x56F6"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0xF328">
+			<table type="X Axis" storageaddress="0x80FE"/>
+			<table type="Y Axis" storageaddress="0x7CCC"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x6D72">
+			<table type="X Axis" storageaddress="0x5785"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0xC770">
+			<table type="X Axis" storageaddress="0x897A"/>
+			<table type="Y Axis" storageaddress="0x56FF"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0xF2A8">
+			<table type="X Axis" storageaddress="0x897A"/>
+			<table type="Y Axis" storageaddress="0x56FF"/>
+		</table>
+
 
 <!--Igntion-->
 		<table name="Basic ignition angle for RON 98" storageaddress="0xAF0C">
@@ -2816,6 +2900,26 @@ v0.3
 			<table type="X Axis" storageaddress="0x860A"/>
 			<table type="Y Axis" storageaddress="0x873E"/>
 		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D48">
+			<table type="X Axis" storageaddress="0x85FC"/>
+			<table type="Y Axis" storageaddress="0x86B2"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D7C">
+			<table type="X Axis" storageaddress="0x85FC"/>
+			<table type="Y Axis" storageaddress="0x86B2"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x1DB0">
+			<table type="X Axis" storageaddress="0x85FC"/>
+			<table type="Y Axis" storageaddress="0x86B2"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x1DE4">
+			<table type="X Axis" storageaddress="0x85FC"/>
+			<table type="Y Axis" storageaddress="0x86B2"/>
+		</table>
 
 		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x1D38">
 			<table type="X Axis" storageaddress="0x873E"/>
@@ -2831,6 +2935,52 @@ v0.3
 
 		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x1DD4">
 			<table type="X Axis" storageaddress="0x873E"/>
+		</table>
+		
+		<table name="Intake Camshaft Park Position" storageaddress="0x11F0"/>
+		<table name="Exhaust Camshaft Park Position" storageaddress="0x11EE"/>
+		<table name="Intake Camshaft Initial Position" storageaddress="0x1512"/>
+		<table name="Exhaust Camshaft Initial Position" storageaddress="0x1511"/>
+		<table name="Intake Camshaft Duration" storageaddress="0x1514"/>
+		<table name="Exhaust Camshaft Duration" storageaddress="0x1513"/>
+		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x126B0">
+			<table type="X Axis" storageaddress="0x5502"/>
+			<table type="Y Axis" storageaddress="0x863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x127A0">
+			<table type="X Axis" storageaddress="0x5502"/>
+			<table type="Y Axis" storageaddress="0x863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x12710">
+			<table type="X Axis" storageaddress="0x5502"/>
+			<table type="Y Axis" storageaddress="0x863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x12758">
+			<table type="X Axis" storageaddress="0x5502"/>
+			<table type="Y Axis" storageaddress="0x863C"/>
+		</table>
+		
+<!--Torque Control-->
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x124B0">
+			<table type="X Axis" storageaddress="0x84FE"/>
+			<table type="Y Axis" storageaddress="0x53E1"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x539">
+			<table type="X Axis" storageaddress="0x5A5"/>
+			<table type="Y Axis" storageaddress="0x5F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0xEDC8">
+			<table type="X Axis" storageaddress="0x81FE"/>
+			<table type="Y Axis" storageaddress="0x53E1"/>
 		</table>
 
 <!--Limiters-->	
@@ -2860,8 +3010,28 @@ v0.3
 			<table type="X Axis" storageaddress="0x52CC"/>
 		</table>
 
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x59BA"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x1A79">
+			<table type="X Axis" storageaddress="0x4E6F"/>
+		</table>
+
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0xB4A8"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0xB738"/>
+
+		<table name="ECT Sensor Scaling" storageaddress="0x4404">
+			<table type="Y Axis" storageaddress="0x828A"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x4893">
+			<table type="Y Axis" storageaddress="0x51B7"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x48AB">
+			<table type="Y Axis" storageaddress="0x51C8"/>
+		</table>
 
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x17F5"/>
@@ -2897,7 +3067,45 @@ v0.3
 			<table type="X Axis" storageaddress="0x84CE"/>
 			<table type="Y Axis" storageaddress="0x5427"/>
 		</table>
+		
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x28C6">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
 
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x2906">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x2946">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x2986">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x29C6">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x2A06">
+			<table type="X Axis" storageaddress="0x5358"/>
+			<table type="Y Axis" storageaddress="0x53C9"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x1AC6">
+			<table type="Y Axis" storageaddress="0x5577"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1AC9">
+			<table type="Y Axis" storageaddress="0x5577"/>
+		</table>
 	</rom>
 
 	<rom base="BMWMS45BASE">
@@ -2917,12 +3125,36 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>1024kb</filesize>
 		</romid>
-
+		
+		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44A3E"/>
+		
 		<table name="Exhaust configuration" storageaddress="0x41522"/>
+		
+		<table name="Reset learned variants" storageaddress="0x44A06"/>
 
 		<table name="MIL configuration" storageaddress="0x41525"/>
 
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
+		
+		<table name="Misfire monitoring supported" storageaddress="0x416D8"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x416D8"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x416D8"/>
+		<table name="Misfire monitoring status" storageaddress="0x416D8"/>
+		<table name="Fuel system monitoring status" storageaddress="0x416D8"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x416D8"/>
+		<table name="Catalyst monitoring" storageaddress="0x416D9"/>
+		<table name="Heated catalyst" storageaddress="0x416D9"/>
+		<table name="Evaporative system monitoring" storageaddress="0x416D9"/>
+		<table name="Secondary air system monitoring" storageaddress="0x416D9"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x416D9"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x416D9"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x416D9"/>
+		<table name="EGR system monitoring" storageaddress="0x416D9"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="SAP autolearning" storageaddress="0x44A85"/>
+
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E4E0">
@@ -2949,6 +3181,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x478AA"/>
 			<table type="Y Axis" storageaddress="0x451F6"/>
 		</table>
+		
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x4595E"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45960"/>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45ABA"/>
 
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4123A"/>
@@ -2987,6 +3224,47 @@ v0.3
 
 		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x43877">
 			<table type="X Axis" storageaddress="0x4554E"/>
+		</table>
+		
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x41527"/>
+		
+		<table name="Switch-on level for the EFP" storageaddress="0x44A66"/>
+		
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46D62">
+			<table type="X Axis" storageaddress="0x456F6"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x46262">
+			<table type="X Axis" storageaddress="0x456F6"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x465B6">
+			<table type="X Axis" storageaddress="0x456F6"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x465A6">
+			<table type="X Axis" storageaddress="0x456F6"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0x4F328">
+			<table type="X Axis" storageaddress="0x480FE"/>
+			<table type="Y Axis" storageaddress="0x47CCC"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x46D72">
+			<table type="X Axis" storageaddress="0x45785"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0x4C770">
+			<table type="X Axis" storageaddress="0x4897A"/>
+			<table type="Y Axis" storageaddress="0x456FF"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0x4F2A8">
+			<table type="X Axis" storageaddress="0x4897A"/>
+			<table type="Y Axis" storageaddress="0x456FF"/>
 		</table>
 
 <!--Igntion-->
@@ -3035,7 +3313,27 @@ v0.3
 			<table type="X Axis" storageaddress="0x4860A"/>
 			<table type="Y Axis" storageaddress="0x4873E"/>
 		</table>
-
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x4D48">
+			<table type="X Axis" storageaddress="0x485FC"/>
+			<table type="Y Axis" storageaddress="0x486B2"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D7C">
+			<table type="X Axis" storageaddress="0x485FC"/>
+			<table type="Y Axis" storageaddress="0x486B2"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x41DB0">
+			<table type="X Axis" storageaddress="0x485FC"/>
+			<table type="Y Axis" storageaddress="0x486B2"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x41DE4">
+			<table type="X Axis" storageaddress="0x485FC"/>
+			<table type="Y Axis" storageaddress="0x486B2"/>
+		</table>
+	
 		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x41D38">
 			<table type="X Axis" storageaddress="0x4873E"/>
 		</table>
@@ -3050,6 +3348,52 @@ v0.3
 
 		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x41DD4">
 			<table type="X Axis" storageaddress="0x4873E"/>
+		</table>
++		
+		<table name="Intake Camshaft Park Position" storageaddress="0x411F0"/>
+		<table name="Exhaust Camshaft Park Position" storageaddress="0x411EE"/>
+		<table name="Intake Camshaft Initial Position" storageaddress="0x41512"/>
+		<table name="Exhaust Camshaft Initial Position" storageaddress="0x41511"/>
+		<table name="Intake Camshaft Duration" storageaddress="0x41514"/>
+		<table name="Exhaust Camshaft Duration" storageaddress="0x41513"/>
+		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x526B0">
+			<table type="X Axis" storageaddress="0x45502"/>
+			<table type="Y Axis" storageaddress="0x4863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x527A0">
+			<table type="X Axis" storageaddress="0x45502"/>
+			<table type="Y Axis" storageaddress="0x4863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52710">
+			<table type="X Axis" storageaddress="0x45502"/>
+			<table type="Y Axis" storageaddress="0x4863C"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52758">
+			<table type="X Axis" storageaddress="0x45502"/>
+			<table type="Y Axis" storageaddress="0x4863C"/>
+		</table>
+		
+<!--Torque Control-->
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x524B0">
+			<table type="X Axis" storageaddress="0x484FE"/>
+			<table type="Y Axis" storageaddress="0x453E1"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x40539">
+			<table type="X Axis" storageaddress="0x405A5"/>
+			<table type="Y Axis" storageaddress="0x405F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0x4EDC8">
+			<table type="X Axis" storageaddress="0x481FE"/>
+			<table type="Y Axis" storageaddress="0x453E1"/>
 		</table>
 
 <!--Limiters-->	
@@ -3079,8 +3423,28 @@ v0.3
 			<table type="X Axis" storageaddress="0x452CC"/>
 		</table>
 
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x459BA"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x41A79">
+			<table type="X Axis" storageaddress="0x44E6F"/>
+		</table>
+
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B4A8"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B738"/>
+
+		<table name="ECT Sensor Scaling" storageaddress="0x44404">
+			<table type="Y Axis" storageaddress="0x4828A"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x44893">
+			<table type="Y Axis" storageaddress="0x451B7"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x448AB">
+			<table type="Y Axis" storageaddress="0x451C8"/>
+		</table>
 
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x417F5"/>
@@ -3116,7 +3480,45 @@ v0.3
 			<table type="X Axis" storageaddress="0x484CE"/>
 			<table type="Y Axis" storageaddress="0x45427"/>
 		</table>
+		
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x428C6">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
 
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x42906">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x42946">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x42986">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x429C6">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x42A06">
+			<table type="X Axis" storageaddress="0x45358"/>
+			<table type="Y Axis" storageaddress="0x453C9"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x41AC6">
+			<table type="Y Axis" storageaddress="0x45577"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x41AC9">
+			<table type="Y Axis" storageaddress="0x45577"/>
+		</table>
 	</rom>
 
 </roms>
