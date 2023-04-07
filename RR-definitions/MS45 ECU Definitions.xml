@@ -2182,22 +2182,27 @@ v0.3
 		<table name="Exhaust configuration" storageaddress="0x152A"/>
 
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x49F8"/>
+		
+		<table name="Reset learned variants" storageaddress="0x49BE"/>
 
-<!--This might not be correct for this version-->	
-		<table name="Misfire monitoring supported" storageaddress="0x16DB"/>
-		<table name="Fuel system monitoring supported" storageaddress="0x16DB"/>
-		<table name="Comprehensive component monitoring supported" storageaddress="0x16DB"/>
-		<table name="Misfire monitoring status" storageaddress="0x16DB"/>
-		<table name="Fuel system monitoring status" storageaddress="0x16DB"/>
-		<table name="Comprehensive component monitoring status" storageaddress="0x16DB"/>
-		<table name="Catalyst monitoring" storageaddress="0x16DC"/>
-		<table name="Heated catalyst" storageaddress="0x16DC"/>
-		<table name="Evaporative system monitoring" storageaddress="0x16DC"/>
-		<table name="Secondary air system monitoring" storageaddress="0x16DC"/>
-		<table name="A/C system refrigerant monitoring" storageaddress="0x16DC"/>
-		<table name="Oxygen sensor monitoring" storageaddress="0x16DC"/>
-		<table name="Oxygen sensor heater monitoring" storageaddress="0x16DC"/>
-		<table name="EGR system monitoring" storageaddress="0x16DC"/>
+		<table name="MIL configuration" storageaddress="0x152D"/>
+		
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17FB"/>
+
+		<table name="Misfire monitoring supported" storageaddress="0x16DD"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x16DF"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x16DD"/>
+		<table name="Misfire monitoring status" storageaddress="0x16DD"/>
+		<table name="Fuel system monitoring status" storageaddress="0x16DD"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x16DD"/>
+		<table name="Catalyst monitoring" storageaddress="0x16DE"/>
+		<table name="Heated catalyst" storageaddress="0x16DE"/>
+		<table name="Evaporative system monitoring" storageaddress="0x16DE"/>
+		<table name="Secondary air system monitoring" storageaddress="0x16DE"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x16DE"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x16DE"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x16DE"/>
+		<table name="EGR system monitoring" storageaddress="0x16DE"/>
 
 <!--Igntion-->
 
@@ -2350,21 +2355,26 @@ v0.3
 
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x449F8"/>
 
-<!--This might not be correct for this version-->	
-		<table name="Misfire monitoring supported" storageaddress="0x416DB"/>
-		<table name="Fuel system monitoring supported" storageaddress="0x416DB"/>
-		<table name="Comprehensive component monitoring supported" storageaddress="0x416DB"/>
-		<table name="Misfire monitoring status" storageaddress="0x416DB"/>
-		<table name="Fuel system monitoring status" storageaddress="0x416DB"/>
-		<table name="Comprehensive component monitoring status" storageaddress="0x416DB"/>
-		<table name="Catalyst monitoring" storageaddress="0x416DC"/>
-		<table name="Heated catalyst" storageaddress="0x416DC"/>
-		<table name="Evaporative system monitoring" storageaddress="0x416DC"/>
-		<table name="Secondary air system monitoring" storageaddress="0x416DC"/>
-		<table name="A/C system refrigerant monitoring" storageaddress="0x416DC"/>
-		<table name="Oxygen sensor monitoring" storageaddress="0x416DC"/>
-		<table name="Oxygen sensor heater monitoring" storageaddress="0x416DC"/>
-		<table name="EGR system monitoring" storageaddress="0x416DC"/>
+		<table name="Reset learned variants" storageaddress="0x449BE"/>
+
+		<table name="MIL configuration" storageaddress="0x4152D"/>
+		
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417FB"/>
+
+		<table name="Misfire monitoring supported" storageaddress="0x416DD"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x416DF"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x416DD"/>
+		<table name="Misfire monitoring status" storageaddress="0x416DD"/>
+		<table name="Fuel system monitoring status" storageaddress="0x416DD"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x416DD"/>
+		<table name="Catalyst monitoring" storageaddress="0x416DE"/>
+		<table name="Heated catalyst" storageaddress="0x416DE"/>
+		<table name="Evaporative system monitoring" storageaddress="0x416DE"/>
+		<table name="Secondary air system monitoring" storageaddress="0x416DE"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x416DE"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x416DE"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x416DE"/>
+		<table name="EGR system monitoring" storageaddress="0x416DE"/>
 
 <!--Igntion-->
 
