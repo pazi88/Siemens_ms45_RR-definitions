@@ -2216,6 +2216,21 @@ v0.3
 			<table type="Y Axis" storageaddress="0x8618"/>
 		</table>
 		
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0xA964">
+			<table type="X Axis" storageaddress="0x8494"/>
+			<table type="Y Axis" storageaddress="0x8618"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0xABE4">
+			<table type="X Axis" storageaddress="0x8494"/>
+			<table type="Y Axis" storageaddress="0x8618"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0xAAA4">
+			<table type="X Axis" storageaddress="0x8494"/>
+			<table type="Y Axis" storageaddress="0x8618"/>
+		</table>
+		
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA514">
 			<table type="X Axis" storageaddress="0x8562"/>
@@ -2273,6 +2288,28 @@ v0.3
 			<table type="X Axis" storageaddress="0x8696"/>
 		</table>
 		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x12578">
+			<table type="X Axis" storageaddress="0x5487"/>
+			<table type="Y Axis" storageaddress="0x8594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x12668">
+			<table type="X Axis" storageaddress="0x5487"/>
+			<table type="Y Axis" storageaddress="0x8594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x125D8">
+			<table type="X Axis" storageaddress="0x5487"/>
+			<table type="Y Axis" storageaddress="0x8594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x12620">
+			<table type="X Axis" storageaddress="0x5487"/>
+			<table type="Y Axis" storageaddress="0x8594"/>
+		</table>
+		
 <!--Fuel-->
 
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE438">
@@ -2291,6 +2328,9 @@ v0.3
 		
 		<table name="Global injection time correction" storageaddress="0x1834"/>	
 		<table name="Global injection time correction (ALL)" storageaddress="0x1833"/>
+		
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x152F"/>
 		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x18D4"/>
@@ -2388,6 +2428,21 @@ v0.3
 			<table type="Y Axis" storageaddress="0x48618"/>
 		</table>
 		
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0x4A964">
+			<table type="X Axis" storageaddress="0x48494"/>
+			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0x4ABE4">
+			<table type="X Axis" storageaddress="0x48494"/>
+			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AAA4">
+			<table type="X Axis" storageaddress="0x48494"/>
+			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+		
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A514">
 			<table type="X Axis" storageaddress="0x48562"/>
@@ -2445,6 +2500,28 @@ v0.3
 			<table type="X Axis" storageaddress="0x48696"/>
 		</table>
 		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x52578">
+			<table type="X Axis" storageaddress="0x45487"/>
+			<table type="Y Axis" storageaddress="0x48594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x52668">
+			<table type="X Axis" storageaddress="0x45487"/>
+			<table type="Y Axis" storageaddress="0x48594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x525D8">
+			<table type="X Axis" storageaddress="0x45487"/>
+			<table type="Y Axis" storageaddress="0x48594"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52620">
+			<table type="X Axis" storageaddress="0x45487"/>
+			<table type="Y Axis" storageaddress="0x48594"/>
+		</table>
+		
 <!--Fuel-->
 
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E438">
@@ -2463,6 +2540,9 @@ v0.3
 		
 		<table name="Global injection time correction" storageaddress="0x41834"/>	
 		<table name="Global injection time correction (ALL)" storageaddress="0x41833"/>
+		
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x4152F"/>
 		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x418D4"/>
