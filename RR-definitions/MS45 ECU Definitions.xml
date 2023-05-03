@@ -2332,6 +2332,42 @@ v0.3
 <!--Fuel Pump Control-->
 		<table name="EFP-control configuration bit" storageaddress="0x152F"/>
 		
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6CE6">
+			<table type="X Axis" storageaddress="0x567B"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x61EE">
+			<table type="X Axis" storageaddress="0x567B"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x6542">
+			<table type="X Axis" storageaddress="0x567B"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x6532">
+			<table type="X Axis" storageaddress="0x567B"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0xF280">
+			<table type="X Axis" storageaddress="0x8056"/>
+			<table type="Y Axis" storageaddress="0x7C2E"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x6CF6">
+			<table type="X Axis" storageaddress="0x570A"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0xC6C8">
+			<table type="X Axis" storageaddress="0x88D2"/>
+			<table type="Y Axis" storageaddress="0x5684"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0xF200">
+			<table type="X Axis" storageaddress="0x88D2"/>
+			<table type="Y Axis" storageaddress="0x5684"/>
+		</table>
+		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x18D4"/>
 
@@ -2543,6 +2579,42 @@ v0.3
 		
 <!--Fuel Pump Control-->
 		<table name="EFP-control configuration bit" storageaddress="0x4152F"/>
+		
+<!--Idle Speed-->
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46CE6">
+			<table type="X Axis" storageaddress="0x4567B"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x461EE">
+			<table type="X Axis" storageaddress="0x4567B"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x46542">
+			<table type="X Axis" storageaddress="0x4567B"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x46532">
+			<table type="X Axis" storageaddress="0x4567B"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0x4F280">
+			<table type="X Axis" storageaddress="0x48056"/>
+			<table type="Y Axis" storageaddress="0x47C2E"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x46CF6">
+			<table type="X Axis" storageaddress="0x4570A"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0x4C6C8">
+			<table type="X Axis" storageaddress="0x488D2"/>
+			<table type="Y Axis" storageaddress="0x45684"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0x4F200">
+			<table type="X Axis" storageaddress="0x488D2"/>
+			<table type="Y Axis" storageaddress="0x45684"/>
+		</table>
 		
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x418D4"/>
@@ -2942,7 +3014,6 @@ v0.3
 			<table type="X Axis" storageaddress="0x897A"/>
 			<table type="Y Axis" storageaddress="0x56FF"/>
 		</table>
-
 
 <!--Igntion-->
 		<table name="Basic ignition angle for RON 98" storageaddress="0xAF0C">
