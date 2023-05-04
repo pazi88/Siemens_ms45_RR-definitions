@@ -127,6 +127,31 @@ v0.3
 			</table>
 			<description>You can set desired MIL lamp configuration here (c_conf_mil)</description>
 		</table>
+		
+		<table type="Switch" name="Tank leakage detection" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - DMTL available" data="01"/>
+			<state name="0 - No DMTL available" data="00"/>
+			<description>Set to 0 to disable Tank leakage detection. (c_conf_dmtl)</description>
+		</table>
+		
+		<table type="Switch" name="Oil Level/Quality Sensor" category="Configurations" sizey="1" userlevel="1">
+			<state name="0 - No Sensor" data="00"/>
+			<state name="1 - TOENS available" data="01"/>
+			<state name="2 - Oil quality sensor on BSD interface available" data="02"/>
+			<description>c_conf_oil_level_sens</description>
+		</table>
+		
+		<table type="Switch" name="CAN Variant" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - BN2000" data="01"/>
+			<state name="0 - CAN11H" data="00"/>
+			<description>lc_var_bn2000</description>
+		</table>
+		
+		<table type="Switch" name="Vehicle Variant (E60/E65)" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Vehicle with Powermodule (E65)" data="01"/>
+			<state name="0 - Vehicle without Powermodule (E60)" data="00"/>
+			<description>BN2000 only. lc_var_veh</description>
+		</table>
 
 		<table type="2D" name="Coolant temperature threshold for fast cut-off activation" category="Configurations" storagetype="uint8" sizey="1" userlevel="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
@@ -1348,6 +1373,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x49A9"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x49C5"/>
 		<table name="MIL configuration" storageaddress="0x1564"/>
+		<table name="Tank leakage detection" storageaddress="0x1563"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x1565"/>
+		<table name="CAN Variant" storageaddress="0x4A25"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4A2A"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
 
@@ -1808,6 +1837,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x449A9"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x449C5"/>
 		<table name="MIL configuration" storageaddress="0x41564"/>
+		<table name="Tank leakage detection" storageaddress="0x41563"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x41565"/>
+		<table name="CAN Variant" storageaddress="0x44A25"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44A2A"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
 
@@ -2268,6 +2301,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x4A04"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x4A1C"/>
 		<table name="MIL configuration" storageaddress="0x152D"/>
+		<table name="Tank leakage detection" storageaddress="0x152C"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x152E"/>
+		<table name="CAN Variant" storageaddress="0x4A6F"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4A73"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17FB"/>
 
@@ -2532,6 +2569,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x44A04"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x44A1C"/>
 		<table name="MIL configuration" storageaddress="0x4152D"/>
+		<table name="Tank leakage detection" storageaddress="0x4152C"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x4152E"/>
+		<table name="CAN Variant" storageaddress="0x44A6F"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44A73"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417FB"/>
 
@@ -2996,6 +3037,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x4A4F"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x4A67"/>
 		<table name="MIL configuration" storageaddress="0x1525"/>
+		<table name="Tank leakage detection" storageaddress="0x1524"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x1526"/>
+		<table name="CAN Variant" storageaddress="0x4ABB"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4ABF"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
 
@@ -3420,6 +3465,10 @@ v0.3
 		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x44A4F"/>
 		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x44A67"/>
 		<table name="MIL configuration" storageaddress="0x41525"/>
+		<table name="Tank leakage detection" storageaddress="0x41524"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x41526"/>
+		<table name="CAN Variant" storageaddress="0x44ABB"/>
+		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44ABF"/>
 
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
 		
