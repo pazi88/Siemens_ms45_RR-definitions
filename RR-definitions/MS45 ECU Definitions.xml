@@ -83,12 +83,35 @@ v0.3
 			<description>You can turn off the cat diagnostics by changing this to 1 (lc_inh_cat_diag_man_deac)</description>
 		</table>
 
-		<table type="2D" name="Exhaust configuration" category="Configurations" storagetype="uint8" endian="little" sizey="1" userlevel="1">
-			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
-			<table type="Static Y Axis" name="Exhaust configuration" sizey="1">
-				<data>c_conf_cat</data>
-			</table>
+		<table type="Switch" name="Exhaust configuration" category="Configurations" sizey="1" userlevel="1">
+			<state name="0 - Limited autolearning, 2 banks, control sensors or without CAT" data="00"/>
+			<state name="1 - Autolearning for 2 banks. Checks control + monitor sensors" data="01"/>
+			<state name="2 - No Autolearning, 2 banks, control + monitor sensors" data="02"/>
 			<description>You can set desired oxygen sensor configuration here. Remember to reset learned variants when changing this (c_conf_cat)</description>
+		</table>
+		
+		<table type="Switch" name="Bank 1 downstream O2 sensor heating" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Enabled" data="01"/>
+			<state name="0 - Disabled" data="00"/>
+			<description>Set to 0 to disable Bank 1 downstream O2 sensor heating. (lc_lsh_down_1)</description>
+		</table>
+		
+		<table type="Switch" name="Bank 2 downstream O2 sensor heating" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Enabled" data="01"/>
+			<state name="0 - Disabled" data="00"/>
+			<description>Set to 0 to disable Bank 1 downstream O2 sensor heating. (lc_lsh_down_2)</description>
+		</table>
+		
+		<table type="Switch" name="Manual deactivation of downstream oxygen sensor diagnosis" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>Set to 1 to disable downstream O2 sensor diagnosis. (lc_inh_ls_down_man_deac)</description>
+		</table>
+		
+		<table type="Switch" name="Manual deactivation of CAT efficiency diagnosis" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>Set to 1 to disable CAT efficiency diagnosis. (lc_ls_cat_diag_cdn_man_act)</description>
 		</table>
 		
 		<table type="Switch" name="Reset learned variants" category="Configurations" sizey="1" userlevel="1">
@@ -189,10 +212,44 @@ v0.3
 		
 <!--Secondary Air Pump-->
 
+		<table type="Switch" name="Manual deactivation of SA diagnosis" category="Secondary Air Pump" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>Manual deactivation of SA diagnosis inhibition conditions. Set to 1 for SAP delete. (lc_inh_sa_man_deac)</description>
+		</table>
+		
+		<table type="Switch" name="Manual deactivation of SAFM diagnosis" category="Secondary Air Pump" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>Manual deactivation of SAFM diagnosis inhibition conditions. Set to 1 for SAP delete. (lc_inh_safm_man_deac)</description>
+		</table>
+		
+		<table type="Switch" name="SA diagnosis mode" category="Secondary Air Pump" sizey="1" userlevel="1">
+			<state name="1 - Use SAFM" data="01"/>
+			<state name="0 - Use model" data="00"/>
+			<description>To switch SA diagnosis between model and SAFM. Set to 0 for SAP delete. (lc_sa_swi_acq)</description>
+		</table>
+
 		<table type="Switch" name="SAP autolearning" category="Secondary Air Pump" sizey="1" userlevel="1">
 			<state name="1 - Deactivated" data="01"/>
 			<state name="0 - Activated" data="00"/>
-			<description>Parameter to turn off the autolearning of SAP. However if disabled, this forces LV_SAP to 1, meaning it turns ON the SAP. (lc_sap_det_di)</description>
+			<description>Parameter to turn off the autolearning of SAP. However if disabled, this forces LV_SAP to 1, meaning it turns ON the SAP. Not recommended to use for SAP delete (lc_sap_det_di)</description>
+		</table>
+		
+		<table type="2D" name="Time delay to terminate SA function 0" category="Secondary Air Pump" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="s" expression="x*0.01" to_byte="x/0.01" format="0.0" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0.0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Time delay to terminate SA function. Set all to 0 for SAP delete. (ip_t_sa_off_0)</description>
+		</table>
+		
+		<table type="2D" name="Time delay to terminate SA function 1" category="Secondary Air Pump" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="s" expression="x*0.01" to_byte="x/0.01" format="0.0" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="little">
+				<scaling units="°C" expression="(x*0.750000)-48.000000" to_byte="(x+48.000000)/0.750000" format="0.0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>Time delay to terminate SA function. Set all to 0 for SAP delete. (ip_t_sa_off_1)</description>
 		</table>
 
 <!--Ignition Tables-->
@@ -1284,11 +1341,12 @@ v0.3
 		</romid>
 		
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x4998"/>
-		
 		<table name="Exhaust configuration" storageaddress="0x1561"/>
-
 		<table name="Reset learned variants" storageaddress="0x4957"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x49C6"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x49C7"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x49A9"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x49C5"/>
 		<table name="MIL configuration" storageaddress="0x1564"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
@@ -1310,7 +1368,18 @@ v0.3
 
 <!--Secondary Air Pump-->
 
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x49B0"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x49B1"/>
+		<table name="SA diagnosis mode" storageaddress="0x49EC"/>
 		<table name="SAP autolearning" storageaddress="0x49EE"/>
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x73D0">
+			<table type="X Axis" storageaddress="0x56DD"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x73E0">
+			<table type="X Axis" storageaddress="0x56DD"/>
+		</table>
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE950">
@@ -1732,11 +1801,12 @@ v0.3
 		</romid>
 		
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44998"/>
-
-		<table name="Exhaust configuration" storageaddress="0x41561"/>
-		
+		<table name="Exhaust configuration" storageaddress="0x41561"/>	
 		<table name="Reset learned variants" storageaddress="0x44957"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x449C6"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x449C7"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x449A9"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x449C5"/>
 		<table name="MIL configuration" storageaddress="0x41564"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
@@ -1758,7 +1828,18 @@ v0.3
 
 <!--Secondary Air Pump-->
 
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x449B0"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x449B1"/>
+		<table name="SA diagnosis mode" storageaddress="0x449EC"/>
 		<table name="SAP autolearning" storageaddress="0x449EE"/>
+		
+		<table name="Time delay to terminate SA function 0" storageaddress="0x473D0">
+			<table type="X Axis" storageaddress="0x456DD"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x473E0">
+			<table type="X Axis" storageaddress="0x456DD"/>
+		</table>
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E950">
@@ -2180,11 +2261,12 @@ v0.3
 		</romid>
 		
 		<table name="Exhaust configuration" storageaddress="0x152A"/>
-
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x49F8"/>
-		
 		<table name="Reset learned variants" storageaddress="0x49BE"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x4A1D"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x4A1E"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x4A04"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x4A1C"/>
 		<table name="MIL configuration" storageaddress="0x152D"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17FB"/>
@@ -2203,6 +2285,21 @@ v0.3
 		<table name="Oxygen sensor monitoring" storageaddress="0x16DE"/>
 		<table name="Oxygen sensor heater monitoring" storageaddress="0x16DE"/>
 		<table name="EGR system monitoring" storageaddress="0x16DE"/>
+		
+<!--Secondary Air Pump-->
+
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x4A0C"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x4A0D"/>
+		<table name="SA diagnosis mode" storageaddress="0x4A37"/>
+		<table name="SAP autolearning" storageaddress="0x4A39"/>
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x70E8">
+			<table type="X Axis" storageaddress="0x56A6"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x70F8">
+			<table type="X Axis" storageaddress="0x56A6"/>
+		</table>
 
 <!--Igntion-->
 
@@ -2428,11 +2525,12 @@ v0.3
 		</romid>
 		
 		<table name="Exhaust configuration" storageaddress="0x4152A"/>
-
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x449F8"/>
-
 		<table name="Reset learned variants" storageaddress="0x449BE"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x44A1D"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x44A1E"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x44A04"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x44A1C"/>
 		<table name="MIL configuration" storageaddress="0x4152D"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417FB"/>
@@ -2451,6 +2549,21 @@ v0.3
 		<table name="Oxygen sensor monitoring" storageaddress="0x416DE"/>
 		<table name="Oxygen sensor heater monitoring" storageaddress="0x416DE"/>
 		<table name="EGR system monitoring" storageaddress="0x416DE"/>
+		
+<!--Secondary Air Pump-->
+
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x44A0C"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x44A0D"/>
+		<table name="SA diagnosis mode" storageaddress="0x44A37"/>
+		<table name="SAP autolearning" storageaddress="0x44A39"/>
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x470E8">
+			<table type="X Axis" storageaddress="0x456A6"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x470F8">
+			<table type="X Axis" storageaddress="0x456A6"/>
+		</table>
 
 <!--Igntion-->
 
@@ -2876,11 +2989,12 @@ v0.3
 		</romid>
 		
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x4A3E"/>
-		
 		<table name="Exhaust configuration" storageaddress="0x1522"/>
-		
 		<table name="Reset learned variants" storageaddress="0x4A06"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x4A68"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x4A69"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x4A4F"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x4A67"/>
 		<table name="MIL configuration" storageaddress="0x1525"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
@@ -2902,7 +3016,18 @@ v0.3
 
 <!--Secondary Air Pump-->
 
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x4A57"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x4A58"/>
+		<table name="SA diagnosis mode" storageaddress="0x4A83"/>
 		<table name="SAP autolearning" storageaddress="0x4A85"/>
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x7164">
+			<table type="X Axis" storageaddress="0x5721"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x7174">
+			<table type="X Axis" storageaddress="0x5721"/>
+		</table>
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE4E0">
@@ -3288,11 +3413,12 @@ v0.3
 		</romid>
 		
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44A3E"/>
-		
 		<table name="Exhaust configuration" storageaddress="0x41522"/>
-		
 		<table name="Reset learned variants" storageaddress="0x44A06"/>
-
+		<table name="Bank 1 downstream O2 sensor heating" storageaddress="0x44A68"/>
+		<table name="Bank 2 downstream O2 sensor heating" storageaddress="0x44A69"/>
+		<table name="Manual deactivation of downstream oxygen sensor diagnosis" storageaddress="0x44A4F"/>
+		<table name="Manual deactivation of CAT efficiency diagnosis" storageaddress="0x44A67"/>
 		<table name="MIL configuration" storageaddress="0x41525"/>
 
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
@@ -3314,8 +3440,18 @@ v0.3
 
 <!--Secondary Air Pump-->
 
+		<table name="Manual deactivation of SA diagnosis" storageaddress="0x44A57"/>
+		<table name="Manual deactivation of SAFM diagnosis" storageaddress="0x44A58"/>
+		<table name="SA diagnosis mode" storageaddress="0x44A83"/>
 		<table name="SAP autolearning" storageaddress="0x44A85"/>
 
+		<table name="Time delay to terminate SA function 0" storageaddress="0x47164">
+			<table type="X Axis" storageaddress="0x45721"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x47174">
+			<table type="X Axis" storageaddress="0x45721"/>
+		</table>
 
 <!--Fuel-->
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E4E0">
