@@ -152,6 +152,12 @@ v0.3
 			<state name="0 - Vehicle without Powermodule (E60)" data="00"/>
 			<description>BN2000 only. lc_var_veh</description>
 		</table>
+		
+		<table type="Switch" name="Alternator Powermanagment" category="Configurations" sizey="1" userlevel="1">
+			<state name="1 - Deactivated" data="01"/>
+			<state name="0 - Activated" data="00"/>
+			<description>To shut off the power management functions the configuration bit lc_pow_cord_inh is set to 1.</description>
+		</table>
 
 		<table type="2D" name="Coolant temperature threshold for fast cut-off activation" category="Configurations" storagetype="uint8" sizey="1" userlevel="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
@@ -1403,6 +1409,7 @@ v0.3
 		<table name="Oil Level/Quality Sensor" storageaddress="0x1565"/>
 		<table name="CAN Variant" storageaddress="0x4A25"/>
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4A2A"/>
+		<table name="Alternator Powermanagment" storageaddress="0x49DF"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
 
@@ -1881,6 +1888,7 @@ v0.3
 		<table name="Oil Level/Quality Sensor" storageaddress="0x41565"/>
 		<table name="CAN Variant" storageaddress="0x44A25"/>
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44A2A"/>
+		<table name="Alternator Powermanagment" storageaddress="0x449DF"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
 
@@ -3123,6 +3131,7 @@ v0.3
 		<table name="Oil Level/Quality Sensor" storageaddress="0x1526"/>
 		<table name="CAN Variant" storageaddress="0x4ABB"/>
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4ABF"/>
+		<table name="Alternator Powermanagment" storageaddress="0x4A7A"/>
 		
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
 
@@ -3565,6 +3574,7 @@ v0.3
 		<table name="Oil Level/Quality Sensor" storageaddress="0x41526"/>
 		<table name="CAN Variant" storageaddress="0x44ABB"/>
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44ABF"/>
+		<table name="Alternator Powermanagment" storageaddress="0x44A7A"/>
 
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
 		
