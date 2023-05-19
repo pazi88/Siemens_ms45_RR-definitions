@@ -582,6 +582,50 @@ v0.3
 		
 <!--Torque Control Tables-->
 
+		<table type="3D" name="Requested torque at clutch from driver" category="Torque Control" storagetype="uint16" endian="big" sizex="12" sizey="12" userlevel="1">
+			<scaling units="%/100 of max Nm" expression="x*.000031" to_byte="x/.000031" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="X Axis" name="Pedal position" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*.390625" to_byte="x/.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_tq_req_driv</description>
+		</table>
+		
+				<table type="3D" name="Requested torque at clutch from driver (process monitoring)" category="Torque Control" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="%/100 of max Nm" expression="x*.007813" to_byte="x/.007813" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="X Axis" name="Pedal position" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*.390625" to_byte="x/.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_tq_req_driv_mon</description>
+		</table>
+		
+		<table type="3D" name="Requested torque at clutch from driver in low range" category="Torque Control" storagetype="uint16" endian="big" sizex="12" sizey="12" userlevel="1">
+			<scaling units="%/100 of max Nm" expression="x*.000031" to_byte="x/.000031" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="X Axis" name="Pedal position" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*.390625" to_byte="x/.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_tq_req_driv_rng_l</description>
+		</table>
+		
+				<table type="3D" name="Requested torque at clutch from driver in low range (process monitoring)" category="Torque Control" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
+			<scaling units="%/100 of max Nm" expression="x*.007813" to_byte="x/.007813" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="X Axis" name="Pedal position" storagetype="uint8" endian="big">
+				<scaling units="%" expression="x*.390625" to_byte="x/.390625" format="0.00" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_fac_tq_req_driv_rng_l_mon</description>
+		</table>
+		
 		<table type="3D" name="Indicated engine torque at reference conditions" category="Torque Control" storagetype="uint16" endian="big" sizex="12" sizey="16" userlevel="1">
 			<scaling units="Nm" expression="x*.031250" to_byte="x/.031250" format="0.00" fineincrement="1" coarseincrement="10"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big">
@@ -1641,6 +1685,26 @@ v0.3
 		
 <!--Torque Control-->
 
+		<table name="Requested torque at clutch from driver" storageaddress="0xDF40">
+			<table type="X Axis" storageaddress="0x55AD"/>
+			<table type="Y Axis" storageaddress="0x8AFE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x3CE">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0xE060">
+			<table type="X Axis" storageaddress="0x55AD"/>
+			<table type="Y Axis" storageaddress="0x8AFE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x40E">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+
 		<table name="Indicated engine torque at reference conditions" storageaddress="0x12690">
 			<table type="X Axis" storageaddress="0x87D4"/>
 			<table type="Y Axis" storageaddress="0x53A6"/>
@@ -2120,6 +2184,26 @@ v0.3
 		
 <!--Torque Control-->
 
+		<table name="Requested torque at clutch from driver" storageaddress="0x4DF40">
+			<table type="X Axis" storageaddress="0x455AD"/>
+			<table type="Y Axis" storageaddress="0x48AFE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x403CE">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0x4E060">
+			<table type="X Axis" storageaddress="0x455AD"/>
+			<table type="Y Axis" storageaddress="0x48AFE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x4040E">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+
 		<table name="Indicated engine torque at reference conditions" storageaddress="0x52690">
 			<table type="X Axis" storageaddress="0x487D4"/>
 			<table type="Y Axis" storageaddress="0x453A6"/>
@@ -2520,6 +2604,28 @@ v0.3
 			<table type="Y Axis" storageaddress="0x8594"/>
 		</table>
 		
+<!--Torque Control-->
+
+		<table name="Requested torque at clutch from driver" storageaddress="0xDC28">
+			<table type="X Axis" storageaddress="0x556F"/>
+			<table type="Y Axis" storageaddress="0x8788"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x3CE">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0xDD48">
+			<table type="X Axis" storageaddress="0x556F"/>
+			<table type="Y Axis" storageaddress="0x8788"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x40E">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+		
 <!--Fuel-->
 
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE438">
@@ -2800,6 +2906,28 @@ v0.3
 		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52620">
 			<table type="X Axis" storageaddress="0x45487"/>
 			<table type="Y Axis" storageaddress="0x48594"/>
+		</table>
+		
+<!--Torque Control-->
+
+		<table name="Requested torque at clutch from driver" storageaddress="0x4DC28">
+			<table type="X Axis" storageaddress="0x4556F"/>
+			<table type="Y Axis" storageaddress="0x48788"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x403CE">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0x4DD48">
+			<table type="X Axis" storageaddress="0x4556F"/>
+			<table type="Y Axis" storageaddress="0x48788"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x4040E">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
 		</table>
 		
 <!--Fuel-->
@@ -3404,6 +3532,26 @@ v0.3
 		
 <!--Torque Control-->
 
+		<table name="Requested torque at clutch from driver" storageaddress="0xDCD0">
+			<table type="X Axis" storageaddress="0x55EA"/>
+			<table type="Y Axis" storageaddress="0x8830"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x3CE">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0xDDF0">
+			<table type="X Axis" storageaddress="0x55EA"/>
+			<table type="Y Axis" storageaddress="0x8830"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x40E">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+
 		<table name="Indicated engine torque at reference conditions" storageaddress="0x124B0">
 			<table type="X Axis" storageaddress="0x84FE"/>
 			<table type="Y Axis" storageaddress="0x53E1"/>
@@ -3846,6 +3994,26 @@ v0.3
 		</table>
 		
 <!--Torque Control-->
+
+		<table name="Requested torque at clutch from driver" storageaddress="0x4DCD0">
+			<table type="X Axis" storageaddress="0x455EA"/>
+			<table type="Y Axis" storageaddress="0x48830"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x403CE">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0x4DDF0">
+			<table type="X Axis" storageaddress="0x455EA"/>
+			<table type="Y Axis" storageaddress="0x48830"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x4040E">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
 
 		<table name="Indicated engine torque at reference conditions" storageaddress="0x524B0">
 			<table type="X Axis" storageaddress="0x484FE"/>
