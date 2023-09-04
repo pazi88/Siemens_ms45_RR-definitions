@@ -1443,10 +1443,10 @@ v0.3
 <!-- Wideband Lambda Sensor -->
 		<table type="3D" name="Time delay - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
 			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Time lag of the lambda-sensor model - Bank 1 (ip_t1_lamb_1)</description>
@@ -1454,10 +1454,10 @@ v0.3
 
 		<table type="3D" name="Time delay - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
 			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Time lag of the lambda-sensor model - Bank 2 (ip_t1_lamb_2)</description>
@@ -1465,10 +1465,10 @@ v0.3
 
 		<table type="3D" name="Time delay (aged sensor) - Bank 1" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
 			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 1 (ip_t1_lamb_agi_lim_1)</description>
@@ -1476,10 +1476,10 @@ v0.3
 
 		<table type="3D" name="Time delay (aged sensor) - Bank 2" category="Wideband Lambda Sensor" storagetype="uint16" endian="big" sizex="4" sizey="4" userlevel="1">
 			<scaling units="s" expression="x*0.000031" to_byte="x/0.000031" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Time lag of the lambda-sensor model for an aged WRAF sensor - Bank 2 (ip_t1_lamb_agi_lim_2)</description>
@@ -1487,10 +1487,10 @@ v0.3
 
 		<table type="3D" name="Time delay weighting factor - Bank 1" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
 			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">>
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 1 (ip_ex_dly_fac_1)</description>
@@ -1498,10 +1498,10 @@ v0.3
 
 		<table type="3D" name="Time delay weighting factor - Bank 2" category="Wideband Lambda Sensor" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1">
 			<scaling units="" expression="x*0.125451" to_byte="x/0.125451" format="0.000" fineincrement=".001" coarseincrement=".01"/>
-			<table type="X Axis" storagetype="uint16" endian="big">
+			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="#" fineincrement="1" coarseincrement="20"/>
 			</table>
-			<table type="Y Axis" storagetype="uint16" endian="big">
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
 			</table>
 			<description>Weighting factor for the calculation of the exhaust gas delay - Bank 2 (ip_ex_dly_fac_2)</description>
