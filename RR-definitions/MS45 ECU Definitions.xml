@@ -658,6 +658,71 @@ v0.3
 			</table>
 			<description>ip_maf_sp</description>
 		</table>
+		
+<!--Deceleration-->
+
+		<table type="3D" name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" category="Deceleration" storagetype="uint8" endian="big" sizex="13" sizey="6" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="10" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="#" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>ip_n_min_puc__tco__gr_mt</description>
+		</table>
+		
+		<table type="3D" name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" category="Deceleration" storagetype="uint8" endian="big" sizex="13" sizey="6" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="10" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="#" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>ip_n_min_puc__tco__gr_at</description>
+		</table>
+		
+		<table type="3D" name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" category="Deceleration" storagetype="uint8" endian="big" sizex="13" sizey="6" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="10" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="#" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>ip_n_accout_min_puc__tco__gr_mt</description>
+		</table>
+		
+		<table type="3D" name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" category="Deceleration" storagetype="uint8" endian="big" sizex="13" sizey="6" userlevel="1">
+			<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="10" coarseincrement="100"/>
+			<table type="X Axis" name="Gear" storagetype="uint8" endian="big">
+				<scaling units="#" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="1"/>
+			</table>
+			<table type="Y Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>ip_n_accout_min_puc__tco__gr_at</description>
+		</table>
+		
+		<table type="2D" name="Delay before activating trailing throttle fuel cut when car is stationary" category="Deceleration" storagetype="uint16" endian="big" sizey="1" userlevel="1">
+			<scaling units="Seconds" expression="x*.01000" to_byte="x/.01000" format="0.000" fineincrement=".1" coarseincrement="1"></scaling>
+			<table type="Static Y Axis" name=" " sizey="1">
+				<data>Seconds</data>
+			</table>
+			<description>c_t_min_pu_vs</description>
+		</table>
+		
+		<table type="3D" name="Delay before activating trailing throttle fuel cut" category="Deceleration" storagetype="uint16" endian="big" sizex="6" sizey="8" userlevel="1">
+			<scaling units="Seconds" expression="x*.01000" to_byte="x/.01000" format="0.000" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_t_min_pu__n__tco</description>
+		</table>
 
 <!--Fuel Tables-->
 		<table type="3D" name="Basic Lambda Setpoint - Bank 1" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
@@ -1751,6 +1816,34 @@ v0.3
 			<table type="X Axis" storageaddress="0x847C"/>
 			<table type="Y Axis" storageaddress="0x53A6"/>
 		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0xB6E6">
+			<table type="X Axis" storageaddress="0x52EC"/>
+			<table type="Y Axis" storageaddress="0x55F6"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0xB698">
+			<table type="X Axis" storageaddress="0x52C7"/>
+			<table type="Y Axis" storageaddress="0x55F6"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0xB64A">
+			<table type="X Axis" storageaddress="0x52EC"/>
+			<table type="Y Axis" storageaddress="0x55F6"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0xB5FC">
+			<table type="X Axis" storageaddress="0x52C7"/>
+			<table type="Y Axis" storageaddress="0x55F6"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x5D3C"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x10D68">
+			<table type="X Axis" storageaddress="0x4F41"/>
+			<table type="Y Axis" storageaddress="0x7F52"/>
+		</table>
 
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x29B1">
@@ -2260,6 +2353,34 @@ v0.3
 			<table type="X Axis" storageaddress="0x4847C"/>
 			<table type="Y Axis" storageaddress="0x453A6"/>
 		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0x4B6E6">
+			<table type="X Axis" storageaddress="0x452EC"/>
+			<table type="Y Axis" storageaddress="0x455F6"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0x4B698">
+			<table type="X Axis" storageaddress="0x452C7"/>
+			<table type="Y Axis" storageaddress="0x455F6"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0x4B64A">
+			<table type="X Axis" storageaddress="0x452EC"/>
+			<table type="Y Axis" storageaddress="0x455F6"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0x4B5FC">
+			<table type="X Axis" storageaddress="0x452C7"/>
+			<table type="Y Axis" storageaddress="0x455F6"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x54D3C"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x50D68">
+			<table type="X Axis" storageaddress="0x44F41"/>
+			<table type="Y Axis" storageaddress="0x47F52"/>
+		</table>
 
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x429B1">
@@ -2668,6 +2789,34 @@ v0.3
 			<table type="Y Axis" storageaddress="0x5B8"/>
 		</table>
 		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0xB2FE">
+			<table type="X Axis" storageaddress="0x52BE"/>
+			<table type="Y Axis" storageaddress="0x55B8"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0xB2B0">
+			<table type="X Axis" storageaddress="0x5299"/>
+			<table type="Y Axis" storageaddress="0x55B8"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0xB262">
+			<table type="X Axis" storageaddress="0x52BE"/>
+			<table type="Y Axis" storageaddress="0x55B8"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0xB214">
+			<table type="X Axis" storageaddress="0x5299"/>
+			<table type="Y Axis" storageaddress="0x55B8"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x5C48"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x10AB0">
+			<table type="X Axis" storageaddress="0x4F4B"/>
+			<table type="Y Axis" storageaddress="0x7C4A"/>
+		</table>
+		
 <!--Fuel-->
 		<table name="Mass Fuel Flow Correction - Bank 1" storageaddress="0xEF00">
 			<table type="X Axis" storageaddress="0x7BE0"/>
@@ -3018,6 +3167,34 @@ v0.3
 		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x4040E">
 			<table type="X Axis" storageaddress="0x40622"/>
 			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0x4B2FE">
+			<table type="X Axis" storageaddress="0x452BE"/>
+			<table type="Y Axis" storageaddress="0x455B8"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0x4B2B0">
+			<table type="X Axis" storageaddress="0x45299"/>
+			<table type="Y Axis" storageaddress="0x455B8"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0x4B262">
+			<table type="X Axis" storageaddress="0x452BE"/>
+			<table type="Y Axis" storageaddress="0x455B8"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0x4B214">
+			<table type="X Axis" storageaddress="0x45299"/>
+			<table type="Y Axis" storageaddress="0x455B8"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x45C48"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x50AB0">
+			<table type="X Axis" storageaddress="0x44F4B"/>
+			<table type="Y Axis" storageaddress="0x47C4A"/>
 		</table>
 		
 <!--Fuel-->
@@ -3714,6 +3891,34 @@ v0.3
 			<table type="X Axis" storageaddress="0x81FE"/>
 			<table type="Y Axis" storageaddress="0x53E1"/>
 		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0xB3A6">
+			<table type="X Axis" storageaddress="0x5339"/>
+			<table type="Y Axis" storageaddress="0x5633"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0xB358">
+			<table type="X Axis" storageaddress="0x5314"/>
+			<table type="Y Axis" storageaddress="0x5633"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0xB30A">
+			<table type="X Axis" storageaddress="0x5339"/>
+			<table type="Y Axis" storageaddress="0x5633"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0xB2BC">
+			<table type="X Axis" storageaddress="0x5314"/>
+			<table type="Y Axis" storageaddress="0x5633"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x5CB0"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x10AF8">
+			<table type="X Axis" storageaddress="0x4FB7"/>
+			<table type="Y Axis" storageaddress="0x7CE8"/>
+		</table>
 
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x18DC"/>
@@ -4186,6 +4391,34 @@ v0.3
 		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0x4EDC8">
 			<table type="X Axis" storageaddress="0x481FE"/>
 			<table type="Y Axis" storageaddress="0x453E1"/>
+		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0x4B3A6">
+			<table type="X Axis" storageaddress="0x45339"/>
+			<table type="Y Axis" storageaddress="0x45633"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0x4B358">
+			<table type="X Axis" storageaddress="0x45314"/>
+			<table type="Y Axis" storageaddress="0x45633"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0x4B30A">
+			<table type="X Axis" storageaddress="0x45339"/>
+			<table type="Y Axis" storageaddress="0x45633"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0x4B2BC">
+			<table type="X Axis" storageaddress="0x45314"/>
+			<table type="Y Axis" storageaddress="0x45633"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x45CB0"/>
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x50AF8">
+			<table type="X Axis" storageaddress="0x44FB7"/>
+			<table type="Y Axis" storageaddress="0x47CE8"/>
 		</table>
 
 <!--Limiters-->	
