@@ -7,4 +7,4 @@ If you have made some improvements to the defintions, feel free to submit PR.
 
 For more information about MS45, got to: https://www.ms4x.net/index.php?title=Siemens_MS45
 
-![alt text](https://github.com/pazi88/Siemens_ms45_RR-definitions/RR.png?raw=true)
+![alt text](https://raw.githubusercontent.com/pazi88/Siemens_ms45_RR-definitions/master/RR.png)
