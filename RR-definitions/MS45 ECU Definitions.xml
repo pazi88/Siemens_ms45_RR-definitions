@@ -751,6 +751,17 @@ v0.3
 			<description>ip_t_min_pu_rng_l__n__tco</description>
 		</table>
 
+		<table type="3D" name="Minimum Ignition Angle During Trailing Throttle" category="Deceleration" storagetype="uint8" endian="big" sizex="6" sizey="8" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
+				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x*32" to_byte="x/32" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_min_n_maf_pu</description>
+		</table>
+
 <!--Fuel Tables-->
 		<table type="3D" name="Basic Lambda Setpoint - Bank 1" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
 			<scaling units="Lambda" expression="x*0.000061" to_byte="x/0.000061" format="0.00" fineincrement=".1" coarseincrement="1"/>
@@ -1880,6 +1891,11 @@ v0.3
 			<table type="Y Axis" storageaddress="0x7F52"/>
 		</table>
 
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x3343">
+			<table type="X Axis" storageaddress="0x5332"/>
+			<table type="Y Axis" storageaddress="0x5402"/>
+		</table>
+
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x29B1">
 			<table type="X Axis" storageaddress="0x530B"/>
@@ -2425,6 +2441,11 @@ v0.3
 			<table type="Y Axis" storageaddress="0x47F52"/>
 		</table>
 
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x43343">
+			<table type="X Axis" storageaddress="0x45332"/>
+			<table type="Y Axis" storageaddress="0x45402"/>
+		</table>
+
 <!--Knock-->
 		<table name="Knock Factor - Cylinder 1" storageaddress="0x429B1">
 			<table type="X Axis" storageaddress="0x4530B"/>
@@ -2868,6 +2889,11 @@ v0.3
 			<table type="Y Axis" storageaddress="0x7C4A"/>
 		</table>
 
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x320E">
+			<table type="X Axis" storageaddress="0x52F4"/>
+			<table type="Y Axis" storageaddress="0x53C2"/>
+		</table>
+
 <!--Fuel-->
 		<table name="Mass Fuel Flow Correction - Bank 1" storageaddress="0xEF00">
 			<table type="X Axis" storageaddress="0x7BE0"/>
@@ -3255,7 +3281,12 @@ v0.3
 			<table type="X Axis" storageaddress="0x44F4B"/>
 			<table type="Y Axis" storageaddress="0x47C4A"/>
 		</table>
-		
+
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x4320E">
+			<table type="X Axis" storageaddress="0x452F4"/>
+			<table type="Y Axis" storageaddress="0x453C2"/>
+		</table>
+
 <!--Fuel-->
 		<table name="Mass Fuel Flow Correction - Bank 1" storageaddress="0x4EF00">
 			<table type="X Axis" storageaddress="0x47BE0"/>
@@ -3986,6 +4017,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x4FB7"/>
 			<table type="Y Axis" storageaddress="0x7CE8"/>
 		</table>
+		
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x3258">
+			<table type="X Axis" storageaddress="0x536F"/>
+			<table type="Y Axis" storageaddress="0x543D"/>
+		</table>
 
 <!--Limiters-->	
 		<table name="Vehicle speed limiter" storageaddress="0x18DC"/>
@@ -4494,6 +4530,11 @@ v0.3
 		<table name="Delay before activating trailing throttle fuel cut (low range)" storageaddress="0x50B58">
 			<table type="X Axis" storageaddress="0x44FB7"/>
 			<table type="Y Axis" storageaddress="0x47CE8"/>
+		</table>
+
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x43258">
+			<table type="X Axis" storageaddress="0x4536F"/>
+			<table type="Y Axis" storageaddress="0x4543D"/>
 		</table>
 
 <!--Limiters-->	
