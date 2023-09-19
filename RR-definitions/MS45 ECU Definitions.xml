@@ -364,6 +364,23 @@ v0.3
 			</table>
 			<description>ip_iga_bas_add_max__ivvt__n__maf</description>
 		</table>
+		
+<!--Dwell Tables-->
+
+		<table type="2D" name="Dwell time" category="Dwell" storagetype="uint16" sizex="8" endian="big" userlevel="1">
+			<scaling units="ms" expression="x*0.004" to_byte="x/0.004" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Battery voltage" storagetype="uint16" endian="big" logparam="P17">
+				<scaling units="Volts" expression="x*0.028" to_byte="x/0.028" format="0.0" fineincrement="0.1" coarseincrement="1"/>
+			</table>
+			<description>ip_td__vb</description>
+		</table>
+		
+		<table type="2D" name="Initial value for dwell time" category="Dwell" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="ms" expression="x*0.004" to_byte="x/0.004" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="Initial dwell time" sizey="1">
+				<data>c_td_ini</data>
+			</table>
+		</table>
 
 <!--VANOS tables-->
 		<table type="3D" name="Intake VANOS target - Cold Engine" category="VANOS" storagetype="uint8" endian="big" sizex="12" sizey="16" userlevel="1">
@@ -764,7 +781,7 @@ v0.3
 
 <!--Fuel Tables-->
 		<table type="3D" name="Basic Lambda Setpoint - Bank 1" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
-			<scaling units="Lambda" expression="x*0.000061" to_byte="x/0.000061" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="Lambda" expression="x*0.000061" to_byte="x/0.000061" format="0.000" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -775,7 +792,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Basic Lambda Setpoint - Bank 2" category="Fuel" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1">
-			<scaling units="Lambda" expression="x*0.000061" to_byte="x/0.000061" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="Lambda" expression="x*0.000061" to_byte="x/0.000061" format="0.000" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint16" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*.0212" to_byte="x/.0212" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1731,6 +1748,14 @@ v0.3
 			<table type="X Axis" storageaddress="0x8812"/>
 			<table type="Y Axis" storageaddress="0x8992"/>
 		</table>
+		
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x7410">
+			<table type="X Axis" storageaddress="0x8D96"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x5DAE"/>
 
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA98C">
@@ -2281,6 +2306,14 @@ v0.3
 			<table type="X Axis" storageaddress="0x48812"/>
 			<table type="Y Axis" storageaddress="0x48992"/>
 		</table>
+		
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x47410">
+			<table type="X Axis" storageaddress="0x48D96"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x45DAE"/>
 
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A98C">
@@ -2751,8 +2784,17 @@ v0.3
 			<table type="X Axis" storageaddress="0x8494"/>
 			<table type="Y Axis" storageaddress="0x8618"/>
 		</table>
+
+<!--Dwell-->
+		
+		<table name="Dwell time" storageaddress="0x7118">
+			<table type="X Axis" storageaddress="0x8A12"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x5CA0"/>
 		
 <!--VANOS-->
+
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA514">
 			<table type="X Axis" storageaddress="0x8562"/>
 			<table type="Y Axis" storageaddress="0x7BE0"/>
@@ -3144,6 +3186,14 @@ v0.3
 			<table type="X Axis" storageaddress="0x48494"/>
 			<table type="Y Axis" storageaddress="0x48618"/>
 		</table>
+		
+<!--Dwell-->
+		
+		<table name="Dwell time" storageaddress="0x47118">
+			<table type="X Axis" storageaddress="0x48A12"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x45CA0"/>
 		
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A514">
@@ -3858,6 +3908,15 @@ v0.3
 			<table type="X Axis" storageaddress="0x853C"/>
 			<table type="Y Axis" storageaddress="0x86C0"/>
 		</table>
+		
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x71A4">
+			<table type="X Axis" storageaddress="0x8ABA"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x5D0C"/>
+
 
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA5BC">
@@ -4372,6 +4431,15 @@ v0.3
 			<table type="X Axis" storageaddress="0x4853C"/>
 			<table type="Y Axis" storageaddress="0x486C0"/>
 		</table>
+		
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x471A4">
+			<table type="X Axis" storageaddress="0x48ABA"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x45D0C"/>
+
 
 <!--VANOS-->
 		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A5BC">
