@@ -2948,13 +2948,13 @@ v0.3
 		</table>
 
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE438">
-			<table type="X Axis" storageaddress="0x8458"/> <!--Not correct-->
-			<table type="Y Axis" storageaddress="0x53A7"/> <!--Not correct-->
+			<table type="X Axis" storageaddress="0x8482"/>
+			<table type="Y Axis" storageaddress="0x5395"/>
 		</table>
 
 		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0xE4B8">
-			<table type="X Axis" storageaddress="0x8458"/> <!--Not correct-->
-			<table type="Y Axis" storageaddress="0x53A7"/> <!--Not correct-->
+			<table type="X Axis" storageaddress="0x8482"/>
+			<table type="Y Axis" storageaddress="0x5395"/>
 		</table>
 
 		<table name="Full load lambda enrichment" storageaddress="0x6ADC">
@@ -2963,6 +2963,11 @@ v0.3
 		
 		<table name="Global injection time correction" storageaddress="0x1834"/>	
 		<table name="Global injection time correction (ALL)" storageaddress="0x1833"/>
+		
+		<table name="Injector dead time correction" storageaddress="0x11330">
+			<table type="X Axis" storageaddress="0x75A4"/>
+			<table type="Y Axis" storageaddress="0x5162"/>
+		</table>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x123E"/>
@@ -3069,6 +3074,22 @@ v0.3
 			<table type="X Axis" storageaddress="0x526F"/>
 		</table>
 		
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0xB400"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0xB690"/>
+
+		<table name="ECT Sensor Scaling" storageaddress="0x43C0">
+			<table type="Y Axis" storageaddress="0x81E2"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x484B">
+			<table type="Y Axis" storageaddress="0x513C"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x4863">
+			<table type="Y Axis" storageaddress="0x514D"/>
+		</table>
+		
 <!--E-Thermostat-->
 
 		<table name="Target coolant temperature without A/C" storageaddress="0xA364">
@@ -3080,7 +3101,45 @@ v0.3
 			<table type="X Axis" storageaddress="0x8426"/>
 			<table type="Y Axis" storageaddress="0x53AC"/>
 		</table>
+		
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x2878">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
 
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x28B8">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x28F8">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x2938">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x2978">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x29B8">
+			<table type="X Axis" storageaddress="0x52DD"/>
+			<table type="Y Axis" storageaddress="0x534E"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x1AC0">
+			<table type="Y Axis" storageaddress="0x54FC"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1AC3">
+			<table type="Y Axis" storageaddress="0x54FC"/>
+		</table>
 	</rom>
 
 	<rom base="BMWMS45BASE">
@@ -3349,13 +3408,13 @@ v0.3
 		</table>
 
 		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E438">
-			<table type="X Axis" storageaddress="0x48458"/> <!--Not correct-->
-			<table type="Y Axis" storageaddress="0x453A7"/> <!--Not correct-->
+			<table type="X Axis" storageaddress="0x48482"/>
+			<table type="Y Axis" storageaddress="0x45395"/>
 		</table>
 
 		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E4B8">
-			<table type="X Axis" storageaddress="0x48458"/> <!--Not correct-->
-			<table type="Y Axis" storageaddress="0x453A7"/> <!--Not correct-->
+			<table type="X Axis" storageaddress="0x48482"/>
+			<table type="Y Axis" storageaddress="0x45395"/>
 		</table>
 
 		<table name="Full load lambda enrichment" storageaddress="0x46ADC">
@@ -3364,6 +3423,12 @@ v0.3
 		
 		<table name="Global injection time correction" storageaddress="0x41834"/>	
 		<table name="Global injection time correction (ALL)" storageaddress="0x41833"/>
+		
+		<table name="Injector dead time correction" storageaddress="0x51330">
+			<table type="X Axis" storageaddress="0x475A4"/>
+			<table type="Y Axis" storageaddress="0x45162"/>
+		</table>
+		
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4123E"/>
@@ -3470,6 +3535,23 @@ v0.3
 			<table type="X Axis" storageaddress="0x4526F"/>
 		</table>
 		
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0x4B400"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B690"/>
+
+		<table name="ECT Sensor Scaling" storageaddress="0x443C0">
+			<table type="Y Axis" storageaddress="0x481E2"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x4484B">
+			<table type="Y Axis" storageaddress="0x4513C"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x44863">
+			<table type="Y Axis" storageaddress="0x4514D"/>
+		</table>
+		
+		
 <!--E-Thermostat-->
 
 		<table name="Target coolant temperature without A/C" storageaddress="0x4A364">
@@ -3480,6 +3562,45 @@ v0.3
 		<table name="Target coolant temperature with A/C" storageaddress="0x4A3AC">
 			<table type="X Axis" storageaddress="0x48426"/>
 			<table type="Y Axis" storageaddress="0x453AC"/>
+		</table>
+		
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x42878">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x428B8">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x428F8">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x42938">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x42978">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x429B8">
+			<table type="X Axis" storageaddress="0x452DD"/>
+			<table type="Y Axis" storageaddress="0x4534E"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x41AC0">
+			<table type="Y Axis" storageaddress="0x454FC"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1AC3">
+			<table type="Y Axis" storageaddress="0x54FC"/>
 		</table>
 		
 	</rom>
