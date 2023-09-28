@@ -556,7 +556,7 @@ v0.3
 		<table type="3D" name="Offset of the cylinder air-mass flow, DISA Off" category="Volumetric Efficiency" storagetype="uint16" endian="big" sizex="12" sizey="18" userlevel="1">
 			<scaling units="kg/hr" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".01" coarseincrement=".1"/>
 			<table type="X Axis" name="Valve Overlap" storagetype="uint8" endian="big">
-				<scaling units="°CRK" expression="x*0.375000" to_byte="x0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
+				<scaling units="°CRK" expression="x*0.375000" to_byte="x/0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
@@ -567,7 +567,7 @@ v0.3
 		<table type="3D" name="Offset of the cylinder air-mass flow, DISA On" category="Volumetric Efficiency" storagetype="uint16" endian="big" sizex="12" sizey="18" userlevel="1">
 			<scaling units="kg/hr" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".01" coarseincrement=".1"/>
 			<table type="X Axis" name="Valve Overlap" storagetype="uint8" endian="big">
-				<scaling units="°CRK" expression="x*0.375000" to_byte="x0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
+				<scaling units="°CRK" expression="x*0.375000" to_byte="x/0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
@@ -578,7 +578,7 @@ v0.3
 		<table type="3D" name="Slope of the cylinder air-mass flow dependant on VO, DISA Off" category="Volumetric Efficiency" storagetype="uint16" endian="big" sizex="12" sizey="18" userlevel="1">
 			<scaling units="kg/(h*hPa)" expression="(x*0.000184)-6.029912" to_byte="(x+6.029912)/0.000184" format="0.000" fineincrement=".01" coarseincrement=".1"/>
 			<table type="X Axis" name="Valve Overlap" storagetype="uint8" endian="big">
-				<scaling units="°CRK" expression="x*0.375000" to_byte="x0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
+				<scaling units="°CRK" expression="x*0.375000" to_byte="x/0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
@@ -589,7 +589,7 @@ v0.3
 		<table type="3D" name="Slope of the cylinder air-mass flow dependant on VO, DISA On" category="Volumetric Efficiency" storagetype="uint16" endian="big" sizex="12" sizey="18" userlevel="1">
 			<scaling units="kg/(h*hPa)" expression="(x*0.000184)-6.029912" to_byte="(x+6.029912)/0.000184" format="0.000" fineincrement=".01" coarseincrement=".1"/>
 			<table type="X Axis" name="Valve Overlap" storagetype="uint8" endian="big">
-				<scaling units="°CRK" expression="x*0.375000" to_byte="x0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
+				<scaling units="°CRK" expression="x*0.375000" to_byte="x/0.375000" format="0.00" fineincrement="1" coarseincrement="10"/>
 			</table>
 			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
