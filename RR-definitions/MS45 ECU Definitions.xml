@@ -5110,5 +5110,57 @@ v0.3
 			<table type="Y Axis" storageaddress="0x45577"/>
 		</table>
 	</rom>
+	
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>13</internalidaddress>
+			<internalidstring>4570LN00</internalidstring>
+			<xmlid>4570LN00</xmlid>
+			<ecuid>4570LN00</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Partial MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>116kb</filesize>
+		</romid>
+		
+<!--Volumetric Efficiency Tables-->
+		
+		<table name="Offset of the cylinder air-mass flow, DISA Off" storageaddress="0xC988">
+			<table type="X Axis" storageaddress="0x56E6"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+		<table name="Offset of the cylinder air-mass flow, DISA On" storageaddress="0xCB38">
+			<table type="X Axis" storageaddress="0x56E6"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA Off" storageaddress="0xD048">
+			<table type="X Axis" storageaddress="0x56E6"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA On" storageaddress="0xCE60">
+			<table type="X Axis" storageaddress="0x56E6"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on intake cam, DISA Off" storageaddress="0xCCE8">
+			<table type="X Axis" storageaddress="0x856E"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on intake cam, DISA On" storageaddress="0xCE98">
+			<table type="X Axis" storageaddress="0x856E"/>
+			<table type="Y Axis" storageaddress="0x891E"/>
+		</table>
+		
+	</rom>
 
 </roms>
