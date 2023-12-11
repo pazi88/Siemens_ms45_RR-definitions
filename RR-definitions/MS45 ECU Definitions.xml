@@ -1191,7 +1191,7 @@ v0.3
 
 <!--Limiters-->	
 		<table type="2D" name="Vehicle speed limiter" category="Limiters" storagetype="uint8" endian="big" userlevel="1" sizey="1">
-			<scaling units="kph" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
+			<scaling units="km/h" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10"/>
 			<table type="Static Y Axis" name="Max Vehicle Speed" sizey="1">
 				<data>Vehicle speed limiter (c_vs_max)</data>
 			</table>
@@ -1462,6 +1462,48 @@ v0.3
 			</table>
 			<description>Spark retard at recognised knocking. Intensity 2 (id_iga_dec_knk_2__n)</description>
 		</table>
+		
+<!-- Electric Fan-->
+
+   <table type="2D" name="Electric Fan Speed (Radiator Outlet Temp)" category="Electric Fan" storagetype="uint8" endian="big" sizey="6" userlevel="1">
+      <scaling units="dummy value" expression="x*.062500" to_byte="x/.062500" format="0.00" fineincrement="0.1" coarseincrement="1" />
+      <table type="Y Axis" name="Radiator Outlet Coolant Temp" storagetype="uint8" endian="big" logparam="">
+        <scaling category="Metric" units="°C" expression="x*.75-48" to_byte="(x+48)/.75" format="0.0" fineincrement="1" coarseincrement="10" />
+      </table>
+      <description>This map tells how fast electric fan will spin according to the coolant temp at radiator outlet. The map values are just dummy values that convert to PWM by "Electric Fan Speed (PWM)" -map. (ip_n_ecf)</description>
+    </table>
+
+   <table type="2D" name="Electric Fan Speed (Cat Temp)" category="Electric Fan" storagetype="uint8" endian="big" sizey="6" userlevel="1">
+      <scaling units="dummy value" expression="x*.062500" to_byte="x/.062500" format="0.00" fineincrement="0.1" coarseincrement="1" />
+      <table type="Y Axis" name="Cat Temp" storagetype="uint8" endian="big" logparam="">
+        <scaling category="Metric" units="°C" expression="x*4-33" to_byte="(x+33)/4" format="0.0" fineincrement="1" coarseincrement="10" />
+      </table>
+      <description>This map tells how fast electric fan will spin according to the Cat temp. The map values are just dummy values that convert to PWM by "Electric Fan Speed (PWM)" -map. (ip_n_ecf_temp_cat)</description>
+    </table>
+
+   <table type="2D" name="Electric Fan Speed (Transmission Temp)" category="Electric Fan" storagetype="uint8" endian="big" sizey="6" userlevel="1">
+      <scaling units="dummy value" expression="x*.062500" to_byte="x/.062500" format="0.00" fineincrement="0.1" coarseincrement="1" />
+      <table type="Y Axis" name="Transmission Temp" storagetype="uint8" endian="big" logparam="">
+        <scaling category="Metric" units="°C" expression="x*1-40" to_byte="(x+40)/1" format="0.0" fineincrement="1" coarseincrement="10" />
+      </table>
+      <description>This map tells how fast electric fan will spin according to the Transmission temp. The map values are just dummy values that convert to PWM by "Electric Fan Speed (PWM)" -map. (ip_n_ecf_temp_gb)</description>
+    </table>
+
+    <table type="2D" name="Electric Fan Speed VSS correction" category="Electric Fan" storagetype="uint8" endian="big" sizey="5" userlevel="1">
+      <scaling units="Multiplicative Factor" expression="x*.003906" to_byte="x/.003906" format="0" fineincrement="1" coarseincrement="1" />
+      <table type="Y Axis" name="Vehicle Speed" storagetype="uint8" endian="big" logparam="P9">
+        <scaling units="km/h" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10" />
+      </table>
+      <description>Electric Fan Speed VSS correction (ip_n_ecf_vs_cor).</description>
+    </table>
+
+    <table type="2D" name="Electric Fan Speed (PWM)" category="Electric Fan" storagetype="uint8" endian="big" sizey="6" userlevel="1">
+      <scaling units="PWM %" expression="x*.390625" to_byte="x/.390625" format="0.0" fineincrement="1" coarseincrement="1" />
+      <table type="Y Axis" name="dummy value" storagetype="uint8" endian="big" logparam="">
+        <scaling expression="x*.0625" to_byte="x/.0625" format="0.0" fineincrement="0.1" coarseincrement="1" />
+      </table>
+      <description>This map converts the dummy values from "Electric Fan Speed (Radiator Outlet Temp)" -map to actual PWM % values. (ip_n_perc_ecf)</description>
+    </table>
 
 <!-- E-Thermostat-->
 		<table type="2D" name="Minimum coolant temperature threshold for full energization of e-thermostat" category="E-Thermostat" storagetype="uint8" endian="big" userlevel="1" sizey="1">
@@ -2164,6 +2206,27 @@ v0.3
 			<table type="Y Axis" storageaddress="0x859A"/>
 		</table>
 
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x3916">
+			<table type="Y Axis" storageaddress="0x4F81"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x3922">
+			<table type="Y Axis" storageaddress="0x5077"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x391C">
+			<table type="Y Axis" storageaddress="0x570D"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x3928">
+			<table type="Y Axis" storageaddress="0x51F7"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x3950">
+			<table type="Y Axis" storageaddress="0x4D88"/>
+		</table>
+
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x1860"/>
 
@@ -2754,6 +2817,27 @@ v0.3
 		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x46CF0">
 			<table type="Y Axis" storageaddress="0x4859A"/>
 		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x43916">
+			<table type="Y Axis" storageaddress="0x44F81"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x43922">
+			<table type="Y Axis" storageaddress="0x45077"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x4391C">
+			<table type="Y Axis" storageaddress="0x4570D"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x43928">
+			<table type="Y Axis" storageaddress="0x451F7"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x43950">
+			<table type="Y Axis" storageaddress="0x44D88"/>
+		</table>
 		
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x41860"/>
@@ -3264,6 +3348,27 @@ v0.3
 		<table name="Oil Temp Sensor Scaling" storageaddress="0x4863">
 			<table type="Y Axis" storageaddress="0x514D"/>
 		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x38ED">
+			<table type="Y Axis" storageaddress="0x4F86"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x38F9">
+			<table type="Y Axis" storageaddress="0x5052"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x38F3">
+			<table type="Y Axis" storageaddress="0x56D6"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x38FF">
+			<table type="Y Axis" storageaddress="0x51E0"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x3927">
+			<table type="Y Axis" storageaddress="0x4DB0"/>
+		</table>
 		
 <!--E-Thermostat-->
 
@@ -3758,7 +3863,27 @@ v0.3
 		<table name="Oil Temp Sensor Scaling" storageaddress="0x44863">
 			<table type="Y Axis" storageaddress="0x4514D"/>
 		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x438ED">
+			<table type="Y Axis" storageaddress="0x44F86"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x438F9">
+			<table type="Y Axis" storageaddress="0x45052"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x438F3">
+			<table type="Y Axis" storageaddress="0x456D6"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x438FF">
+			<table type="Y Axis" storageaddress="0x451E0"/>
+		</table>
 		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x43927">
+			<table type="Y Axis" storageaddress="0x44DB0"/>
+		</table>
 		
 <!--E-Thermostat-->
 
@@ -4494,6 +4619,27 @@ v0.3
 			<table type="Y Axis" storageaddress="0x51C8"/>
 		</table>
 
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x3937">
+			<table type="Y Axis" storageaddress="0x4FF7"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x3943">
+			<table type="Y Axis" storageaddress="0x50CD"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x393D">
+			<table type="Y Axis" storageaddress="0x5751"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x3949">
+			<table type="Y Axis" storageaddress="0x525B"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x3971">
+			<table type="Y Axis" storageaddress="0x4DFC"/>
+		</table>
+
 <!--E-Thermostat-->
 		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x17F5"/>
 
@@ -5048,6 +5194,27 @@ v0.3
 
 		<table name="Oil Temp Sensor Scaling" storageaddress="0x448AB">
 			<table type="Y Axis" storageaddress="0x451C8"/>
+		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x43937">
+			<table type="Y Axis" storageaddress="0x44FF7"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x43943">
+			<table type="Y Axis" storageaddress="0x450CD"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x4393D">
+			<table type="Y Axis" storageaddress="0x45751"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x43949">
+			<table type="Y Axis" storageaddress="0x4525B"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x43971">
+			<table type="Y Axis" storageaddress="0x44DFC"/>
 		</table>
 
 <!--E-Thermostat-->
