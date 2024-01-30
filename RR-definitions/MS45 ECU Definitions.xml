@@ -937,6 +937,14 @@ v0.3
 			<description>This table adjust the minimum injection time, important to change when adding larger injectors (c_ti_min).</description>
 		</table>
 
+		<table type="2D" name="Minimum Injection Time Threshold" category="Fuel" storagetype="uint16" sizex="1" endian="big" userlevel="1">
+			<scaling units="Injector Pulsewidth (milliseconds)" expression="x/250" to_byte="x*250" format="0.000" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static Y Axis" sizex="1">
+				<data>ALL</data>
+			</table>
+			<description>This table adjust the minimum injection time threshold, important to change when adding larger injectors. Should be set with a value slightly higher than minimum injection time. (c_ti_min_thd).</description>
+		</table>
+
 		<table type="3D" name="Injector dead time correction" category="Fuel" storagetype="uint16" endian="big" sizex="6" sizey="8" userlevel="1">
 			<scaling units="Injector pulsewidth (milliseconds)" expression="(x*0.004)-131.072" to_byte="(x+131.072)/0.004" format="0.000" fineincrement=".01" coarseincrement=".1"/>
 			<table type="X Axis" name="Fuel pressure" storagetype="uint16" endian="big">
@@ -1787,8 +1795,10 @@ v0.3
 			<table type="X Axis" storageaddress="0x4D5A"/>
 		</table>
 		
-		<table name="Minimum Injection Time" storageaddress="0x5E0A"/>
-		
+		<table name="Minimum Injection Time" storageaddress="0x5E0E"/>
+
+		<table name="Minimum Injection Time Threshold" storageaddress="0x5E0A"/>
+
 		<table name="Injector dead time correction" storageaddress="0x11648">
 			<table type="X Axis" storageaddress="0x7B44"/>
 			<table type="Y Axis" storageaddress="0x51A0"/>
@@ -2399,7 +2409,9 @@ v0.3
 			<table type="X Axis" storageaddress="0x4D5A"/>
 		</table>
 
-		<table name="Minimum Injection Time" storageaddress="0x45E0A"/>
+		<table name="Minimum Injection Time" storageaddress="0x45E0E"/>
+
+		<table name="Minimum Injection Time Threshold" storageaddress="0x45E0A"/>
 		
 		<table name="Injector dead time correction" storageaddress="0x51648">
 			<table type="X Axis" storageaddress="0x47B44"/>
