@@ -372,7 +372,17 @@ v0.3
 			</table>
 			<description>ip_iga_bas_add_max__ivvt__n__maf</description>
 		</table>
-		
+
+		<table type="3D" name="Basic ignition angle at start" category="Ignition" storagetype="uint8" endian="big" sizex="8" sizey="6" userlevel="1">
+			<scaling units="(°) BTDC" expression="(x*.375)-35.625" to_byte="(x+35.625)/.375" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P2">
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_iga_st_bas</description>
+		</table>
 <!--Dwell Tables-->
 
 		<table type="2D" name="Dwell time" category="Dwell" storagetype="uint16" sizex="8" endian="big" userlevel="1">
@@ -1878,6 +1888,11 @@ v0.3
 			<table type="Y Axis" storageaddress="0x8992"/>
 		</table>
 		
+		<table name="Basic ignition angle at start" storageaddress="0x349B">
+			<table type="X Axis" storageaddress="0x55FD"/>
+			<table type="Y Axis" storageaddress="0x7FEA"/>
+		</table>
+
 <!--Dwell-->
 
 		<table name="Dwell time" storageaddress="0x7410">
@@ -2491,6 +2506,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x48812"/>
 			<table type="Y Axis" storageaddress="0x48992"/>
 		</table>
+
+		<table name="Basic ignition angle at start" storageaddress="0x4349B">
+			<table type="X Axis" storageaddress="0x455FD"/>
+			<table type="Y Axis" storageaddress="0x47FEA"/>
+		</table>
 		
 <!--Dwell-->
 
@@ -3024,6 +3044,11 @@ v0.3
 			<table type="Y Axis" storageaddress="0x8618"/>
 		</table>
 
+		<table name="Basic ignition angle at start" storageaddress="0x3366">
+			<table type="X Axis" storageaddress="0x55BF"/>
+			<table type="Y Axis" storageaddress="0x7CE2"/>
+		</table>
+
 <!--Dwell-->
 		
 		<table name="Dwell time" storageaddress="0x7118">
@@ -3537,6 +3562,11 @@ v0.3
 		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AAA4">
 			<table type="X Axis" storageaddress="0x48494"/>
 			<table type="Y Axis" storageaddress="0x48618"/>
+		</table>
+		
+		<table name="Basic ignition angle at start" storageaddress="0x43366">
+			<table type="X Axis" storageaddress="0x455BF"/>
+			<table type="Y Axis" storageaddress="0x47CE2"/>
 		</table>
 		
 <!--Dwell-->
@@ -4375,6 +4405,11 @@ v0.3
 			<table type="X Axis" storageaddress="0x853C"/>
 			<table type="Y Axis" storageaddress="0x86C0"/>
 		</table>
+
+		<table name="Basic ignition angle at start" storageaddress="0x33B0">
+			<table type="X Axis" storageaddress="0x563A"/>
+			<table type="Y Axis" storageaddress="0x7D80"/>
+		</table>
 		
 <!--Dwell-->
 
@@ -4951,6 +4986,11 @@ v0.3
 		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AB4C">
 			<table type="X Axis" storageaddress="0x4853C"/>
 			<table type="Y Axis" storageaddress="0x486C0"/>
+		</table>
+
+		<table name="Basic ignition angle at start" storageaddress="0x433B0">
+			<table type="X Axis" storageaddress="0x4563A"/>
+			<table type="Y Axis" storageaddress="0x47D80"/>
 		</table>
 		
 <!--Dwell-->
