@@ -1283,10 +1283,63 @@ v0.3
 			</table>
 		</table>
 
-<!--Sensor Scaling-->	
+<!--Sensor Scaling-->
+
+<!--MAF Hack-->
+		<table type="Switch" name="MAF Mode - 2048 kg/hr" category="Sensors Scaling" sizey="4">
+			<state name="MAF Mode = 1024 kg/hr (Stock)" data="55 6B 0B FC"/>
+			<state name="MAF Mode = 2048 kg/hr" data="60 00 00 00"/>
+			<description>1 Select "MAF Mode = 2048 kg/hr"	
+2 Flash full and MPC to ECU
+3 Read partial
+4 Tune "MAF Sensor Scaling (2048 kg/hr)"
+			</description>
+		</table>
+
 		<table type="3D" name="MAF Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="2">
 			<scaling units="kg/hr" expression="x/64" to_byte="x*64" format="0.00" fineincrement=".01" coarseincrement=".1"/>
 			<table type="Static X Axis" name="0 to 5 Volts - " sizey="16">
+				<data>0.00</data>
+				<data>0.02</data>
+				<data>0.04</data>
+				<data>0.06</data>
+				<data>0.08</data>
+				<data>0.10</data>
+				<data>0.12</data>
+				<data>0.14</data>
+				<data>0.16</data>
+				<data>0.18</data>
+				<data>0.20</data>
+				<data>0.22</data>
+				<data>0.24</data>
+				<data>0.26</data>
+				<data>0.28</data>
+				<data>0.3</data>
+			</table>
+			<table type="Static Y Axis" name="0 to 5 Volts" sizey="16">
+				<data>0.00</data>
+				<data>0.32</data>
+				<data>0.64</data>
+				<data>0.96</data>
+				<data>1.26</data>
+				<data>1.58</data>
+				<data>1.90</data>
+				<data>2.20</data>
+				<data>2.52</data>
+				<data>2.82</data>
+				<data>3.14</data>
+				<data>3.46</data>
+				<data>3.78</data>
+				<data>4.08</data>
+				<data>4.40</data>
+				<data>4.70</data>
+			</table>
+			<description>This is the scaling for the MAF sensor just in a convenient 16x16 format for easier editing (id_maf_tab).</description>
+		</table>
+
+		<table type="3D" name="MAF Sensor Scaling (2048 kg/hr)" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="2">
+			<scaling units="kg/hr" expression="x/32" to_byte="x*32" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+			<table type="Static X Axis" name="0 to 5 Volts - NOTE THAT THIS NEEDS TO BE ENABLED IN MPC FILE!!" sizey="16">
 				<data>0.00</data>
 				<data>0.02</data>
 				<data>0.04</data>
@@ -2212,6 +2265,7 @@ v0.3
 		</table>
 
 <!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0xB7E8"/>
 		<table name="MAF Sensor Scaling" storageaddress="0xB7E8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0xB9E8"/>
 
@@ -2337,7 +2391,7 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>1024kb</filesize>
 		</romid>
-		
+
 		<table name="Manual deactivation of cat diagnosis inhibition condition" storageaddress="0x44998"/>
 		<table name="Exhaust configuration" storageaddress="0x41561"/>	
 		<table name="Reset learned variants" storageaddress="0x44957"/>
@@ -2832,6 +2886,7 @@ v0.3
 
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B7E8"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x4B7E8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B9E8"/>
 		
 		<table name="ECT Sensor Scaling" storageaddress="0x44395">
@@ -3372,6 +3427,7 @@ v0.3
 		
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0xB400"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0xB400"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0xB690"/>
 
 		<table name="ECT Sensor Scaling" storageaddress="0x43C0">
@@ -3892,6 +3948,7 @@ v0.3
 		
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B400"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x4B400"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B690"/>
 
 		<table name="ECT Sensor Scaling" storageaddress="0x443C0">
@@ -4076,6 +4133,7 @@ v0.3
 		<table name="Vehicle speed limiter" storageaddress="0x09D0"/>
 
 		<table name="MAF Sensor Scaling" storageaddress="0x8858"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x8858"/>
 
 	</rom>
 
@@ -4116,6 +4174,7 @@ v0.3
 		<table name="Vehicle speed limiter" storageaddress="0x409D0"/>
 
 		<table name="MAF Sensor Scaling" storageaddress="0x48858"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x48858"/>
 
 	</rom>
 
@@ -4652,6 +4711,7 @@ v0.3
 
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0xB4A8"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0xB4A8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0xB738"/>
 
 		<table name="ECT Sensor Scaling" storageaddress="0x4404">
@@ -5234,6 +5294,7 @@ v0.3
 
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B4A8"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x4B4A8"/>
 		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B738"/>
 
 		<table name="ECT Sensor Scaling" storageaddress="0x44404">
@@ -5396,4 +5457,42 @@ v0.3
 		
 	</rom>
 
+     <!-- These are for MPC binaries to do MAF hack -->
+	<rom base="BMWMS45BASE">
+		<romid>
+			<internalidaddress>100</internalidaddress>
+			<internalidstring>6577365137</internalidstring>
+			<xmlid>4570LO00 MPC</xmlid>
+			<ecuid>4570LO00 MPC</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E46 ZHP</model>
+			<submodel>MS45.1 MPC</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>448kb</filesize>
+		</romid>
+
+		<table name="MAF Mode - 2048 kg/hr" storageaddress="0x2C6C8"/>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+		<romid>
+			<internalidaddress>100</internalidaddress>
+			<internalidstring>6577365130</internalidstring>
+			<xmlid>4560BN00 MPC</xmlid>
+			<ecuid>4560BN00 MPC</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>MPC MS45.0</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>448kb</filesize>
+		</romid>
+
+		<table name="MAF Mode - 2048 kg/hr" storageaddress="0x2C57C"/>
+
+	</rom>
 </roms>
