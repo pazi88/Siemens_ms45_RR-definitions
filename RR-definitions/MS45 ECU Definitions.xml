@@ -4049,7 +4049,7 @@ v0.3
 			<year>2004</year>
 			<market>EURO</market>
 			<make>BMW</make>
-			<model>E60</model>
+			<model>E83</model>
 			<submodel>Partial MS45.0</submodel>
 			<transmission>MT/AT</transmission>
 			<filesize>116kb</filesize>
@@ -5487,12 +5487,31 @@ v0.3
 			<market>EURO</market>
 			<make>BMW</make>
 			<model>E60</model>
-			<submodel>MPC MS45.0</submodel>
+			<submodel>MS45.0 MPC</submodel>
 			<transmission>MT/AT</transmission>
 			<filesize>448kb</filesize>
 		</romid>
 
 		<table name="MAF Mode - 2048 kg/hr" storageaddress="0x2C57C"/>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+		<romid>
+			<internalidaddress>100</internalidaddress>
+			<internalidstring>6577365124</internalidstring>
+			<xmlid>4560BL30 MPC</xmlid>
+			<ecuid>4560BL30 MPC</ecuid>
+			<year>2004</year>
+			<market>EURO</market>
+			<make>BMW</make>
+			<model>E83</model>
+			<submodel>MS45.0 MPC</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>448kb</filesize>
+		</romid>
+
+		<table name="MAF Mode - 2048 kg/hr" storageaddress="0x2C160"/>
 
 	</rom>
 </roms>
