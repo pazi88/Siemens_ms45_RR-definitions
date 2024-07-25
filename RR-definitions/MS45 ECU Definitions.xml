@@ -166,6 +166,22 @@ v0.3
 			</table>
 			<description>c_t_max_ecu</description>
 		</table>
+		
+		<table type="2D" name="Max temp for oil pressure switch diagnosis" category="Configurations" storagetype="uint8" sizey="1" endian="big" userlevel="1">
+			<scaling units="(°C)" expression="x-40" to_byte="x+40" format="0" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Oil temperature" sizey="1">
+				<data>c_toil_poil_swi_max_diag</data>
+			</table>
+			<description>c_toil_poil_swi_max_diag</description>
+		</table>
+		
+		<table type="2D" name="Min temp for oil pressure switch diagnosis" category="Configurations" storagetype="uint8" sizey="1" endian="big" userlevel="1">
+			<scaling units="(°C)" expression="x-40" to_byte="x+40" format="0" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Oil temperature" sizey="1">
+				<data>c_toil_poil_swi_min_diag</data>
+			</table>
+			<description>c_toil_poil_swi_min_diag</description>
+		</table>
 
 		<table type="2D" name="Coolant temperature threshold for fast cut-off activation" category="Configurations" storagetype="uint8" sizey="1" userlevel="1">
 			<scaling units="(°C)" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0.00" fineincrement="1" coarseincrement="10"/>
@@ -990,6 +1006,25 @@ v0.3
 			<description>Stoichiometric air fuel ratio (c_mff_fac). Orginal conversion is X*0.000001907 to get constant for stoichiometric air/fuel ratio. But in this form, you can put AFR value directly.</description>
 		</table>
 
+		<table type="2D" name="Prestart fuel mass flow" category="Fuel" storagetype="uint16" endian="big" sizex="8" userlevel="1">
+			<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P2"> 
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<description>ip_mffpr_cst</description>
+		</table>
+
+		<table type="3D" name="Cranking fuel mass flow" category="Fuel" storagetype="uint16" endian="big" sizey="3" sizex="8" userlevel="1">
+			<scaling units="mg/stk" expression="x*0.021195" to_byte="x/0.021195" format="0.00" fineincrement="1" coarseincrement="10"/>
+			<table type="X Axis" name="Coolant temperature" storagetype="uint8" endian="big" logparam="P2"> 
+				<scaling units="°C" expression="(x*0.75)-48" to_byte="(x+48)/0.75" format="0" fineincrement="1" coarseincrement="10"/>
+			</table>
+			<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+				<scaling units="RPM" expression="x" to_byte="x" format="#" fineincrement="50" coarseincrement="100"/>
+			</table>
+			<description>ip_mff_cst</description>
+		</table>
+
 <!--Fuel Trims-->
 		<table type="2D" name="Minimum value for adaptive additive factor for injection" category="Fuel trims" storagetype="uint16" sizex="1" endian="big" userlevel="1">
 			<scaling units="ms" expression="(x-65535)*.021194" to_byte="(x/.021194)+65535" format="0.000" fineincrement="0.01" coarseincrement="0.1"/>
@@ -1787,6 +1822,8 @@ v0.3
 		<table name="Alternator Powermanagment" storageaddress="0x49DF"/>
 		
 		<table name="Time delay to switch off the ECU" storageaddress="0x5D04"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x18E4"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x18E5"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
 
 		<table name="Misfire monitoring supported" storageaddress="0x1733"/>
@@ -1875,6 +1912,15 @@ v0.3
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x5942"/>
 		
 		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5B0E"/>
+
+		<table name="Prestart fuel mass flow" storageaddress="0x6F10">
+			<table type="X Axis" storageaddress="0x4F0F"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x6ED0">
+			<table type="X Axis" storageaddress="0x5656"/>
+			<table type="Y Axis" storageaddress="0x8050"/>
+		</table>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x126C"/>
@@ -2407,6 +2453,8 @@ v0.3
 		<table name="Alternator Powermanagment" storageaddress="0x449DF"/>
 
 		<table name="Time delay to switch off the ECU" storageaddress="0x45D04"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x418E4"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x418E5"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
 
 		<table name="Misfire monitoring supported" storageaddress="0x41733"/>
@@ -2495,6 +2543,15 @@ v0.3
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45942"/>
 
 		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45B0E"/>
+		
+		<table name="Prestart fuel mass flow" storageaddress="0x46F10">
+			<table type="X Axis" storageaddress="0x44F0F"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x46ED0">
+			<table type="X Axis" storageaddress="0x45656"/>
+			<table type="Y Axis" storageaddress="0x48050"/>
+		</table>
 		
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4126C"/>
@@ -3026,6 +3083,8 @@ v0.3
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x4A73"/>
 
 		<table name="Time delay to switch off the ECU" storageaddress="0x5C24"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x186B"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x186C"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17FB"/>
 
 		<table name="Misfire monitoring supported" storageaddress="0x16DD"/>
@@ -3319,7 +3378,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x75A4"/>
 			<table type="Y Axis" storageaddress="0x5162"/>
 		</table>
+
+		<table name="Prestart fuel mass flow" storageaddress="0x6C24">
+			<table type="X Axis" storageaddress="0x4F19"/>
+		</table>
 		
+		<table name="Cranking fuel mass flow" storageaddress="0x6BE5">
+			<table type="X Axis" storageaddress="0x561F"/>
+			<table type="Y Axis" storageaddress="0x7D3A"/>
+		</table>
+
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x123E"/>
 
@@ -3547,6 +3615,8 @@ v0.3
 		<table name="Vehicle Variant (E60/E65)" storageaddress="0x44A73"/>
 
 		<table name="Time delay to switch off the ECU" storageaddress="0x45C24"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x4186B"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x4186C"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417FB"/>
 
 		<table name="Misfire monitoring supported" storageaddress="0x416DD"/>
@@ -3839,8 +3909,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x475A4"/>
 			<table type="Y Axis" storageaddress="0x45162"/>
 		</table>
+
+		<table name="Prestart fuel mass flow" storageaddress="0x46C24">
+			<table type="X Axis" storageaddress="0x44F19"/>
+		</table>
 		
-		
+		<table name="Cranking fuel mass flow" storageaddress="0x46BE5">
+			<table type="X Axis" storageaddress="0x4561F"/>
+			<table type="Y Axis" storageaddress="0x47D3A"/>
+		</table>
+
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4123E"/>
 
@@ -4272,6 +4350,8 @@ v0.3
 		<table name="Alternator Powermanagment" storageaddress="0x4A7A"/>
 
 		<table name="Time delay to switch off the ECU" storageaddress="0x5C8C"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x1876"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x1877"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
 
 		<table name="Misfire monitoring supported" storageaddress="0x16D8"/>
@@ -4358,6 +4438,15 @@ v0.3
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x5960"/>
 		
 		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5ABA"/>
+
+		<table name="Prestart fuel mass flow" storageaddress="0x6CA0">
+			<table type="X Axis" storageaddress="0x4F8C"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x6C60">
+			<table type="X Axis" storageaddress="0x569A"/>
+			<table type="Y Axis" storageaddress="0x7DD8"/>
+		</table>
 
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x123A"/>
@@ -4855,6 +4944,8 @@ v0.3
 		<table name="Alternator Powermanagment" storageaddress="0x44A7A"/>
 
 		<table name="Time delay to switch off the ECU" storageaddress="0x45C8C"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x41876"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x41877"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
 		
 		<table name="Misfire monitoring supported" storageaddress="0x416D8"/>
@@ -4941,6 +5032,15 @@ v0.3
 		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x45960"/>
 		
 		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45ABA"/>
+		
+		<table name="Prestart fuel mass flow" storageaddress="0x46CA0">
+			<table type="X Axis" storageaddress="0x44F8C"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x46C60">
+			<table type="X Axis" storageaddress="0x4569A"/>
+			<table type="Y Axis" storageaddress="0x47DD8"/>
+		</table>
 
 <!--Fuel trims-->
 		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x4123A"/>
