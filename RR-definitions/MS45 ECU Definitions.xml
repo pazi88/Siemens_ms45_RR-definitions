@@ -1297,6 +1297,13 @@ v0.3
 			</table>
 			<description>id_n_max_h_amt</description>
 		</table>
+		
+		<table type="2D" name="Engine speed threshold for overrevving event" category="Limiters" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="RPM" expression="x" to_byte="x" format="0" fineincrement="10" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Max RPM" sizey="1">
+				<data>(c_n_lim_min)</data>
+			</table>
+		</table>
 
 <!--Gearing-->
 		<table type="2D" name="Rear diff ratio" category="Gearing" storagetype="uint16" sizex="1" endian="big" userlevel="1">
@@ -2303,6 +2310,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x527F"/>
 		</table>
 
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x5B42"/>
+
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x59A2"/>
 
@@ -2934,6 +2943,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x4527F"/>
 		</table>
 
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x45B42"/>
+
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x459A2"/>
 
@@ -3492,6 +3503,8 @@ v0.3
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x6000">
 			<table type="X Axis" storageaddress="0x526F"/>
 		</table>
+
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x5A7C"/>
 		
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0xB400"/>
@@ -4023,7 +4036,9 @@ v0.3
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x46000">
 			<table type="X Axis" storageaddress="0x4526F"/>
 		</table>
-		
+
+		<table name="Engine speed threshold for overrevving event" storageaddress="0xA5A7C"/>
+
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B400"/>
 		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x4B400"/>
@@ -4791,6 +4806,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x52CC"/>
 		</table>
 
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x5AE2"/>
+
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x59BA"/>
 
@@ -5384,6 +5401,8 @@ v0.3
 		<table name="Increased engine speed limiter (AMT)" storageaddress="0x4606C">
 			<table type="X Axis" storageaddress="0x452CC"/>
 		</table>
+
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x45AE2"/>
 
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x459BA"/>
