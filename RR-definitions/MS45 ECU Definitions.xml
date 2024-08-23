@@ -698,6 +698,71 @@ v0.3
 			</table>
 			<description>ip_vol_im_is_neg</description>
 		</table>
+
+<!--DISA-->
+
+		<table type="3D" name="DISA PWM Output Duty" category="DISA" storagetype="uint16" endian="big" sizex="2" sizey="3" userlevel="1">
+			<scaling units="Duty %" expression="0.003052*x" to_byte="x/0.003052 " format="0.0" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Columns" sizey="3">
+				<data>Low RPM</data>
+				<data>Mid RPM</data>
+				<data>High RPM</data>
+			</table>
+			<table type="Static X Axis" name="Columns" sizex="2">
+				<data>Low load</data>
+				<data>High load</data>
+			</table>
+			<description>DISA map axes are defined by the load and RPM threshold and this map defines if the DISA is active or not. 100% duty means that DISA isn't active. (c_vimpwm_1-6)</description>
+		</table>
+
+		<table type="3D" name="DISA VE Percentage" category="DISA" storagetype="uint16" endian="big" sizex="2" sizey="3" userlevel="1">
+			<scaling units="VE Map %" expression="0.003052*x" to_byte="x/0.003052 " format="0.0" fineincrement="1" coarseincrement="10"/>
+			<table type="Static Y Axis" name="Columns" sizey="3">
+				<data>Low RPM</data>
+				<data>Mid RPM</data>
+				<data>High RPM</data>
+			</table>
+			<table type="Static X Axis" name="Columns" sizex="2">
+				<data>Low load</data>
+				<data>High load</data>
+			</table>
+			<description>DISA map axes are defined by the load and RPM threshold and this map defines which one of the VE maps are used. 100% duty means that DISA On VE map is used. (c_vim_av_1-6)</description>
+		</table>
+
+		<table type="2D" name="Load Threshold" category="DISA" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="%/100" expression="0.000031*x" to_byte="x/0.000031" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="Static Y Axis" name="Load Threshold" sizey="1">
+				<data>Low/High load threshold for DISA activation (c_fac_maf_max_vim)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Load Hysteresis" category="DISA" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="%/100" expression="0.000031*x" to_byte="x/0.000031" format="0.00" fineincrement="0.01" coarseincrement="0.1"/>
+			<table type="Static Y Axis" name="Hysteresis" sizey="1">
+				<data>Load threshold hysteresis for DISA activation (c_fac_maf_max_vim_hys)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="Low RPM Threshold" category="DISA" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="RPM" expression="x" to_byte="x" fineincrement="10" coarseincrement="100"/>
+			<table type="Static Y Axis" name="RPM Threshold" sizey="1">
+				<data>Lower RPM threshold for DISA activation (c_n_vim_l)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="High RPM Threshold" category="DISA" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="RPM" expression="x" to_byte="x" fineincrement="10" coarseincrement="100"/>
+			<table type="Static Y Axis" name="RPM Threshold" sizey="1">
+				<data>Higher RPM threshold for DISA activation (c_n_vim_h)</data>
+			</table>
+		</table>
+
+		<table type="2D" name="RPM Hysteresis" category="DISA" storagetype="uint16" endian="big" userlevel="1" sizey="1">
+			<scaling units="RPM" expression="x" to_byte="x" fineincrement="10" coarseincrement="100"/>
+			<table type="Static Y Axis" name="Hysteresis" sizey="1">
+				<data>RPM threshold hysteresis for DISA activatio (c_n_vim_hys)</data>
+			</table>
+		</table>
 		
 <!--Torque Control Tables-->
 
@@ -2124,6 +2189,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x54C5"/>
 			<table type="Y Axis" storageaddress="0x890E"/>
 		</table>
+
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x1342"/>
+		<table name="DISA VE Percentage" storageaddress="0x5ECA"/>
+		<table name="Load Threshold" storageaddress="0x593A"/>
+		<table name="Load Hysteresis" storageaddress="0x593C"/>
+		<table name="Low RPM Threshold" storageaddress="0x5B8E"/>
+		<table name="High RPM Threshold" storageaddress="0x5B8A"/>
+		<table name="RPM Hysteresis" storageaddress="0x5B8C"/>
 		
 <!--Torque Control-->
 
@@ -2758,6 +2833,16 @@ v0.3
 			<table type="Y Axis" storageaddress="0x4890E"/>
 		</table>
 		
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x41342"/>
+		<table name="DISA VE Percentage" storageaddress="0x45ECA"/>
+		<table name="Load Threshold" storageaddress="0x4593A"/>
+		<table name="Load Hysteresis" storageaddress="0x4593C"/>
+		<table name="Low RPM Threshold" storageaddress="0x45B8E"/>
+		<table name="High RPM Threshold" storageaddress="0x45B8A"/>
+		<table name="RPM Hysteresis" storageaddress="0x45B8C"/>
+
 <!--Torque Control-->
 
 		<table name="Requested torque at clutch from driver" storageaddress="0x4DF40">
@@ -3293,7 +3378,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x5487"/>
 			<table type="Y Axis" storageaddress="0x8594"/>
 		</table>
-		
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x130E"/>
+		<table name="DISA VE Percentage" storageaddress="0x5DBE"/>
+		<table name="Load Threshold" storageaddress="0x58E8"/>
+		<table name="Load Hysteresis" storageaddress="0x58EA"/>
+		<table name="Low RPM Threshold" storageaddress="0x5AC6"/>
+		<table name="High RPM Threshold" storageaddress="0x5AC2"/>
+		<table name="RPM Hysteresis" storageaddress="0x5AC4"/>
+
 <!--Torque Control-->
 
 		<table name="Requested torque at clutch from driver" storageaddress="0xDC28">
@@ -3826,6 +3920,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x45487"/>
 			<table type="Y Axis" storageaddress="0x48594"/>
 		</table>
+
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x4130E"/>
+		<table name="DISA VE Percentage" storageaddress="0x45DBE"/>
+		<table name="Load Threshold" storageaddress="0x458E8"/>
+		<table name="Load Hysteresis" storageaddress="0x458EA"/>
+		<table name="Low RPM Threshold" storageaddress="0x45AC6"/>
+		<table name="High RPM Threshold" storageaddress="0x45AC2"/>
+		<table name="RPM Hysteresis" storageaddress="0x45AC4"/>
 		
 <!--Torque Control-->
 
@@ -4700,6 +4804,16 @@ v0.3
 			<table type="X Axis" storageaddress="0x5502"/>
 			<table type="Y Axis" storageaddress="0x863C"/>
 		</table>
+
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x1308"/>
+		<table name="DISA VE Percentage" storageaddress="0x5E2A"/>
+		<table name="Load Threshold" storageaddress="0x5958"/>
+		<table name="Load Hysteresis" storageaddress="0x595A"/>
+		<table name="Low RPM Threshold" storageaddress="0x5B2E"/>
+		<table name="High RPM Threshold" storageaddress="0x5B2A"/>
+		<table name="RPM Hysteresis" storageaddress="0x5B2C"/>
 		
 <!--Torque Control-->
 
@@ -5296,7 +5410,17 @@ v0.3
 			<table type="X Axis" storageaddress="0x45502"/>
 			<table type="Y Axis" storageaddress="0x4863C"/>
 		</table>
-		
+
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x41308"/>
+		<table name="DISA VE Percentage" storageaddress="0x45E2A"/>
+		<table name="Load Threshold" storageaddress="0x45958"/>
+		<table name="Load Hysteresis" storageaddress="0x4595A"/>
+		<table name="Low RPM Threshold" storageaddress="0x45B2E"/>
+		<table name="High RPM Threshold" storageaddress="0x45B2A"/>
+		<table name="RPM Hysteresis" storageaddress="0x45B2C"/>
+
 <!--Torque Control-->
 
 		<table name="Requested torque at clutch from driver" storageaddress="0x4DCD0">
