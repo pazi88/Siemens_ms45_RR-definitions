@@ -1235,10 +1235,16 @@ v0.3
 
 <!--Idle Control-->
 
-		<table type="Switch" name="ICV Delete" category="Idle Control" sizey="1" userlevel="1">
+		<table type="Switch" name="ICV Delete #1" category="Idle Control" sizey="1" userlevel="1">
 			<state name="0 - Idle Control Valve - Enabled" data="00"/>
 			<state name="1 - Idle Control Valve - Disabled" data="01"/>
 			<description>Config switch to disable ICV (lc_isc_inh)</description>
+		</table>
+		
+		<table type="Switch" name="ICV Delete #2" category="Idle Control" sizey="1" userlevel="1">
+			<state name="1 - Idle Control Valve - Enabled" data="01"/>
+			<state name="0 - Idle Control Valve - Disabled" data="00"/>
+			<description>Config switch to enable ICV (lc_isa_ena)</description>
 		</table>
 
 		<table type="2D" name="Nominal idle speed without additional load on the engine" category="Idle Control" storagetype="uint16" sizex="8" endian="big" userlevel="1">
@@ -1557,10 +1563,10 @@ v0.3
 			<description>This is the scaling for the Oil Temperature sensor. (ip_toil__v_toil)</description>
 		</table>
 		
-		<table type="2D" name="Wideband Lambda Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizey="16" userlevel="1">
-			<scaling units="°C" expression="x*0.000977" to_byte="x/0.000977" format="0.000" fineincrement=".001" coarseincrement=".001"/>
-				<table type="Y Axis" storagetype="uint16" endian="big">
-					<scaling units="Lambda" expression="x*.004883" to_byte="x/.004883" format="0.00" fineincrement=".01" coarseincrement=".1"/>
+		<table type="2D" name="Wideband Lambda Sensor Scaling" category="Sensors Scaling" storagetype="uint16" endian="big" sizex="16" userlevel="1">
+			<scaling units="λ" expression="x*0.000977" to_byte="x/0.000977" format="0.000" fineincrement=".001" coarseincrement=".001"/>
+				<table type="X Axis" name="Lambda" storagetype="uint16" endian="big">
+					<scaling units="Volts" expression="x*.004883" to_byte="x/.004883" format="0.00" fineincrement=".01" coarseincrement=".1"/>
 				</table>
 			<description>This is the scaling for the Wideband Lambda sensor. (ip_lamb)</description>
 		</table>
@@ -2330,7 +2336,9 @@ v0.3
 		<table name="Switch-on level for the EFP" storageaddress="0x49C4"/>
 
 <!--Idle Control-->
-		<table name="ICV Delete" storageaddress="0x49BB"/>
+		<table name="ICV Delete #1" storageaddress="0x49BB"/>
+		
+		<table name="ICV Delete #2" storageaddress="0x49B8"/>
 
 		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6FD2">
 			<table type="X Axis" storageaddress="0x56B9"/>
@@ -2975,7 +2983,9 @@ v0.3
 		<table name="Switch-on level for the EFP" storageaddress="0x449C4"/>
 
 <!--Idle Control-->
-		<table name="ICV Delete" storageaddress="0x449BB"/>
+		<table name="ICV Delete #1" storageaddress="0x449BB"/>
+
+		<table name="ICV Delete #2" storageaddress="0x449B8"/>
 
 		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46FD2">
 			<table type="X Axis" storageaddress="0x456B9"/>
@@ -4623,7 +4633,9 @@ v0.3
 		<table name="Switch-on level for the EFP" storageaddress="0x4A66"/>
 		
 <!--Idle Control-->
-		<table name="ICV Delete" storageaddress="0x4A62"/>
+		<table name="ICV Delete #1" storageaddress="0x4A62"/>
+		
+		<table name="ICV Delete #2" storageaddress="0x4A5F"/>
 
 		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6D62">
 			<table type="X Axis" storageaddress="0x56F6"/>
@@ -5231,7 +5243,9 @@ v0.3
 		<table name="Switch-on level for the EFP" storageaddress="0x44A66"/>
 		
 <!--Idle Control-->
-		<table name="ICV Delete" storageaddress="0x44A62"/>
+		<table name="ICV Delete #1" storageaddress="0x44A62"/>
+		
+		<table name="ICV Delete #2" storageaddress="0x44A5F"/>
 
 		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46D62">
 			<table type="X Axis" storageaddress="0x456F6"/>
