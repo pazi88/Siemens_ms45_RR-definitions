@@ -264,7 +264,185 @@ v0.3
 			<bit position ="7" name="Enabled"/>
 			<description>c_obd_state_2 bit 7</description>
 		</table>
-		
+
+<!--Error Anti-Bounce Definitions-->
+		<table type="2D" name="Ambient Temperature CAN Anti-Bounce Counter Increment (TAM_CAN)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TAM_CAN Anti-Bounce Counter Increment" sizey="1">
+				<data>c_abc_inc_tam_can</data>
+			</table>
+			<description>Error anti-bounce increment configuration for Ambient Temperature CAN failure. Setting this to 0 will prevent error from triggering. (c_abc_inc_tam_can)</description>
+		</table>
+
+		<table type="2D" name="Ambient Temperature CAN Anti-Bounce Counter Maximum (TAM_CAN)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TAM_CAN Anti-Bounce Counter Maximum" sizey="1">
+				<data>c_abc_max_tam_can</data>
+			</table>
+			<description>Error anti-bounce maximum configuration for Ambient Temperature CAN failure. (c_abc_max_tam_can)</description>
+		</table>
+
+		<table type="2D" name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TIA_PLAUS Anti-Bounce Counter Increment" sizey="1">
+				<data>c_abc_inc_tia_plaus</data>
+			</table>
+			<description>Error anti-bounce increment configuration for Intake Air Temperature Plausability failure. Setting this to 0 will prevent error from triggering. (c_abc_inc_tia_plaus)</description>
+		</table>
+
+		<table type="2D" name="Intake Air Temperature Plausability Anti-Bounce Counter Maximum (TIA_PLAUS)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TIA_PLAUS Anti-Bounce Counter Maximum" sizey="1">
+				<data>c_abc_max_tia_plaus</data>
+			</table>
+			<description>Error anti-bounce maximum configuration for Intake Air Temperature Plausability failure. (c_abc_max_tia_plaus)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Anti-Bounce Counter Increment (IMOB_1)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_1 Anti-Bounce Counter Increment" sizey="1">
+				<data>c_abc_inc_imob_1</data>
+			</table>
+			<description>Error anti-bounce increment configuration for Immobilizer failure. Setting this to 0 will prevent error from triggering. (c_abc_inc_imob_1)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Anti-Bounce Counter Maximum (IMOB_1)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_1 Anti-Bounce Counter Maximum" sizey="1">
+				<data>c_abc_max_imob_1</data>
+			</table>
+			<description>Error anti-bounce maximum configuration for Immobilizer failure. (c_abc_max_imob_1)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Anti-Bounce Counter Increment (IMOB_2)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_2 Anti-Bounce Counter Increment" sizey="1">
+				<data>c_abc_inc_imob_2</data>
+			</table>
+			<description>Error anti-bounce increment configuration for Immobilizer failure. (c_abc_inc_imob_2)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Anti-Bounce Counter Maximum (IMOB_2)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_2 Anti-Bounce Counter Maximum" sizey="1">
+				<data>c_abc_max_imob_2</data>
+			</table>
+			<description>Error anti-bounce maximum configuration for Immobilizer failure. (c_abc_max_imob_2)</description>
+		</table>
+
+<!--Error Class Definitions-->
+		<table type="2D" name="Ambient Temperature CAN Error Class (TAM_CAN)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TAM_CAN Error Class" sizey="1">
+				<data>fmy_id_tam_can.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Ambient Temperature CAN failure (fmy_id_tam_can.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="TAM_PLAUS Error Class" sizey="1">
+				<data>fmy_id_tam_plaus.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Ambient Temperature Plausability failure (fmy_id_tam_plaus.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Pump Error Class (SAP)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SAP Error Class" sizey="1">
+				<data>ffmy_id_sap.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump failure (fmy_id_sap.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Valve Error Class (SAV)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SAV Error Class" sizey="1">
+				<data>fmy_id_sav.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Valve failure (fmy_id_sav.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Pump Error Class (SA_SAP)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SA_SAP Error Class" sizey="1">
+				<data>fmy_id_sa_sap.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump failure (fmy_id_sa_sap.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Valve Error Class (SA_SAV)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SA_SAV Error Class" sizey="1">
+				<data>fmy_id_sa_sav.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Valve failure (fmy_id_sa_sav.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Flow Meter Error Class (SA_SAFM)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SA_SAFM Error Class" sizey="1">
+				<data>fmy_id_sa_safm.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Flow Meter failure (fmy_id_sa_safm.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air Pump MIL Error Class (SA_SAP_MIL)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SA_SAP_MIL Error Class" sizey="1">
+				<data>fmy_id_sa_sap_mil.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_sa_sap_mil.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Secondary Air System Error Class (SA_SYS)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="SA_SYS Error Class" sizey="1">
+				<data>fmy_id_sa_sys.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_sa_sys.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Error Class (IMOB_1)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_1 Error Class" sizey="1">
+				<data>fmy_id_imob_1.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_imob_1.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Error Class (IMOB_2)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_2 Error Class" sizey="1">
+				<data>fmy_id_imob_2.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_imob_2.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Error Class (IMOB_3)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_3 Error Class" sizey="1">
+				<data>fmy_id_imob_3.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_imob_3.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Immobilizer Error Class (IMOB_4)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="IMOB_4 Error Class" sizey="1">
+				<data>fmy_id_imob_4.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Secondary Air Pump MIL failure (fmy_id_imob_4.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="Exhaust Flap Error Class (EF)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="EF Error Class" sizey="1">
+				<data>fmy_id_ef.c_err_clas</data>
+			</table>
+			<description>Error class configuration for Exhaust Flap failure (fmy_id_ef.c_err_clas)</description>
+		</table>
+
 <!--Secondary Air Pump-->
 
 		<table type="Switch" name="Manual deactivation of SA diagnosis" category="Secondary Air Pump" sizey="1" userlevel="1">
@@ -1926,6 +2104,32 @@ v0.3
 		<table name="Oxygen sensor heater monitoring" storageaddress="0x1734"/>
 		<table name="EGR system monitoring" storageaddress="0x1734"/>
 
+<!--Error Anti-Bounce Definitions-->
+		<table name="Ambient Temperature CAN Anti-Bounce Counter Increment (TAM_CAN)" storageaddress="0x1496"/>
+		<table name="Ambient Temperature CAN Anti-Bounce Counter Maximum (TAM_CAN)" storageaddress="0x150A"/>
+		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" storageaddress="0x149D"/>
+		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Maximum (TIA_PLAUS)" storageaddress="0x1511"/>
+		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_1)" storageaddress="0x147C"/>
+		<table name="Immobilizer Anti-Bounce Counter Maximum (IMOB_1)" storageaddress="0x14F1"/>
+		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_2)" storageaddress="0x147D"/>
+		<table name="Immobilizer Anti-Bounce Counter Maximum (IMOB_2)" storageaddress="0x14F2"/>
+
+<!--Error Class Definitions-->
+		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x9E26"/>
+		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x9E38"/>
+		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x9634"/>
+		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x9646"/>
+		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x98F2"/>
+		<table name="Secondary Air Valve Error Class (SA_SAV)" storageaddress="0x9916"/>
+		<table name="Secondary Air Flow Meter Error Class (SA_SAFM)" storageaddress="0x98E0"/>
+		<table name="Secondary Air Pump MIL Error Class (SA_SAP_MIL)" storageaddress="0x9DDE"/>
+		<table name="Secondary Air System Error Class (SA_SYS)" storageaddress="0x9904"/>
+		<table name="Immobilizer Error Class (IMOB_1)" storageaddress="0x8F1A"/>
+		<table name="Immobilizer Error Class (IMOB_2)" storageaddress="0x8F2C"/>
+		<table name="Immobilizer Error Class (IMOB_3)" storageaddress="0x8F3E"/>
+		<table name="Immobilizer Error Class (IMOB_4)" storageaddress="0x8F50"/>
+		<table name="Exhaust Flap Error Class (EF)" storageaddress="0x9994"/>
+
 <!--Secondary Air Pump-->
 
 		<table name="Manual deactivation of SA diagnosis" storageaddress="0x49B0"/>
@@ -2572,6 +2776,32 @@ v0.3
 		<table name="Oxygen sensor monitoring" storageaddress="0x41734"/>
 		<table name="Oxygen sensor heater monitoring" storageaddress="0x41734"/>
 		<table name="EGR system monitoring" storageaddress="0x41734"/>
+
+<!--Error Anti-Bounce Definitions-->
+		<table name="Ambient Temperature CAN Anti-Bounce Counter Increment (TAM_CAN)" storageaddress="0x41496"/>
+		<table name="Ambient Temperature CAN Anti-Bounce Counter Maximum (TAM_CAN)" storageaddress="0x4150A"/>
+		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" storageaddress="0x4149D"/>
+		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Maximum (TIA_PLAUS)" storageaddress="0x41511"/>
+		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_1)" storageaddress="0x4147C"/>
+		<table name="Immobilizer Anti-Bounce Counter Maximum (IMOB_1)" storageaddress="0x414F1"/>
+		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_2)" storageaddress="0x4147D"/>
+		<table name="Immobilizer Anti-Bounce Counter Maximum (IMOB_2)" storageaddress="0x414F2"/>
+
+<!--Error Class Definitions-->
+		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x49E26"/>
+		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x49E38"/>
+		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x49634"/>
+		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x49646"/>
+		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x498F2"/>
+		<table name="Secondary Air Valve Error Class (SA_SAV)" storageaddress="0x49916"/>
+		<table name="Secondary Air Flow Meter Error Class (SA_SAFM)" storageaddress="0x498E0"/>
+		<table name="Secondary Air Pump MIL Error Class (SA_SAP_MIL)" storageaddress="0x49DDE"/>
+		<table name="Secondary Air System Error Class (SA_SYS)" storageaddress="0x49904"/>
+		<table name="Immobilizer Error Class (IMOB_1)" storageaddress="0x48F1A"/>
+		<table name="Immobilizer Error Class (IMOB_2)" storageaddress="0x48F2C"/>
+		<table name="Immobilizer Error Class (IMOB_3)" storageaddress="0x48F3E"/>
+		<table name="Immobilizer Error Class (IMOB_4)" storageaddress="0x48F50"/>
+		<table name="Exhaust Flap Error Class (EF)" storageaddress="0x49994"/>
 
 <!--Secondary Air Pump-->
 
