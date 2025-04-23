@@ -282,6 +282,22 @@ v0.3
 			<description>Error anti-bounce maximum configuration for Ambient Temperature CAN failure. (c_abc_max_tam_can)</description>
 		</table>
 
+		<table type="2D" name="BSD Bus Anti-Bounce Counter Increment (BSD)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="BSD Anti-Bounce Counter Increment" sizey="1">
+				<data>c_abc_inc_bsd</data>
+			</table>
+			<description>Error anti-bounce increment configuration for BSD Bus failure. Setting this to 0 will prevent error from triggering. (c_abc_inc_bsd)</description>
+		</table>
+
+		<table type="2D" name="BSD Bus Anti-Bounce Counter Maximum (BSD)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="BSD Anti-Bounce Counter Maximum" sizey="1">
+				<data>c_abc_max_bsd</data>
+			</table>
+			<description>Error anti-bounce maximum configuration for BSD Bus failure. (c_abc_max_bsd)</description>
+		</table>
+
 		<table type="2D" name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" category="Error Anti-Bounce Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
 			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
 			<table type="Static Y Axis" name="TIA_PLAUS Anti-Bounce Counter Increment" sizey="1">
@@ -345,6 +361,14 @@ v0.3
 				<data>fmy_id_tam_plaus.c_err_clas</data>
 			</table>
 			<description>Error class configuration for Ambient Temperature Plausability failure (fmy_id_tam_plaus.c_err_clas)</description>
+		</table>
+
+		<table type="2D" name="BSD Bus Error Class (BSD)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
+			<scaling units="" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="1"/>
+			<table type="Static Y Axis" name="BSD Error Class" sizey="1">
+				<data>fmy_id_bsd.c_err_clas</data>
+			</table>
+			<description>Error class configuration for BSD Bus failure (fmy_id_bsd.c_err_clas)</description>
 		</table>
 
 		<table type="2D" name="Secondary Air Pump Error Class (SAP)" category="Error Class Definitions" storagetype="uint8" endian="big" sizey="1" userlevel="1">
@@ -2107,6 +2131,8 @@ v0.3
 <!--Error Anti-Bounce Definitions-->
 		<table name="Ambient Temperature CAN Anti-Bounce Counter Increment (TAM_CAN)" storageaddress="0x1496"/>
 		<table name="Ambient Temperature CAN Anti-Bounce Counter Maximum (TAM_CAN)" storageaddress="0x150A"/>
+		<table name="BSD Bus Anti-Bounce Counter Increment (BSD)" storageaddress="0x1462"/>
+		<table name="BSD Bus Anti-Bounce Counter Maximum (BSD)" storageaddress="0x14DA"/>
 		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" storageaddress="0x149D"/>
 		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Maximum (TIA_PLAUS)" storageaddress="0x1511"/>
 		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_1)" storageaddress="0x147C"/>
@@ -2117,6 +2143,7 @@ v0.3
 <!--Error Class Definitions-->
 		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x9E26"/>
 		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x9E38"/>
+		<table name="BSD Bus Error Class (BSD)" storageaddress="0x9A90"/>
 		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x9634"/>
 		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x9646"/>
 		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x98F2"/>
@@ -2780,6 +2807,8 @@ v0.3
 <!--Error Anti-Bounce Definitions-->
 		<table name="Ambient Temperature CAN Anti-Bounce Counter Increment (TAM_CAN)" storageaddress="0x41496"/>
 		<table name="Ambient Temperature CAN Anti-Bounce Counter Maximum (TAM_CAN)" storageaddress="0x4150A"/>
+		<table name="BSD Bus Anti-Bounce Counter Increment (BSD)" storageaddress="0x41462"/>
+		<table name="BSD Bus Anti-Bounce Counter Maximum (BSD)" storageaddress="0x414DA"/>
 		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Increment (TIA_PLAUS)" storageaddress="0x4149D"/>
 		<table name="Intake Air Temperature Plausability Anti-Bounce Counter Maximum (TIA_PLAUS)" storageaddress="0x41511"/>
 		<table name="Immobilizer Anti-Bounce Counter Increment (IMOB_1)" storageaddress="0x4147C"/>
@@ -2790,6 +2819,7 @@ v0.3
 <!--Error Class Definitions-->
 		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x49E26"/>
 		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x49E38"/>
+		<table name="BSD Bus Error Class (BSD)" storageaddress="0x49A90"/>
 		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x49634"/>
 		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x49646"/>
 		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x498F2"/>
