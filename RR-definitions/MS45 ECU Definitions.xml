@@ -3764,6 +3764,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x75A4"/>
 			<table type="Y Axis" storageaddress="0x5162"/>
 		</table>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5A54"/>
 
 		<table name="Prestart fuel mass flow" storageaddress="0x6C24">
 			<table type="X Axis" storageaddress="0x4F19"/>
@@ -4307,6 +4309,8 @@ v0.3
 			<table type="X Axis" storageaddress="0x475A4"/>
 			<table type="Y Axis" storageaddress="0x45162"/>
 		</table>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45A54"/>
 
 		<table name="Prestart fuel mass flow" storageaddress="0x46C24">
 			<table type="X Axis" storageaddress="0x44F19"/>
