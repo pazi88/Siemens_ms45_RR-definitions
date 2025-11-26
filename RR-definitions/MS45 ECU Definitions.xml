@@ -90,6 +90,13 @@ v0.3
 			<description>You can set desired oxygen sensor configuration here. Remember to reset learned variants when changing this (c_conf_cat)</description>
 		</table>
 		
+		<table type="Switch" name="O2 sensor configuration" category="Configurations" sizey="4">
+			<state name="Dual O2 Sensors (Stock)" data="A3 CD CC 1A"/>
+			<state name="Single O2 Sensor" data="A3 CD CC 18"/>
+			<description>Changes the ECU to use single O2 sensor for turbo applications
+			</description>
+		</table>
+		
 		<table type="Switch" name="Bank 1 downstream O2 sensor heating" category="Configurations" sizey="1" userlevel="1">
 			<state name="1 - Enabled" data="01"/>
 			<state name="0 - Disabled" data="00"/>
@@ -1608,9 +1615,9 @@ v0.3
 <!--Sensor Scaling-->
 
 <!--MAF Hack-->
-		<table type="Switch" name="MAF Mode - 2048 kg/hr" category="Sensors Scaling" sizey="4">
-			<state name="MAF Mode = 1024 kg/hr (Stock)" data="55 6B 0B FC"/>
-			<state name="MAF Mode = 2048 kg/hr" data="60 00 00 00"/>
+		<table type="Switch" name="MAF Mode - 2048 kg/hr" category="Sensors Scaling" sizey="44">
+			<state name="MAF Mode = 1024 kg/hr (Stock)" data="55 6B 0B FC 7D 8C 5B 96 B1 8D B2 C0 39 40 00 00 91 4D 9A 6C 39 20 00 00 B1 2D 9A 7C 48 00 00 28 A1 6D 9A 7E 81 8D 9A 70 55 6B 0B FC"/>
+			<state name="MAF Mode = 2048 kg/hr" data="60 00 00 00 7D 8C 5B 96 B1 8D B2 C0 39 40 00 00 91 4D 9A 6C 39 20 00 00 B1 2D 9A 7C 48 00 00 28 A1 6D 9A 7E 81 8D 9A 70 60 00 00 00"/>
 			<description>1 Select "MAF Mode = 2048 kg/hr"	
 2 Flash full and MPC to ECU
 3 Read partial
@@ -6008,7 +6015,7 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>448kb</filesize>
 		</romid>
-
+		<table name="O2 sensor configuration" storageaddress="0x423CC"/>
 		<table name="MAF Mode - 2048 kg/hr" storageaddress="0x2C6C8"/>
 
 	</rom>
