@@ -197,6 +197,22 @@ v0.3
 			</table>
 			<description>c_tco_min_fcut_fast</description>
 		</table>
+		
+<!--Few configuration values usefull for 8HP swaps-->
+
+		<table type="Switch" name="Torque Intervention" category="8HP configurations" sizey="1" userlevel="1">
+			<state name="0 - No GS Torque intervention" data="00"/>
+			<state name="1 - Only decreasing torque intervention possible" data="01"/>
+			<state name="2 - Only increasing torque intervention possible" data="02"/>
+			<state name="3 - Both interventions possible" data="03"/>
+			<description>This is the switch you can use to enable "thorttle blips" on downshifts in 8HP use, by setting this to 3 (c_gs_ena_inc_dec)</description>
+		</table>
+		
+		<table type="Switch" name="Single Cylinder Cut" category="8HP configurations" sizey="1" userlevel="1">
+			<state name="0 - SCC Disabled" data="00"/>
+			<state name="1 - SCC Enabled" data="01"/>
+			<description>To get faster upshifts by cutting off cylinders, enable this configuration (lc_eff_scc_sp_man)</description>
+		</table>
 
 <!--c_obd_state_1-->
 
@@ -2120,6 +2136,9 @@ v0.3
 		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x18E5"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x1861"/>
 
+		<table name="Torque Intervention" storageaddress="0x166F"/>
+		<table name="Single Cylinder Cut" storageaddress="0x497A"/>	
+
 		<table name="Misfire monitoring supported" storageaddress="0x1733"/>
 		<table name="Fuel system monitoring supported" storageaddress="0x1733"/>
 		<table name="Comprehensive component monitoring supported" storageaddress="0x1733"/>
@@ -2795,6 +2814,9 @@ v0.3
 		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x418E4"/>
 		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x418E5"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x41861"/>
+
+		<table name="Torque Intervention" storageaddress="0x4166F"/>
+		<table name="Single Cylinder Cut" storageaddress="0x4497A"/>	
 
 		<table name="Misfire monitoring supported" storageaddress="0x41733"/>
 		<table name="Fuel system monitoring supported" storageaddress="0x41733"/>
@@ -4764,6 +4786,9 @@ v0.3
 		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x1876"/>
 		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x1877"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x17F6"/>
+		
+		<table name="Torque Intervention" storageaddress="0x1625"/>
+		<table name="Single Cylinder Cut" storageaddress="0x4A25"/>	
 
 		<table name="Misfire monitoring supported" storageaddress="0x16D8"/>
 		<table name="Fuel system monitoring supported" storageaddress="0x16D8"/>
@@ -5374,6 +5399,9 @@ v0.3
 		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x41876"/>
 		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x41877"/>
 		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x417F6"/>
+		
+		<table name="Torque Intervention" storageaddress="0x41625"/>
+		<table name="Single Cylinder Cut" storageaddress="0x44A25"/>	
 		
 		<table name="Misfire monitoring supported" storageaddress="0x416D8"/>
 		<table name="Fuel system monitoring supported" storageaddress="0x416D8"/>
