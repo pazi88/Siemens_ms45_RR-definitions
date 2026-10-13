@@ -1798,7 +1798,7 @@ v0.3
 
 <!--Knock Tables-->
 		<table type="3D" name="Knock Factor - Cylinder 1" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1809,7 +1809,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Knock Factor - Cylinder 2" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1820,7 +1820,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Knock Factor - Cylinder 3" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1831,7 +1831,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Knock Factor - Cylinder 4" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1842,7 +1842,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Knock Factor - Cylinder 5" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1853,7 +1853,7 @@ v0.3
 		</table>
 
 		<table type="3D" name="Knock Factor - Cylinder 6" category="Knock" storagetype="uint8" endian="big" sizex="4" sizey="16" userlevel="1">
-			<scaling units="(°)" expression="x*0.031250" to_byte="x.0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
+			<scaling units="(°)" expression="x*0.031250" to_byte="x/0.031250" format="0.00" fineincrement=".1" coarseincrement="1"/>
 			<table type="X Axis" name="MAF Load" storagetype="uint8" endian="big" logparam="E2">
 				<scaling units="mg/stroke" expression="x*5.447059" to_byte="x/5.447059" format="#" fineincrement="1" coarseincrement="10"/>
 			</table>
@@ -1871,7 +1871,7 @@ v0.3
 			<description>Spark retard at recognised knocking. Intensity 1 (id_iga_dec_knk_1__n)</description>
 		</table>
 
-		<table type="2D" name="Spark retard - Intensity 2" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">2
+		<table type="2D" name="Spark retard - Intensity 2" category="Knock" storagetype="uint8" endian="big" sizey="3" userlevel="1">
 			<scaling units="(°)" expression="x*0.375000" to_byte="x/0.375000" format="0.000" fineincrement=".375" coarseincrement="1.5"/>
 			<table type="Y Axis" name="RPM" storagetype="uint8" endian="big" logparam="P8">
 				<scaling units="RPM" expression="x*32.000000" to_byte="x/32.000000" format="#" fineincrement="32" coarseincrement="128"/>
@@ -2912,8 +2912,8 @@ v0.3
 			<table type="Y Axis" storageaddress="0x453D5"/>
 		</table>
 		
-		<table name="Full load lambda enrichment" storageaddress="0x6DD0">
-			<table type="X Axis" storageaddress="0x4D5A"/>
+		<table name="Full load lambda enrichment" storageaddress="0x46DD0">
+			<table type="X Axis" storageaddress="0x44D5A"/>
 		</table>
 
 		<table name="Minimum Injection Time" storageaddress="0x45E0E"/>
@@ -4455,7 +4455,7 @@ v0.3
 			<table type="X Axis" storageaddress="0x4526F"/>
 		</table>
 
-		<table name="Engine speed threshold for overrevving event" storageaddress="0xA5A7C"/>
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x45A7C"/>
 
 <!--Sensor Scaling-->
 		<table name="MAF Sensor Scaling" storageaddress="0x4B400"/>
@@ -4542,8 +4542,8 @@ v0.3
 			<table type="Y Axis" storageaddress="0x454FC"/>
 		</table>
 
-		<table name="Spark retard - Intensity 2" storageaddress="0x1AC3">
-			<table type="Y Axis" storageaddress="0x54FC"/>
+		<table name="Spark retard - Intensity 2" storageaddress="0x41AC3">
+			<table type="Y Axis" storageaddress="0x454FC"/>
 		</table>
 		
 	</rom>
@@ -4597,12 +4597,12 @@ v0.3
 		</romid>
 
 		<table name="Basic ignition angle for RON 98" storageaddress="0x4AEFE">
-			<table type="X Axis" storageaddress="0x48542"/>
+			<table type="X Axis" storageaddress="0x48540"/>
 			<table type="Y Axis" storageaddress="0x486c6"/>
 		</table>
 
 		<table name="Basic ignition angle for RON 91" storageaddress="0x4ADBE">
-			<table type="X Axis" storageaddress="0x48540"/>
+			<table type="X Axis" storageaddress="0x48542"/>
 			<table type="Y Axis" storageaddress="0x486c6"/>
 		</table>
 	</rom>
@@ -5642,7 +5642,7 @@ v0.3
 			<table type="Y Axis" storageaddress="0x4873E"/>
 		</table>
 		
-		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x4D48">
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D48">
 			<table type="X Axis" storageaddress="0x485FC"/>
 			<table type="Y Axis" storageaddress="0x486B2"/>
 		</table>
