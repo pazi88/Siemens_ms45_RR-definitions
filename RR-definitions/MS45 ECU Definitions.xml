@@ -6140,6 +6140,272 @@ v0.3
 			<transmission>MT/AT</transmission>
 			<filesize>116kb</filesize>
 		</romid>
+
+		<table name="Exhaust configuration" storageaddress="0x1559"/>
+		<table name="Reset learned variants" storageaddress="0x48EB"/>
+
+		<table name="MIL configuration" storageaddress="0x155C"/>
+		<table name="Tank leakage detection" storageaddress="0x155B"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x155D"/>
+		
+		<table name="Time delay to switch off the ECU" storageaddress="0x5C4C"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x18BA"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x18BB"/>
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x183E"/>
+
+		<table name="Torque Intervention" storageaddress="0x1662"/>
+
+		<table name="Misfire monitoring supported" storageaddress="0x1724"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x1724"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x1724"/>
+		<table name="Misfire monitoring status" storageaddress="0x1724"/>
+		<table name="Fuel system monitoring status" storageaddress="0x1724"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x1724"/>
+		<table name="Catalyst monitoring" storageaddress="0x1725"/>
+		<table name="Heated catalyst" storageaddress="0x1725"/>
+		<table name="Evaporative system monitoring" storageaddress="0x1725"/>
+		<table name="Secondary air system monitoring" storageaddress="0x1725"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x1725"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x1725"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x1725"/>
+		<table name="EGR system monitoring" storageaddress="0x1725"/>
+
+<!--Error Anti-Bounce Definitions-->
+
+<!--Error Class Definitions-->
+		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x9D16"/>
+		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x9D28"/>
+		<table name="BSD Bus Error Class (BSD)" storageaddress="0x9980"/>
+		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x9524"/>
+		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x9536"/>
+		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x97E2"/>
+		<table name="Secondary Air Valve Error Class (SA_SAV)" storageaddress="0x9806"/>
+		<table name="Secondary Air Flow Meter Error Class (SA_SAFM)" storageaddress="0x97D0"/>
+		<table name="Secondary Air Pump MIL Error Class (SA_SAP_MIL)" storageaddress="0x9CCE"/>
+		<table name="Secondary Air System Error Class (SA_SYS)" storageaddress="0x97F4"/>
+		<table name="Immobilizer Error Class (IMOB_1)" storageaddress="0x8E0A"/>
+		<table name="Immobilizer Error Class (IMOB_2)" storageaddress="0x8E1C"/>
+		<table name="Immobilizer Error Class (IMOB_3)" storageaddress="0x8E2E"/>
+		<table name="Immobilizer Error Class (IMOB_4)" storageaddress="0x8E40"/>
+		<table name="Exhaust Flap Error Class (EF)" storageaddress="0x9884"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x72EC">
+			<table type="X Axis" storageaddress="0x563D"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x72FC">
+			<table type="X Axis" storageaddress="0x563D"/>
+		</table>
+		
+<!--Catalyst Overheating Protection-->
+
+		<table name="Lambda setpoint for overheat protection" storageaddress="0x6C34">
+			<table type="X Axis" storageaddress="0x79F8"/>
+		</table>
+			
+		<table name="Cat overheat protection setpoint" storageaddress="0x733C">
+			<table type="X Axis" storageaddress="0x8638"/>
+		</table>
+		
+		<table name="Cat .temp. overheat protection at error" storageaddress="0x7350">
+			<table type="X Axis" storageaddress="0x8638"/>
+		</table>
+
+<!--Fuel-->
+		<table name="Mass Fuel Flow Correction - Bank 1" storageaddress="0xF6C0">
+			<table type="X Axis" storageaddress="0x7DE2"/>
+			<table type="Y Axis" storageaddress="0x7B3A"/>
+		</table>
+
+		<table name="Mass Fuel Flow Correction - Bank 2" storageaddress="0xF840">
+			<table type="X Axis" storageaddress="0x7DE2"/>
+			<table type="Y Axis" storageaddress="0x7B3A"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0xE7F8">
+			<table type="X Axis" storageaddress="0x86F0"/>
+			<table type="Y Axis" storageaddress="0x5335"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0xE878">
+			<table type="X Axis" storageaddress="0x86F0"/>
+			<table type="Y Axis" storageaddress="0x5335"/>
+		</table>
+		
+		<table name="Full load lambda enrichment" storageaddress="0x6CF4">
+			<table type="X Axis" storageaddress="0x4CE9"/>
+		</table>
+		
+		<table name="Minimum Injection Time" storageaddress="0x5D3A"/>
+
+		<table name="Minimum Injection Time Threshold" storageaddress="0x5D36"/>
+
+		<table name="Injector dead time correction" storageaddress="0x11460">
+			<table type="X Axis" storageaddress="0x7A5A"/>
+			<table type="Y Axis" storageaddress="0x50E7"/>
+		</table>
+		
+		<table name="Global injection time correction (ALL)" storageaddress="0x1883"/>
+
+		<table name="Global injection time correction" storageaddress="0x1884"/>
+
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x589E"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x58A0"/>
+		
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x5A66"/>
+
+		<table name="Prestart fuel mass flow" storageaddress="0x6E2C">
+			<table type="X Axis" storageaddress="0x4E77"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x6DEC">
+			<table type="X Axis" storageaddress="0x55B6"/>
+			<table type="Y Axis" storageaddress="0x7F4A"/>
+		</table>
+		
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x1270"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x126E"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1278"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x1276"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x1274"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x1272"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x16FA"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x16FD"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x16FC"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x16FB"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x5A44"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x5A48"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x5A46"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x37FA">
+			<table type="X Axis" storageaddress="0x5478"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x37F4">
+			<table type="X Axis" storageaddress="0x4CB1"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x37EE">
+			<table type="X Axis" storageaddress="0x5471"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0xB0F4">
+			<table type="X Axis" storageaddress="0x8702"/>
+			<table type="Y Axis" storageaddress="0x8882"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0xAFB4">
+			<table type="X Axis" storageaddress="0x8702"/>
+			<table type="Y Axis" storageaddress="0x8882"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0xABF4">
+			<table type="X Axis" storageaddress="0x8702"/>
+			<table type="Y Axis" storageaddress="0x8882"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0xAE74">
+			<table type="X Axis" storageaddress="0x8702"/>
+			<table type="Y Axis" storageaddress="0x8882"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0xAD34">
+			<table type="X Axis" storageaddress="0x8702"/>
+			<table type="Y Axis" storageaddress="0x8882"/>
+		</table>
+		
+		<table name="Basic ignition angle at start" storageaddress="0x342D">
+			<table type="X Axis" storageaddress="0x555D"/>
+			<table type="Y Axis" storageaddress="0x7EE4"/>
+		</table>
+
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x731C">
+			<table type="X Axis" storageaddress="0x8C86"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x5CE2"/>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0xA834">
+			<table type="X Axis" storageaddress="0x87DA"/>
+			<table type="Y Axis" storageaddress="0x7DE2"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0xA774">
+			<table type="X Axis" storageaddress="0x87DA"/>
+			<table type="Y Axis" storageaddress="0x7DE2"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0xA9B4">
+			<table type="X Axis" storageaddress="0x87DA"/>
+			<table type="Y Axis" storageaddress="0x7DE2"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0xA8F4">
+			<table type="X Axis" storageaddress="0x87DA"/>
+			<table type="Y Axis" storageaddress="0x7DE2"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D57">
+			<table type="X Axis" storageaddress="0x87CC"/>
+			<table type="Y Axis" storageaddress="0x8874"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x1D8B">
+			<table type="X Axis" storageaddress="0x87CC"/>
+			<table type="Y Axis" storageaddress="0x8874"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x1DBF">
+			<table type="X Axis" storageaddress="0x87CC"/>
+			<table type="Y Axis" storageaddress="0x8874"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x1DF3">
+			<table type="X Axis" storageaddress="0x87CC"/>
+			<table type="Y Axis" storageaddress="0x8874"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x1D47">
+			<table type="X Axis" storageaddress="0x88FC"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x1D7B">
+			<table type="X Axis" storageaddress="0x88FC"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x1DAF">
+			<table type="X Axis" storageaddress="0x88FC"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x1DE3">
+			<table type="X Axis" storageaddress="0x88FC"/>
+		</table>
+
+		<table name="Intake Camshaft Park Position" storageaddress="0x11F4"/>
+		<table name="Exhaust Camshaft Park Position" storageaddress="0x11F2"/>
+		<table name="Intake Camshaft Initial Position" storageaddress="0x1545"/>
+		<table name="Exhaust Camshaft Initial Position" storageaddress="0x1544"/>
+		<table name="Intake Camshaft Duration" storageaddress="0x1547"/>
+		<table name="Exhaust Camshaft Duration" storageaddress="0x1546"/>
 		
 <!--Volumetric Efficiency Tables-->
 		
@@ -6158,7 +6424,7 @@ v0.3
 			<table type="Y Axis" storageaddress="0x891E"/>
 		</table>
 		
-		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA On" storageaddress="0xCE60">
+		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA On" storageaddress="0xD1F8">
 			<table type="X Axis" storageaddress="0x56E6"/>
 			<table type="Y Axis" storageaddress="0x891E"/>
 		</table>
@@ -6173,6 +6439,987 @@ v0.3
 			<table type="Y Axis" storageaddress="0x891E"/>
 		</table>
 		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x127B8">
+			<table type="X Axis" storageaddress="0x541C"/>
+			<table type="Y Axis" storageaddress="0x87FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x128A8">
+			<table type="X Axis" storageaddress="0x541C"/>
+			<table type="Y Axis" storageaddress="0x87FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x12818">
+			<table type="X Axis" storageaddress="0x5425"/>
+			<table type="Y Axis" storageaddress="0x87FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x12860">
+			<table type="X Axis" storageaddress="0x5425"/>
+			<table type="Y Axis" storageaddress="0x87FE"/>
+		</table>
+
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x133E"/>
+		<table name="DISA VE Percentage" storageaddress="0x5DF6"/>
+		<table name="Load Threshold" storageaddress="0x5898"/>
+		<table name="Load Hysteresis" storageaddress="0x589A"/>
+		<table name="Low RPM Threshold" storageaddress="0x5ADC"/>
+		<table name="High RPM Threshold" storageaddress="0x5AD8"/>
+		<table name="RPM Hysteresis" storageaddress="0x5ADA"/>
+		
+<!--Torque Control-->
+
+		<table name="Requested torque at clutch from driver" storageaddress="0xDDE8">
+			<table type="X Axis" storageaddress="0x550D"/>
+			<table type="Y Axis" storageaddress="0x89EE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x3CE">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0xDF08">
+			<table type="X Axis" storageaddress="0x550D"/>
+			<table type="Y Axis" storageaddress="0x89EE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x40E">
+			<table type="X Axis" storageaddress="0x622"/>
+			<table type="Y Axis" storageaddress="0x5B8"/>
+		</table>
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x124A8">
+			<table type="X Axis" storageaddress="0x86C4"/>
+			<table type="Y Axis" storageaddress="0x5306"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x539">
+			<table type="X Axis" storageaddress="0x5A5"/>
+			<table type="Y Axis" storageaddress="0x5F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0xF4E0">
+			<table type="X Axis" storageaddress="0x836C"/>
+			<table type="Y Axis" storageaddress="0x5306"/>
+		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0xB58E">
+			<table type="X Axis" storageaddress="0x524C"/>
+			<table type="Y Axis" storageaddress="0x5556"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0xB540">
+			<table type="X Axis" storageaddress="0x5227"/>
+			<table type="Y Axis" storageaddress="0x5556"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0xB4F2">
+			<table type="X Axis" storageaddress="0x524C"/>
+			<table type="Y Axis" storageaddress="0x5556"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0xB4A4">
+			<table type="X Axis" storageaddress="0x5227"/>
+			<table type="Y Axis" storageaddress="0x5556"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x5C76"/>
+		<table name="Delay before activating trailing throttle fuel cut when clutch is pressed or cruise active" storageaddress="0x5C70"/>
+		<table name="Delay before activating trailing throttle fuel cut when clutch is pressed or cruise active (low range)" storageaddress="0x5C74"/>
+
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x10C10">
+			<table type="X Axis" storageaddress="0x4EB0"/>
+			<table type="Y Axis" storageaddress="0x7E4C"/>
+		</table>
+		
+		<table name="Delay before activating trailing throttle fuel cut (low range)" storageaddress="0x10C70">
+			<table type="X Axis" storageaddress="0x4EB0"/>
+			<table type="Y Axis" storageaddress="0x7E4C"/>
+		</table>
+
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x32D5">
+			<table type="X Axis" storageaddress="0x5292"/>
+			<table type="Y Axis" storageaddress="0x5362"/>
+		</table>
+
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x293F">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x297F">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x29BF">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x29FF">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x2A3F">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x2A7F">
+			<table type="X Axis" storageaddress="0x526B"/>
+			<table type="Y Axis" storageaddress="0x4BD5"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x1B07">
+			<table type="Y Axis" storageaddress="0x549A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x1B0A">
+			<table type="Y Axis" storageaddress="0x549A"/>
+		</table>
+
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x155E"/>
+
+<!--Idle Control-->
+
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x6EEE">
+			<table type="X Axis" storageaddress="0x5619"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x6226">
+			<table type="X Axis" storageaddress="0x5619"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x658A">
+			<table type="X Axis" storageaddress="0x5619"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x657A">
+			<table type="X Axis" storageaddress="0x5619"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0xFA40">
+			<table type="X Axis" storageaddress="0x826C"/>
+			<table type="Y Axis" storageaddress="0x7E30"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x6EFE">
+			<table type="X Axis" storageaddress="0x56A1"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0xC888">
+			<table type="X Axis" storageaddress="0x8B54"/>
+			<table type="Y Axis" storageaddress="0x5622"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0xF9C0">
+			<table type="X Axis" storageaddress="0x8B54"/>
+			<table type="Y Axis" storageaddress="0x5622"/>
+		</table>
+
+<!--Limiters-->	
+		<table name="Vehicle speed limiter" storageaddress="0x191D"/>
+
+		<table name="Engine speed limiter (MT)" storageaddress="0x605A">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (MT)" storageaddress="0x6048">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Engine speed limiter (AT)" storageaddress="0x6014">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AT)" storageaddress="0x6038">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Engine speed limiter (AMT)" storageaddress="0x6000">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AMT)" storageaddress="0x6024">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x5A92"/>
+
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x5904"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x1ABA">
+			<table type="X Axis" storageaddress="0x4D78"/>
+		</table>
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0xB690"/>
+		<table name="MAF Sensor Scaling" storageaddress="0xB690"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0xB890"/>
+
+		<table name="ECT Sensor Scaling" storageaddress="0x432D">
+			<table type="Y Axis" storageaddress="0x83F6"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x47B8">
+			<table type="Y Axis" storageaddress="0x50C1"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x47D0">
+			<table type="Y Axis" storageaddress="0x502D"/>
+		</table>
+		
+		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x6C14">
+			<table type="Y Axis" storageaddress="0x848A"/>
+		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x38A8">
+			<table type="Y Axis" storageaddress="0x4EEB"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x38B4">
+			<table type="Y Axis" storageaddress="0x4FD7"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x38AE">
+			<table type="Y Axis" storageaddress="0x566D"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x38BA">
+			<table type="Y Axis" storageaddress="0x5157"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x38E2">
+			<table type="Y Axis" storageaddress="0x4D17"/>
+		</table>
+
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x183D"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x1824"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x184E"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x1804"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x1801"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x184D"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x189A"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x1895"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x184F"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x18B6"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x18B1"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x1850"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0xA684">
+			<table type="X Axis" storageaddress="0x8694"/>
+			<table type="Y Axis" storageaddress="0x5345"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0xA6CC">
+			<table type="X Axis" storageaddress="0x8694"/>
+			<table type="Y Axis" storageaddress="0x5345"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x10890">
+			<table type="X Axis" storageaddress="0x86DE"/>
+			<table type="Y Axis" storageaddress="0x88AC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x10910">
+			<table type="X Axis" storageaddress="0x86DE"/>
+			<table type="Y Axis" storageaddress="0x88AC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x7082">
+			<table type="X Axis" storageaddress="0x8724"/>
+			<table type="Y Axis" storageaddress="0x88F2"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x70A2">
+			<table type="X Axis" storageaddress="0x8724"/>
+			<table type="Y Axis" storageaddress="0x88F2"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x2185">
+			<table type="X Axis" storageaddress="0x86DE"/>
+			<table type="Y Axis" storageaddress="0x88AC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x21C5">
+			<table type="X Axis" storageaddress="0x86DE"/>
+			<table type="Y Axis" storageaddress="0x88AC"/>
+		</table>
+
+	</rom>
+
+	<rom base="BMWMS45BASE">
+     <!-- In this ROM specific section define only the attributes missing or that need
+     to be changed compared to the common table data and axis attributes in the BASE.
+     This will typically be the storageaddress and sometimes the size entries. -->
+		<romid>
+			<internalidaddress>40013</internalidaddress>
+			<internalidstring>4570LN00</internalidstring>
+			<xmlid>4570LN00</xmlid>
+			<ecuid>4570LN00</ecuid>
+			<year>2004</year>
+			<market>USDM</market>
+			<make>BMW</make>
+			<model>E60</model>
+			<submodel>Full MS45.1</submodel>
+			<transmission>MT/AT</transmission>
+			<filesize>1024kb</filesize>
+		</romid>
+
+		<table name="Exhaust configuration" storageaddress="0x41559"/>	
+		<table name="Reset learned variants" storageaddress="0x448EB"/>
+		<table name="MIL configuration" storageaddress="0x4155C"/>
+		<table name="Tank leakage detection" storageaddress="0x4155B"/>
+		<table name="Oil Level/Quality Sensor" storageaddress="0x4155D"/>
+
+		<table name="Time delay to switch off the ECU" storageaddress="0x45C4C"/>
+		<table name="Max temp for oil pressure switch diagnosis" storageaddress="0x418BA"/>
+		<table name="Min temp for oil pressure switch diagnosis" storageaddress="0x418BB"/>
+		<table name="Coolant temperature threshold for fast cut-off activation" storageaddress="0x4183E"/>
+
+		<table name="Torque Intervention" storageaddress="0x41662"/>
+
+		<table name="Misfire monitoring supported" storageaddress="0x41724"/>
+		<table name="Fuel system monitoring supported" storageaddress="0x41724"/>
+		<table name="Comprehensive component monitoring supported" storageaddress="0x41724"/>
+		<table name="Misfire monitoring status" storageaddress="0x41724"/>
+		<table name="Fuel system monitoring status" storageaddress="0x41724"/>
+		<table name="Comprehensive component monitoring status" storageaddress="0x41724"/>
+		<table name="Catalyst monitoring" storageaddress="0x41725"/>
+		<table name="Heated catalyst" storageaddress="0x41725"/>
+		<table name="Evaporative system monitoring" storageaddress="0x41725"/>
+		<table name="Secondary air system monitoring" storageaddress="0x41725"/>
+		<table name="A/C system refrigerant monitoring" storageaddress="0x41725"/>
+		<table name="Oxygen sensor monitoring" storageaddress="0x41725"/>
+		<table name="Oxygen sensor heater monitoring" storageaddress="0x41725"/>
+		<table name="EGR system monitoring" storageaddress="0x41725"/>
+
+<!--Error Class Definitions-->
+		<table name="Ambient Temperature CAN Error Class (TAM_CAN)" storageaddress="0x49D16"/>
+		<table name="Ambient Temperature Plausability Error Class (TAM_PLAUS)" storageaddress="0x49D28"/>
+		<table name="BSD Bus Error Class (BSD)" storageaddress="0x49980"/>
+		<table name="Secondary Air Pump Error Class (SAP)" storageaddress="0x49524"/>
+		<table name="Secondary Air Valve Error Class (SAV)" storageaddress="0x49536"/>
+		<table name="Secondary Air Pump Error Class (SA_SAP)" storageaddress="0x497E2"/>
+		<table name="Secondary Air Valve Error Class (SA_SAV)" storageaddress="0x49806"/>
+		<table name="Secondary Air Flow Meter Error Class (SA_SAFM)" storageaddress="0x497D0"/>
+		<table name="Secondary Air Pump MIL Error Class (SA_SAP_MIL)" storageaddress="0x49CCE"/>
+		<table name="Secondary Air System Error Class (SA_SYS)" storageaddress="0x497F4"/>
+		<table name="Immobilizer Error Class (IMOB_1)" storageaddress="0x48E0A"/>
+		<table name="Immobilizer Error Class (IMOB_2)" storageaddress="0x48E1C"/>
+		<table name="Immobilizer Error Class (IMOB_3)" storageaddress="0x48E2E"/>
+		<table name="Immobilizer Error Class (IMOB_4)" storageaddress="0x48E40"/>
+		<table name="Exhaust Flap Error Class (EF)" storageaddress="0x49884"/>
+
+<!--Secondary Air Pump-->
+
+		<table name="Time delay to terminate SA function 0" storageaddress="0x472EC">
+			<table type="X Axis" storageaddress="0x4563D"/>
+		</table>
+			
+		<table name="Time delay to terminate SA function 1" storageaddress="0x472FC">
+			<table type="X Axis" storageaddress="0x4563D"/>
+		</table>
+		
+<!--Catalyst Overheating Protection-->
+
+		<table name="Lambda setpoint for overheat protection" storageaddress="0x46C34">
+			<table type="X Axis" storageaddress="0x479F8"/>
+		</table>
+			
+		<table name="Cat overheat protection setpoint" storageaddress="0x4733C">
+			<table type="X Axis" storageaddress="0x48638"/>
+		</table>
+		
+		<table name="Cat .temp. overheat protection at error" storageaddress="0x47350">
+			<table type="X Axis" storageaddress="0x48638"/>
+		</table>
+
+<!--Fuel-->
+		<table name="Mass Fuel Flow Correction - Bank 1" storageaddress="0x4F6C0">
+			<table type="X Axis" storageaddress="0x47DE2"/>
+			<table type="Y Axis" storageaddress="0x47B3A"/>
+		</table>
+
+		<table name="Mass Fuel Flow Correction - Bank 2" storageaddress="0x4F840">
+			<table type="X Axis" storageaddress="0x47DE2"/>
+			<table type="Y Axis" storageaddress="0x47B3A"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 1" storageaddress="0x4E7F8">
+			<table type="X Axis" storageaddress="0x486F0"/>
+			<table type="Y Axis" storageaddress="0x45335"/>
+		</table>
+
+		<table name="Basic Lambda Setpoint - Bank 2" storageaddress="0x4E878">
+			<table type="X Axis" storageaddress="0x486F0"/>
+			<table type="Y Axis" storageaddress="0x45335"/>
+		</table>
+		
+		<table name="Full load lambda enrichment" storageaddress="0x46CF4">
+			<table type="X Axis" storageaddress="0x44CE9"/>
+		</table>
+
+		<table name="Minimum Injection Time" storageaddress="0x45D3A"/>
+
+		<table name="Minimum Injection Time Threshold" storageaddress="0x45D36"/>
+		
+		<table name="Injector dead time correction" storageaddress="0x51460">
+			<table type="X Axis" storageaddress="0x47A5A"/>
+			<table type="Y Axis" storageaddress="0x450E7"/>
+		</table>
+		
+		<table name="Global injection time correction" storageaddress="0x41883"/>
+
+		<table name="Global injection time correction (ALL)" storageaddress="0x41884"/>
+		
+		<table name="Fuel mass flow to injection time - Bank 1" storageaddress="0x4589E"/>
+		<table name="Fuel mass flow to injection time - Bank 2" storageaddress="0x458A0"/>
+
+		<table name="Stoichiometric air to fuel ratio" storageaddress="0x45A66"/>
+		
+		<table name="Prestart fuel mass flow" storageaddress="0x46E2C">
+			<table type="X Axis" storageaddress="0x44E77"/>
+		</table>
+		
+		<table name="Cranking fuel mass flow" storageaddress="0x46DEC">
+			<table type="X Axis" storageaddress="0x455B6"/>
+			<table type="Y Axis" storageaddress="0x47F4A"/>
+		</table>
+		
+<!--Fuel trims-->
+		<table name="Minimum value for adaptive additive factor for injection" storageaddress="0x41270"/>
+
+		<table name="Maximum value for adaptive additive factor for injection" storageaddress="0x4126E"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41278"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at lower area" storageaddress="0x41276"/>
+
+		<table name="Minimum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x41274"/>
+
+		<table name="Maximum value for adaptive multiplicative factor for injection at higher area" storageaddress="0x41272"/>
+
+		<table name="Maximum engine speed for additive adaptation value calculation" storageaddress="0x416FA"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at lower area" storageaddress="0x416FD"/>
+
+		<table name="Minimum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x416FC"/>
+
+		<table name="Maximum engine speed for multiplicative adaptation value calculation at higher area" storageaddress="0x416FB"/>
+
+		<table name="Maximum airflow for additive adaptation value calculation" storageaddress="0x45A44"/>
+
+		<table name="Minimum airflow for multiplicative adaptation value calculation at lower area" storageaddress="0x45A48"/>
+
+		<table name="Maximum airflow for multiplicative adaptation value calculation at higher area" storageaddress="0x45A46"/>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at lower area" storageaddress="0x437FA">
+			<table type="X Axis" storageaddress="0x45478"/>
+		</table>
+
+		<table name="Maximum airflow for multiplicative adaptation learning at lower area" storageaddress="0x437F4">
+			<table type="X Axis" storageaddress="0x44CB1"/>
+		</table>
+
+		<table name="Minimum airflow for multiplicative adaptation learning at higher area" storageaddress="0x437EE">
+			<table type="X Axis" storageaddress="0x45471"/>
+		</table>
+
+<!--Igntion-->
+		<table name="Basic ignition angle for RON 98" storageaddress="0x4B0F4">
+			<table type="X Axis" storageaddress="0x48702"/>
+			<table type="Y Axis" storageaddress="0x48882"/>
+		</table>
+
+		<table name="Basic ignition angle for RON 91" storageaddress="0x4AFB4">
+			<table type="X Axis" storageaddress="0x48702"/>
+			<table type="Y Axis" storageaddress="0x48882"/>
+		</table>
+
+		<table name="Basic ignition angle IVVT Passive" storageaddress="0x4ABF4">
+			<table type="X Axis" storageaddress="0x48702"/>
+			<table type="Y Axis" storageaddress="0x48882"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Min" storageaddress="0x4AE74">
+			<table type="X Axis" storageaddress="0x48702"/>
+			<table type="Y Axis" storageaddress="0x48882"/>
+		</table>
+
+		<table name="Basic ignition angle offset VO Max" storageaddress="0x4AD34">
+			<table type="X Axis" storageaddress="0x48702"/>
+			<table type="Y Axis" storageaddress="0x48882"/>
+		</table>
+
+		<table name="Basic ignition angle at start" storageaddress="0x4342D">
+			<table type="X Axis" storageaddress="0x4555D"/>
+			<table type="Y Axis" storageaddress="0x47EE4"/>
+		</table>
+		
+<!--Dwell-->
+
+		<table name="Dwell time" storageaddress="0x4731C">
+			<table type="X Axis" storageaddress="0x48C86"/>
+		</table>
+		
+		<table name="Initial value for dwell time" storageaddress="0x45CE2"/>
+
+<!--VANOS-->
+		<table name="Intake VANOS target - Cold Engine" storageaddress="0x4A834">
+			<table type="X Axis" storageaddress="0x487DA"/>
+			<table type="Y Axis" storageaddress="0x47DE2"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Cold Engine" storageaddress="0x4A774">
+			<table type="X Axis" storageaddress="0x487DA"/>
+			<table type="Y Axis" storageaddress="0x47DE2"/>
+		</table>
+
+		<table name="Intake VANOS target - Warm Engine" storageaddress="0x4A9B4">
+			<table type="X Axis" storageaddress="0x487DA"/>
+			<table type="Y Axis" storageaddress="0x47DE2"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Warm Engine" storageaddress="0x4A8F4">
+			<table type="X Axis" storageaddress="0x487DA"/>
+			<table type="Y Axis" storageaddress="0x47DE2"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D57">
+			<table type="X Axis" storageaddress="0x487CC"/>
+			<table type="Y Axis" storageaddress="0x48874"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Cold Engine" storageaddress="0x41D8B">
+			<table type="X Axis" storageaddress="0x487CC"/>
+			<table type="Y Axis" storageaddress="0x48874"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Idle Speed, Warm Engine" storageaddress="0x41DBF">
+			<table type="X Axis" storageaddress="0x487CC"/>
+			<table type="Y Axis" storageaddress="0x48874"/>
+		</table>
+		
+		<table name="Intake VANOS target - Idle Speed, Warm Engine" storageaddress="0x41DF3">
+			<table type="X Axis" storageaddress="0x487CC"/>
+			<table type="Y Axis" storageaddress="0x48874"/>
+		</table>
+		
+		<table name="Exhaust VANOS target - Full Load, Cold Engine" storageaddress="0x41D47">
+			<table type="X Axis" storageaddress="0x488FC"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Cold Engine" storageaddress="0x41D7B">
+			<table type="X Axis" storageaddress="0x488FC"/>
+		</table>
+
+		<table name="Exhaust VANOS target - Full Load, Warm Engine" storageaddress="0x41DAF">
+			<table type="X Axis" storageaddress="0x488FC"/>
+		</table>
+
+		<table name="Intake VANOS target - Full Load, Warm Engine" storageaddress="0x41DE3">
+			<table type="X Axis" storageaddress="0x488FC"/>
+		</table>
+
+		<table name="Intake Camshaft Park Position" storageaddress="0x411F4"/>
+		<table name="Exhaust Camshaft Park Position" storageaddress="0x411F2"/>
+		<table name="Intake Camshaft Initial Position" storageaddress="0x41545"/>
+		<table name="Exhaust Camshaft Initial Position" storageaddress="0x41544"/>
+		<table name="Intake Camshaft Duration" storageaddress="0x41547"/>
+		<table name="Exhaust Camshaft Duration" storageaddress="0x41546"/>
+		
+<!--Volumetric Efficiency Tables-->
+		
+		<table name="Offset of the cylinder air-mass flow, DISA Off" storageaddress="0x4C988">
+			<table type="X Axis" storageaddress="0x456E6"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+		<table name="Offset of the cylinder air-mass flow, DISA On" storageaddress="0x4CB38">
+			<table type="X Axis" storageaddress="0x456E6"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA Off" storageaddress="0x4D048">
+			<table type="X Axis" storageaddress="0x456E6"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on VO, DISA On" storageaddress="0x4D1F8">
+			<table type="X Axis" storageaddress="0x456E6"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on intake cam, DISA Off" storageaddress="0x4CCE8">
+			<table type="X Axis" storageaddress="0x4856E"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+		<table name="Slope of the cylinder air-mass flow dependant on intake cam, DISA On" storageaddress="0x4CE98">
+			<table type="X Axis" storageaddress="0x4856E"/>
+			<table type="Y Axis" storageaddress="0x4891E"/>
+		</table>
+		
+<!--Intake Model-->
+
+		<table name="Effective intake manifold volume at increasing load in Part load and Engine Start" storageaddress="0x527B8">
+			<table type="X Axis" storageaddress="0x4541C"/>
+			<table type="Y Axis" storageaddress="0x487FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Part load and Engine Start" storageaddress="0x528A8">
+			<table type="X Axis" storageaddress="0x4541C"/>
+			<table type="Y Axis" storageaddress="0x487FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at increasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52818">
+			<table type="X Axis" storageaddress="0x45425"/>
+			<table type="Y Axis" storageaddress="0x487FE"/>
+		</table>
+		
+		<table name="Effective intake manifold volume at decreasing load in Idle Speed, Trailing Throttle and Fuel Cut Off" storageaddress="0x52860">
+			<table type="X Axis" storageaddress="0x45425"/>
+			<table type="Y Axis" storageaddress="0x487FE"/>
+		</table>
+		
+<!--DISA-->
+
+		<table name="DISA PWM Output Duty" storageaddress="0x4133E"/>
+		<table name="DISA VE Percentage" storageaddress="0x45DF6"/>
+		<table name="Load Threshold" storageaddress="0x45898"/>
+		<table name="Load Hysteresis" storageaddress="0x4589A"/>
+		<table name="Low RPM Threshold" storageaddress="0x45ADC"/>
+		<table name="High RPM Threshold" storageaddress="0x45AD8"/>
+		<table name="RPM Hysteresis" storageaddress="0x45ADA"/>
+
+<!--Torque Control-->
+
+		<table name="Requested torque at clutch from driver" storageaddress="0x4DDE8">
+			<table type="X Axis" storageaddress="0x4550D"/>
+			<table type="Y Axis" storageaddress="0x489EE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver (process monitoring)" storageaddress="0x403CE">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range" storageaddress="0x4DF08">
+			<table type="X Axis" storageaddress="0x4550D"/>
+			<table type="Y Axis" storageaddress="0x489EE"/>
+		</table>
+		
+		<table name="Requested torque at clutch from driver in low range (process monitoring)" storageaddress="0x4040E">
+			<table type="X Axis" storageaddress="0x40622"/>
+			<table type="Y Axis" storageaddress="0x405B8"/>
+		</table>
+
+		<table name="Indicated engine torque at reference conditions" storageaddress="0x524A8">
+			<table type="X Axis" storageaddress="0x486C4"/>
+			<table type="Y Axis" storageaddress="0x45306"/>
+		</table>
+		
+		<table name="Indicated engine torque at reference conditions (process monitoring)" storageaddress="0x40539">
+			<table type="X Axis" storageaddress="0x405A5"/>
+			<table type="Y Axis" storageaddress="0x405F5"/>
+		</table>
+		
+		<table name="Setpoint mass air flow depending on slow torque setpoint" storageaddress="0x4F4E0">
+			<table type="X Axis" storageaddress="0x4836C"/>
+			<table type="Y Axis" storageaddress="0x45306"/>
+		</table>
+		
+<!--Deceleration-->
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Manual)" storageaddress="0x4B58E">
+			<table type="X Axis" storageaddress="0x4524C"/>
+			<table type="Y Axis" storageaddress="0x45556"/>
+		</table>
+
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC off (Automatic)" storageaddress="0x4B540">
+			<table type="X Axis" storageaddress="0x45227"/>
+			<table type="Y Axis" storageaddress="0x45556"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Manual)" storageaddress="0x4B4F2">
+			<table type="X Axis" storageaddress="0x4524C"/>
+			<table type="Y Axis" storageaddress="0x45556"/>
+		</table>
+		
+		<table name="Minimum engine speed for trailing throttle fuel cut activation with AC on (Automatic)" storageaddress="0x4B4A4">
+			<table type="X Axis" storageaddress="0x45227"/>
+			<table type="Y Axis" storageaddress="0x45556"/>
+		</table>
+
+		<table name="Delay before activating trailing throttle fuel cut when car is stationary" storageaddress="0x45C76"/>
+		<table name="Delay before activating trailing throttle fuel cut when clutch is pressed or cruise active" storageaddress="0x45C70"/>
+		<table name="Delay before activating trailing throttle fuel cut when clutch is pressed or cruise active (low range)" storageaddress="0x45C74"/>
+
+		<table name="Delay before activating trailing throttle fuel cut" storageaddress="0x50C10">
+			<table type="X Axis" storageaddress="0x44EB0"/>
+			<table type="Y Axis" storageaddress="0x47E4C"/>
+		</table>
+		
+		<table name="Delay before activating trailing throttle fuel cut (low range)" storageaddress="0x50C70">
+			<table type="X Axis" storageaddress="0x44EB0"/>
+			<table type="Y Axis" storageaddress="0x47E4C"/>
+		</table>
+
+		<table name="Minimum Ignition Angle During Trailing Throttle" storageaddress="0x432D5">
+			<table type="X Axis" storageaddress="0x45292"/>
+			<table type="Y Axis" storageaddress="0x45362"/>
+		</table>
+
+<!--Knock-->
+		<table name="Knock Factor - Cylinder 1" storageaddress="0x4293F">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x44BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 2" storageaddress="0x4297F">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x44BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 3" storageaddress="0x429B4">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x44BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 4" storageaddress="0x429FF">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x45BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 5" storageaddress="0x42A3F">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x44BD5"/>
+		</table>
+
+		<table name="Knock Factor - Cylinder 6" storageaddress="0x42A7F">
+			<table type="X Axis" storageaddress="0x4526B"/>
+			<table type="Y Axis" storageaddress="0x44BD5"/>
+		</table>
+
+		<table name="Spark retard - Intensity 1" storageaddress="0x41B07">
+			<table type="Y Axis" storageaddress="0x4549A"/>
+		</table>
+
+		<table name="Spark retard - Intensity 2" storageaddress="0x41B0A">
+			<table type="Y Axis" storageaddress="0x4549A"/>
+		</table>
+
+<!--Fuel Pump Control-->
+		<table name="EFP-control configuration bit" storageaddress="0x4155E"/>
+
+<!--Idle Control-->
+
+		<table name="Nominal idle speed without additional load on the engine" storageaddress="0x46EEE">
+			<table type="X Axis" storageaddress="0x45619"/>
+		</table>
+
+		<table name="Nominal idle speed with A/C on" storageaddress="0x46226">
+			<table type="X Axis" storageaddress="0x45619"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged (AT)" storageaddress="0x4658A">
+			<table type="X Axis" storageaddress="0x45619"/>
+		</table>
+
+		<table name="Nominal idle speed with D engaged and A/C on (AT)" storageaddress="0x4657A">
+			<table type="X Axis" storageaddress="0x45619"/>
+		</table>
+
+		<table name="Nominal idle speed at Part Load" storageaddress="0x4FA40">
+			<table type="X Axis" storageaddress="0x4826C"/>
+			<table type="Y Axis" storageaddress="0x47E30"/>
+		</table>
+
+		<table name="Idle speed setpoint for drive-off-support (MT)" storageaddress="0x46EFE">
+			<table type="X Axis" storageaddress="0x456A1"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with D engaged (AT)" storageaddress="0x4C888">
+			<table type="X Axis" storageaddress="0x48B54"/>
+			<table type="Y Axis" storageaddress="0x45622"/>
+		</table>
+
+		<table name="Max. idle speed during CAT heating with no D engaged (AT)" storageaddress="0x4F9C0">
+			<table type="X Axis" storageaddress="0x48B54"/>
+			<table type="Y Axis" storageaddress="0x45622"/>
+		</table>
+
+<!--Limiters-->	
+		<table name="Vehicle speed limiter" storageaddress="0x4191D"/>
+
+		<table name="Engine speed limiter (MT)" storageaddress="0x4605A">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (MT)" storageaddress="0x46048">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Engine speed limiter (AT)" storageaddress="0x46014">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AT)" storageaddress="0x46038">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Engine speed limiter (AMT)" storageaddress="0x46000">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Increased engine speed limiter (AMT)" storageaddress="0x46024">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Engine speed threshold for overrevving event" storageaddress="0x45A92"/>
+
+<!--Gearing-->
+		<table name="Rear diff ratio" storageaddress="0x45904"/>
+
+		<table name="Gear detection (MT)" storageaddress="0x41ABA">
+			<table type="X Axis" storageaddress="0x44D78"/>
+		</table>
+
+<!--Sensor Scaling-->
+		<table name="MAF Sensor Scaling" storageaddress="0x4B690"/>
+		<table name="MAF Sensor Scaling (2048 kg/hr)" storageaddress="0x4B690"/>
+		<table name="SAF MAF Sensor Scaling" storageaddress="0x4B890"/>
+		
+		<table name="ECT Sensor Scaling" storageaddress="0x4432D">
+			<table type="Y Axis" storageaddress="0x483F6"/>
+		</table>
+
+		<table name="IAT Sensor Scaling" storageaddress="0x447B8">
+			<table type="Y Axis" storageaddress="0x450C1"/>
+		</table>
+
+		<table name="Oil Temp Sensor Scaling" storageaddress="0x447D0">
+			<table type="Y Axis" storageaddress="0x4502D"/>
+		</table>
+		
+		<table name="Wideband Lambda Sensor Scaling" storageaddress="0x46C14">
+			<table type="Y Axis" storageaddress="0x4848A"/>
+		</table>
+
+<!-- Electric Fan-->
+		<table name="Electric Fan Speed (Radiator Outlet Temp)" storageaddress="0x438A8">
+			<table type="Y Axis" storageaddress="0x44EEB"/>
+		</table>
+
+		<table name="Electric Fan Speed (Transmission Temp)" storageaddress="0x438B4">
+			<table type="Y Axis" storageaddress="0x44FD7"/>
+		</table>
+
+		<table name="Electric Fan Speed (Cat Temp)" storageaddress="0x438AE">
+			<table type="Y Axis" storageaddress="0x4566D"/>
+		</table>
+
+		<table name="Electric Fan Speed VSS correction" storageaddress="0x438BA">
+			<table type="Y Axis" storageaddress="0x45157"/>
+		</table>
+		
+		<table name="Electric Fan Speed (PWM)" storageaddress="0x438E2">
+			<table type="Y Axis" storageaddress="0x44D17"/>
+		</table>
+		
+<!--E-Thermostat-->
+		<table name="Minimum coolant temperature threshold for full energization of e-thermostat" storageaddress="0x4183D"/>
+
+		<table name="Maximum coolant temperature at radiator outlet threshold for e-thermostat activation" storageaddress="0x41824"/>
+
+		<table name="Target coolant temperature if coolant temperature at radiator outlet threshold exceeded" storageaddress="0x4184E"/>
+
+		<table name="Minimum ambient temperature threshold for e-thermostat activation" storageaddress="0x41804"/>
+
+		<table name="Maximum ambient temperature threshold for e-thermostat activation" storageaddress="0x41801"/>
+
+		<table name="Target coolant temperature if ambient temperature threshold exceeded" storageaddress="0x4184D"/>
+
+		<table name="Minimum intake air temperature threshold for e-thermostat activation" storageaddress="0x4189A"/>
+
+		<table name="Maximum intake air temperature threshold for e-thermostat activation" storageaddress="0x41895"/>
+
+		<table name="Target coolant temperature if intake air temperature threshold exceeded" storageaddress="0x4184F"/>
+
+		<table name="Minimum oil temperature threshold for e-thermostat activation" storageaddress="0x418B6"/>
+
+		<table name="Maximum oil temperature threshold for e-thermostat activation" storageaddress="0x418B1"/>
+
+		<table name="Target coolant temperature until temperature thresholds are exceeded" storageaddress="0x41850"/>
+
+		<table name="Target coolant temperature without A/C" storageaddress="0x4A684">
+			<table type="X Axis" storageaddress="0x48694"/>
+			<table type="Y Axis" storageaddress="0x45345"/>
+		</table>
+
+		<table name="Target coolant temperature with A/C" storageaddress="0x4A6CC">
+			<table type="X Axis" storageaddress="0x48694"/>
+			<table type="Y Axis" storageaddress="0x45345"/>
+		</table>
+
+<!-- Wideband Lambda Sensor-->
+		<table name="Time delay - Bank 1" storageaddress="0x50890">
+			<table type="X Axis" storageaddress="0x486DE"/>
+			<table type="Y Axis" storageaddress="0x488AC"/>
+		</table>
+
+		<table name="Time delay - Bank 2" storageaddress="0x50910">
+			<table type="X Axis" storageaddress="0x486DE"/>
+			<table type="Y Axis" storageaddress="0x488AC"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 1" storageaddress="0x47082">
+			<table type="X Axis" storageaddress="0x48724"/>
+			<table type="Y Axis" storageaddress="0x488F2"/>
+		</table>
+
+		<table name="Time delay (aged sensor) - Bank 2" storageaddress="0x470A2">
+			<table type="X Axis" storageaddress="0x48724"/>
+			<table type="Y Axis" storageaddress="0x488F2"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 1" storageaddress="0x42185">
+			<table type="X Axis" storageaddress="0x486DE"/>
+			<table type="Y Axis" storageaddress="0x488AC"/>
+		</table>
+
+		<table name="Time delay weighting factor - Bank 2" storageaddress="0x421C5">
+			<table type="X Axis" storageaddress="0x486DE"/>
+			<table type="Y Axis" storageaddress="0x488AC"/>
+		</table>
+
 	</rom>
 
      <!-- These are for MPC binaries to do MAF hack -->
