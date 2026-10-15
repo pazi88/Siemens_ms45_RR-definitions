@@ -6657,6 +6657,24 @@ v0.3
 
 		<table name="Engine speed threshold for overrevving event" storageaddress="0x5A92"/>
 
+		<table name="Fuel cut threshold" storageaddress="0x576A"/>
+		
+		<table name="Engine speed limiter P-gain (MT)" storageaddress="0x1A67">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Engine speed limiter P-gain (AT)" storageaddress="0x1A5E">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+		
+		<table name="Engine speed limiter I-gain (MT)" storageaddress="0x5EEC">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
+		<table name="Engine speed limiter I-gain (AT)" storageaddress="0x5EDA">
+			<table type="X Axis" storageaddress="0x51DF"/>
+		</table>
+
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x5904"/>
 
@@ -7304,6 +7322,24 @@ v0.3
 		</table>
 
 		<table name="Engine speed threshold for overrevving event" storageaddress="0x45A92"/>
+
+		<table name="Fuel cut threshold" storageaddress="0x4576A"/>
+		
+		<table name="Engine speed limiter P-gain (MT)" storageaddress="0x41A67">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Engine speed limiter P-gain (AT)" storageaddress="0x41A5E">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+		
+		<table name="Engine speed limiter I-gain (MT)" storageaddress="0x45EEC">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
+
+		<table name="Engine speed limiter I-gain (AT)" storageaddress="0x45EDA">
+			<table type="X Axis" storageaddress="0x451DF"/>
+		</table>
 
 <!--Gearing-->
 		<table name="Rear diff ratio" storageaddress="0x45904"/>
